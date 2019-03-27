@@ -38,6 +38,9 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{ffa26e4e-aeab-43a6-b552-fb48aca55870}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AI">
+      <UniqueIdentifier>{6f3c1df9-a40c-4569-a165-ed565aecf555}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Animation.h">
@@ -133,6 +136,12 @@
     <ClInclude Include="include\FileOpenHelper.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="include\TileMapNavigation.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Node.h">
+      <Filter>AI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\stdafx.cpp">
@@ -227,6 +236,12 @@
     </ClCompile>
     <ClCompile Include="src\FileOpenHelper.cpp">
       <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="include\Node.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="include\TileMapNavigation.cpp">
+      <Filter>AI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -117,9 +117,13 @@
     <ClInclude Include="include\SpriteTilemap.h" />
     <ClInclude Include="include\stdafx.h" />
     <ClInclude Include="include\Tilemap.h" />
+    <ClInclude Include="include\TileMapNavigation.h" />
+    <ClInclude Include="include\Node.h" />
     <ClInclude Include="include\Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\Node.cpp" />
+    <ClCompile Include="include\TileMapNavigation.cpp" />
     <ClCompile Include="src\CallbackInputManager.cpp" />
     <ClCompile Include="src\ColliderLine.cpp" />
     <ClCompile Include="src\FileOpenHelper.cpp" />
