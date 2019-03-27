@@ -112,6 +112,7 @@ xcopy ..\AntTweakBar\lib\AntTweakBar64.dll "$(OutDir)" /Y</Command>
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\MonkeyMovement.cpp" />
     <ClCompile Include="Source\PacManMovement.cpp" />
+    <ClCompile Include="Source\Pellet.cpp" />
     <ClCompile Include="Source\ScreenWrap.cpp" />
     <ClCompile Include="Source\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -124,6 +125,7 @@ xcopy ..\AntTweakBar\lib\AntTweakBar64.dll "$(OutDir)" /Y</Command>
     <ClInclude Include="Source\Level1.h" />
     <ClInclude Include="Source\MonkeyMovement.h" />
     <ClInclude Include="Source\PacManMovement.h" />
+    <ClInclude Include="Source\Pellet.h" />
     <ClInclude Include="Source\ScreenWrap.h" />
     <ClInclude Include="Source\stdafx.h" />
     <ClInclude Include="Source\TimedDeath.h" />

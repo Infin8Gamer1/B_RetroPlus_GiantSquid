@@ -21,6 +21,7 @@
 #include <SpriteTilemap.h>
 #include "MonkeyMovement.h"
 #include "PacManMovement.h"
+#include "Pellet.h"
 
 //Resources
 #include <Mesh.h>
@@ -38,6 +39,7 @@
 #include <SoundManager.h>
 #include <Random.h>
 #include <SpaceManager.h>
+#include <GameObject.h>
 #include <Graphics.h>
 #include <Parser.h>
 
@@ -56,9 +58,12 @@ void Levels::Level1::Load()
 
 	Graphics::GetInstance().GetCurrentCamera().Reset();
 
+	GetSpace()->GetObjectManager().AddArchetype(*GameObjectFactory::GetInstance().CreateObject("Pellet"));
+
 	////Register Custom Components
 	GameObjectFactory::GetInstance().RegisterComponent<Behaviors::MonkeyMovement>();
 	GameObjectFactory::GetInstance().RegisterComponent<PacManMovement>();
+	GameObjectFactory::GetInstance().RegisterComponent<Pellet>();
 
 	//Setup Sounds
 	soundManager = Engine::GetInstance().GetModule<SoundManager>();
@@ -76,13 +81,31 @@ void Levels::Level1::Initialize()
 	std::cout << GetName() << "::Initialize" << std::endl;
 
 	LoadLevel();
+
+	colliderTilemap = GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
+
+	for (unsigned i = 0; i < colliderTilemap->GetTilemap()->GetWidth(); i++)
+	{
+		for (unsigned j = 0; j < colliderTilemap->GetTilemap()->GetHeight(); j++)
+		{
+			int value = colliderTilemap->GetTilemap()->GetCellValue(i, j);
+
+			Vector2D position = colliderTilemap->ConvertTileMapCordsToWorldCords(Vector2D(i, j));
+
+			if (value == 0 && !IsObjectAt(position))
+			{
+				GameObject* obj = new GameObject(*GetSpace()->GetObjectManager().GetArchetypeByName("Pellet"));
+				obj->GetComponent<Transform>()->SetTranslation(position);
+
+				GetSpace()->GetObjectManager().AddObject(*obj);
+			}
+		}
+	}
 }
 
 void Levels::Level1::Update(float dt)
 {
 	UNREFERENCED_PARAMETER(dt);
-
-	//Graphics::GetInstance().GetCurrentCamera().SetTranslation(GetSpace()->GetObjectManager().GetObjectByName("Monkey")->GetComponent<Transform>()->GetTranslation());
 }
 
 void Levels::Level1::Shutdown()
@@ -100,4 +123,16 @@ void Levels::Level1::Unload()
 	std::cout << GetName() << "::Unload" << std::endl;
 
 	soundManager->Shutdown();
+}
+
+bool Levels::Level1::IsObjectAt(Vector2D pos)
+{
+	std::vector<GameObject*> objs = GetSpace()->GetObjectManager().GetGameObjectActiveList();
+
+	for (unsigned i = 0; i < objs.size(); i++)
+	{
+		if (AlmostEqual(objs[i]->GetComponent<Transform>()->GetTranslation(), pos)) return true;
+	}
+
+	return false;
 }
