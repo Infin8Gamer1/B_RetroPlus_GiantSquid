@@ -178,6 +178,14 @@ std::string GameObjectManager::GenerateUniqueGameObjectName(const std::string & 
 	return outputName;
 }
 
+void GameObjectManager::OpenTWBarForAllObjects()
+{
+	for (size_t i = 0; i < gameObjectActiveList.size(); i++)
+	{
+		gameObjectActiveList[i]->CreateTweakBar();
+	}
+}
+
 void GameObjectManager::VariableUpdate(float dt)
 {
 	for (size_t i = 0; i < gameObjectActiveList.size(); i++)

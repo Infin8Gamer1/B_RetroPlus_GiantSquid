@@ -20,6 +20,9 @@
     <ClCompile Include="Source\stdafx.cpp">
       <Filter>Precompiled</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PacManMovement.cpp">
+      <Filter>Game\Behaviors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\ColorChange.h">
@@ -39,6 +42,9 @@
     </ClInclude>
     <ClInclude Include="Source\stdafx.h">
       <Filter>Precompiled</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PacManMovement.h">
+      <Filter>Game\Behaviors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

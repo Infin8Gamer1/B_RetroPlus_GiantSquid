@@ -20,7 +20,6 @@
 #include <Graphics.h>
 #include <Parser.h>
 
-
 ColliderCircle::ColliderCircle(float _radius) : Collider(ColliderType::ColliderTypeCircle)
 {
 	radius = _radius;

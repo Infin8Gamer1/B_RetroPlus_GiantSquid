@@ -116,6 +116,8 @@ public:
 	//	 A reference to the component's scale structure.
 	const Vector2D& GetScale() const;
 
+	const Vector2D& Forward() const;
+
 private:
 	//------------------------------------------------------------------------------
 	// Private Functions:

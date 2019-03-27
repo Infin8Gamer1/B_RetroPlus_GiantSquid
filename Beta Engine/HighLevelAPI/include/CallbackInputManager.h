@@ -33,6 +33,8 @@ struct GLFWwindow;
 //   otherObject = The other object that the object collided with.
 typedef void(*Callback)(int key);
 
+#define ALL_KEYS -1
+
 //------------------------------------------------------------------------------
 // Public Structures:
 //------------------------------------------------------------------------------

@@ -37,14 +37,14 @@
 #include <crtdbg.h>
 
 // Used to track memory leaks to specific files and line numbers
-#ifdef _DEBUG
+/*#ifdef _DEBUG
 	#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
 #endif
 
 #ifdef max
 #undef max
 #undef min
-#endif
+#endif*/
 
 // Used to clean /W4 unused parameters for functions that must match a function-pointer type 
 // NOTE: copied from winnt.h, but we don't want to include that here, otherwise 

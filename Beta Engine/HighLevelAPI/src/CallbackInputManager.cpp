@@ -55,6 +55,11 @@ void CallbackInputManager::addKeyPressBinding(int key, const Callback callback)
 
 void CallbackInputManager::onKeyPress(int key)
 {
+	for (Callback& call : m_KeyPressCallbacks[ALL_KEYS])
+	{
+		call(key);
+	}
+
 	for (Callback& call : m_KeyPressCallbacks[key])
 	{
 		call(key);
@@ -68,6 +73,11 @@ void CallbackInputManager::addKeyReleaseBinding(int key, const Callback callback
 
 void CallbackInputManager::onKeyRelease(int key)
 {
+	for (Callback& call : m_KeyReleaseCallbacks[ALL_KEYS])
+	{
+		call(key);
+	}
+	
 	for (Callback& call : m_KeyReleaseCallbacks[key])
 	{
 		call(key);

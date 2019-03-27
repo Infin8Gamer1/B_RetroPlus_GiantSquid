@@ -99,6 +99,8 @@ public:
 	// Returns a unique name 
 	std::string GenerateUniqueGameObjectName(const std::string& name);
 
+	void OpenTWBarForAllObjects();
+
 private:
 	// Disable copy constructor and assignment operator
 	GameObjectManager(const GameObjectManager&) = delete;

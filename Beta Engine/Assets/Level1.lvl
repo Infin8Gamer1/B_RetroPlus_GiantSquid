@@ -1,6 +1,6 @@
 LevelEditor
 {
-  numGameObjects : 1
+  numGameObjects : 2
   {
     TileMap
     {
@@ -24,6 +24,41 @@ LevelEditor
         CollisionFlags : all
         tilemapLoc : Default
       }
+    }
+    PacMan
+    {
+      numComponents : 6
+      Transform
+      {
+        translation : { -74.5, -50 }
+        rotation : 0
+        scale : { 25, 25 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : Circle
+      }
+      Animation
+      {
+      }
+      Physics
+      {
+        acceleration : { 0, 0 }
+        velocity : { 0, 0 }
+        angularVelocity : 0
+        mass : 1
+        gravity : { 0, 0 }
+      }
+      ColliderRectangle
+      {
+        CollisionGroup : default
+        CollisionFlags : all
+        extents : { 12.5, 12.5 }
+      }
+      PacManMovement
+      { } 
     }
   }
 }

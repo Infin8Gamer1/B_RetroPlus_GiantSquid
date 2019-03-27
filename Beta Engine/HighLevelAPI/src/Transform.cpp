@@ -190,6 +190,22 @@ const Vector2D & Transform::GetScale() const
 	return scale;
 }
 
+const Vector2D & Transform::Forward() const
+{
+	//get rotation and normilize it between -180 and 180
+	float rotation = GetRotation();
+
+	rotation = fmod(rotation + M_PI, 2 * M_PI);
+	if (rotation < 0)
+	{
+		rotation += 2 * M_PI;
+	}
+	rotation = rotation - M_PI;
+
+	//calculate unit vector that is forward and return it
+	return Vector2D(cos(rotation), sin(rotation));
+}
+
 void Transform::CalculateMatrices()
 {
 	if (isDirty) {

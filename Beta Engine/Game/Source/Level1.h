@@ -72,7 +72,7 @@ namespace Levels
 		//------------------------------------------------------------------------------
 		
 		// Window Title
-		const std::string WindowTitle = "Level 1";
+		const std::string WindowTitle = "PacMan Level 1 - Team Giant Squids";
 
 		// Sound manager
 		SoundManager* soundManager;

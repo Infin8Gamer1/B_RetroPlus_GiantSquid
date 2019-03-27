@@ -73,6 +73,9 @@ void Levels::LevelEditorLevel::Initialize()
 	std::cout << GetName() << "::Initialize" << std::endl;
 
 	LoadLevel();
+
+	GetSpace()->GetObjectManager().OpenTWBarForAllObjects();
+	
 }
 
 void Levels::LevelEditorLevel::Update(float dt)
