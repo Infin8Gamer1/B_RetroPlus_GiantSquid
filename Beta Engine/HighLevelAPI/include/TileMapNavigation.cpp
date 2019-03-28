@@ -74,8 +74,8 @@ void TileMapNavigation::CalculatePath()
 		}
 		
 		//generate children of current node
-		Node upNode = Node(CurrentNode, CurrentNode.Position + Vector2D(0, 1));
-		colliderTilemap->GetTilemap()->GetCellValue()
+		//Node upNode = Node(*CurrentNode, CurrentNode.Position + Vector2D(0, 1), endNode.Position, startNode.Position);
+		//colliderTilemap->GetTilemap()->GetCellValue();
 
 		
 	}
