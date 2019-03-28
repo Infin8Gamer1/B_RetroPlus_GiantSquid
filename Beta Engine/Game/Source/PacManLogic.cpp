@@ -12,7 +12,7 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	if (other.GetName() == "Pellet")
 	{
 		object.GetComponent<PacManLogic>()->score += object.GetComponent<PacManLogic>()->pelletScore;
-		std::cout << object.GetComponent<PacManLogic>()->score << std::endl;
+		//std::cout << object.GetComponent<PacManLogic>()->score << std::endl;
 		other.Destroy();
 	}
 }
