@@ -37,7 +37,7 @@ public:
 	//------------------------------------------------------------------------------
 
 	// Constructor
-	Node(Node* parent, Vector2D pos);
+	Node(Node* parent, Vector2D pos, Vector2D endPos = Vector2D(), Vector2D startPos = Vector2D());
 
 	bool operator==(const Node& rhs);
 
