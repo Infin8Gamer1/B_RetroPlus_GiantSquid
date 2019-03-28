@@ -26,8 +26,6 @@
 #include <SpriteText.h>
 #include <ColliderLine.h>
 
-static GameObjectFactory* Instance;
-
 GameObjectFactory::GameObjectFactory()
 {
 	objectFilePath = "Assets/Objects/";
@@ -137,11 +135,9 @@ void GameObjectFactory::SaveObjectToFile(GameObject * object)
 
 GameObjectFactory & GameObjectFactory::GetInstance()
 {
-	if (Instance == nullptr) {
-		Instance = new GameObjectFactory();
-	}
+	static GameObjectFactory Instance;
 
-	return *Instance;
+	return Instance;
 }
 
 
