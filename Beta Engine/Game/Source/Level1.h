@@ -28,6 +28,7 @@ class Mesh;
 class SpriteSource;
 class Texture;
 class SoundManager;
+class ColliderTilemap;
 
 //------------------------------------------------------------------------------
 // Public Structures:
@@ -67,10 +68,16 @@ namespace Levels
 		// Private Functions:
 		//------------------------------------------------------------------------------
 
+		bool IsObjectAt(Vector2D pos);
+
 		//------------------------------------------------------------------------------
 		// Private Variables:
 		//------------------------------------------------------------------------------
 		
+		ColliderTilemap* colliderTilemap;
+
+		std::vector<Vector2D> avoid;
+
 		// Window Title
 		const std::string WindowTitle = "PacMan Level 1 - Team Giant Squids";
 
