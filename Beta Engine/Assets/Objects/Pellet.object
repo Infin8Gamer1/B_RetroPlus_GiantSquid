@@ -18,8 +18,8 @@ Pellet
   }
   ColliderCircle
   {
-	CollisionGroup : pellet
-    CollisionFlags : default, !pellet
+	CollisionGroup : 2
+    CollisionFlags : -1, -2, 3
 	radius : 10
   }
 }

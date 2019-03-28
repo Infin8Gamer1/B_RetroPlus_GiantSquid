@@ -148,13 +148,15 @@ private:
 	{
 		std::string os;
 		for (int i = 0; i < v.size(); ++i) {
-			os = os + v[i] + ", ";
+			os = os + std::to_string(v[i]) + ", ";
 		}
 
 		os = os.substr(0, os.find_last_of(","));
 
 		return os;
 	}
+
+	std::vector<int> readVector(const std::string& str, const char& ch);
 
 	std::vector<std::string> explodeString(const std::string& str, const char& ch);
 
@@ -174,10 +176,10 @@ private:
 	bool enabled;
 
 	// The Group That This Collider Belongs To
-	std::string CollisionGroup;
+	int CollisionGroup;
 
 	// A List of strings that identify Collision Flags
-	std::vector<std::string> CollisionFlags;
+	std::vector<int> CollisionFlags;
 
 	TwBar* bar;
 };

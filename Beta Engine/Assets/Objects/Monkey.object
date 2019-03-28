@@ -26,8 +26,8 @@ Monkey
   }
   ColliderRectangle
   {
-    CollisionGroup : default
-    CollisionFlags : all
+    CollisionGroup : 1
+    CollisionFlags : 0
     extents : { 50, 50 }
   }
   Behaviors::MonkeyMovement

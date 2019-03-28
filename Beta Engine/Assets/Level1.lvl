@@ -20,8 +20,8 @@ LevelEditor
       }
       ColliderTilemap
       {
-        CollisionGroup : default
-        CollisionFlags : all
+        CollisionGroup : 1
+        CollisionFlags : 1, -2, 3
         tilemapLoc : Default
       }
     }
@@ -53,8 +53,8 @@ LevelEditor
       }
       ColliderRectangle
       {
-        CollisionGroup : default
-        CollisionFlags : all
+        CollisionGroup : 3
+        CollisionFlags : 1, 2, -3
         extents : { 12.5, 12.5 }
       }
       PacManMovement

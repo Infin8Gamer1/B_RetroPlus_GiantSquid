@@ -84,6 +84,10 @@ void Levels::Level1::Initialize()
 
 	colliderTilemap = GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
 
+
+#ifdef _DEBUG
+	std::cout << "Warning Not Adding Dots because they are slow in debug" << std::endl;
+#else
 	for (unsigned i = 0; i < colliderTilemap->GetTilemap()->GetWidth(); i++)
 	{
 		for (unsigned j = 0; j < colliderTilemap->GetTilemap()->GetHeight(); j++)
@@ -101,6 +105,9 @@ void Levels::Level1::Initialize()
 			}
 		}
 	}
+#endif // RELEASE
+
+	
 }
 
 void Levels::Level1::Update(float dt)

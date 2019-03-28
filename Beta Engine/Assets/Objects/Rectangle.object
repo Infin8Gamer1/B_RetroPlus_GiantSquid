@@ -23,8 +23,8 @@ Rectangle
   }
   ColliderRectangle
   {
-    CollisionGroup : default
-    CollisionFlags : all
+    CollisionGroup : 1
+    CollisionFlags : 0
     extents : { 125, 50 }
   }
 }
