@@ -3,7 +3,6 @@
 #include <Space.h>
 #include <Collider.h>
 #include <GameObject.h>
-#include "Pellet.h"
 
 
 

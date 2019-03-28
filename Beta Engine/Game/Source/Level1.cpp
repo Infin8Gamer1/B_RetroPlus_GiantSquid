@@ -21,7 +21,6 @@
 #include <SpriteTilemap.h>
 #include "MonkeyMovement.h"
 #include "PacManMovement.h"
-#include "Pellet.h"
 
 //Resources
 #include <Mesh.h>

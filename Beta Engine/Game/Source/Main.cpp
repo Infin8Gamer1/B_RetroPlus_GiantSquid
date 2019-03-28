@@ -26,7 +26,6 @@
 #include <GameObject.h>
 #include <GameObjectFactory.h>
 #include "PacManMovement.h"
-#include "Pellet.h"
 #include "PacManLogic.h"
 
 // Initial game state
@@ -53,7 +52,6 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 
 	////Register Custom Components
 	GameObjectFactory::GetInstance().RegisterComponent<PacManMovement>();
-	GameObjectFactory::GetInstance().RegisterComponent<Pellet>();
 	GameObjectFactory::GetInstance().RegisterComponent<PacManLogic>();
 
 	// Create a new space called "Level"

@@ -1,8 +1,8 @@
 TileMap
 {
 	textureName : TGS_Duncan_TileMap.png
-    textureRows : 3
-    textureColumns : 3
+    textureRows : 6
+    textureColumns : 6
 	frameCount : -1
 	frameStart : -1
 }
