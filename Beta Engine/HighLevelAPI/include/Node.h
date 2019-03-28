@@ -43,6 +43,8 @@ public:
 
 	Node* Parent;
 
+	std::vector<Node*> children;
+
 	Vector2D Position;
 
 	float G;

@@ -37,24 +37,25 @@ void TileMapNavigation::CalculatePath()
 	Node startNode = Node(nullptr, colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()));
 	startNode.F = 0.0f;
 	Node endNode = Node(nullptr, target);
+	endNode.F = 0.0f;
 	
 	//init both open and closed list
-	std::vector<Node> openList;
-	std::vector<Node> closedList;
+	std::vector<Node*> openList;
+	std::vector<Node*> closedList;
 
 	//add start node to open list
-	openList.push_back(startNode);
+	openList.push_back(&startNode);
 
 	while (!openList.empty())
 	{
 		//set the current node to the first node in the open list
-		Node CurrentNode = openList[0];
+		Node * CurrentNode = openList[0];
 		size_t CurrentNodeIndex = 0;
 
 		//find the node with the lowest f and set it to current node
 		for (size_t i = 1; i < openList.size(); i++)
 		{
-			if (openList[i].F < CurrentNode.F)
+			if (openList[i]->F < CurrentNode->F)
 			{
 				CurrentNode = openList[i];
 				CurrentNodeIndex = i;
@@ -68,15 +69,74 @@ void TileMapNavigation::CalculatePath()
 		closedList.push_back(CurrentNode);
 
 		//we found the goal
-		if (CurrentNode == endNode)
+		if (*CurrentNode == endNode)
 		{
 			//Congratz!You've found the end! Backtrack to get path
+
+			break;
 		}
 		
 		//generate children of current node
-		//Node upNode = Node(*CurrentNode, CurrentNode.Position + Vector2D(0, 1), endNode.Position, startNode.Position);
+		Vector2D pos = CurrentNode->Position + Vector2D(0, 1);
+		if (colliderTilemap->GetTilemap()->GetCellValue(pos.x, pos.y) == 0)
+		{
+			Node upNode = Node(CurrentNode, pos, endNode.Position, startNode.Position);
+
+			CurrentNode->children.push_back(&upNode);
+		}
+
+		pos = CurrentNode->Position + Vector2D(0, -1);
+		if (colliderTilemap->GetTilemap()->GetCellValue(pos.x, pos.y) == 0)
+		{
+			Node downNode = Node(CurrentNode, pos, endNode.Position, startNode.Position);
+
+			CurrentNode->children.push_back(&downNode);
+		}
+
+		
+		pos = CurrentNode->Position + Vector2D(1, 0);
+		if (colliderTilemap->GetTilemap()->GetCellValue(pos.x, pos.y) == 0)
+		{
+			Node rightNode = Node(CurrentNode, pos, endNode.Position, startNode.Position);
+
+			CurrentNode->children.push_back(&rightNode);
+		}
+
+		pos = CurrentNode->Position + Vector2D(-1, 0);
+		if (colliderTilemap->GetTilemap()->GetCellValue(pos.x, pos.y) == 0)
+		{
+			Node leftNode = Node(CurrentNode, pos, endNode.Position, startNode.Position);
+
+			CurrentNode->children.push_back(&leftNode);
+		}
+
 		//colliderTilemap->GetTilemap()->GetCellValue();
 
+		for (size_t i = 0; i < CurrentNode->children.size(); i++)
+		{
+			if (std::find(closedList.begin(), closedList.end(), CurrentNode->children[i]) != closedList.end())
+			{
+				continue;
+			}
+
+			//Calculate G, H, and F
+			CurrentNode->children[i]->G = CurrentNode->G + 1;
+			CurrentNode->children[i]->H = abs(CurrentNode->children[i]->Position.x - endNode.Position.x) + abs(CurrentNode->children[i]->Position.y - endNode.Position.y);
+			CurrentNode->children[i]->F = CurrentNode->children[i]->G + CurrentNode->children[i]->H;
+
+			std::vector<Node*>::iterator it = std::find(openList.begin(), closedList.end(), CurrentNode->children[i]);
+			if (it != openList.end())
+			{
+				//if my G is bigger than the openLists G then continue
+				if ((*it)->G < CurrentNode->children[i]->G)
+				{
+					continue;
+				}
+			}
+
+			//add the child to the open list
+			openList.push_back(CurrentNode->children[i]);
+		}
 		
 	}
 
