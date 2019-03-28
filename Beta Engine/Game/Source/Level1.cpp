@@ -138,7 +138,8 @@ bool Levels::Level1::IsObjectAt(Vector2D pos)
 
 	for (unsigned i = 0; i < objs.size(); i++)
 	{
-		if (AlmostEqual(objs[i]->GetComponent<Transform>()->GetTranslation(), pos)) return true;
+		if (AlmostEqual(objs[i]->GetComponent<Transform>()->GetTranslation(), pos)) 
+			return true;
 	}
 
 	return false;
