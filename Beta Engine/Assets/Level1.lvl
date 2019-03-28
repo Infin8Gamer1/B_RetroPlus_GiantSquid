@@ -1,4 +1,4 @@
-Game
+LevelEditor
 {
   numGameObjects : 2
   {
@@ -13,7 +13,7 @@ Game
       }
       SpriteTilemap
       {
-        frameIndex : 6
+        frameIndex : 3
         color : { 1 , 1 , 1 , 1 }
         spriteSourceName : TileMap
         tilemapLoc : Default
@@ -38,7 +38,7 @@ Game
       {
         frameIndex : 0
         color : { 1 , 1 , 1 , 1 }
-        spriteSourceName : Circle
+        spriteSourceName : PacMan
       }
       Animation
       {
@@ -58,11 +58,9 @@ Game
         extents : { 12.5, 12.5 }
       }
       PacManMovement
-      { 
-	  } 
-	  PacManLogic
-	  {
-	  }
+      { } 
+      PacManLogic
+      { } 
     }
   }
 }

@@ -11,7 +11,7 @@ PacMan
   {
     frameIndex : 0
     color : { 1 , 1 , 1 , 1 }
-    spriteSourceName : Circle
+    spriteSourceName : PacMan
   }
   Animation
   {

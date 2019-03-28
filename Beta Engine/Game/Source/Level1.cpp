@@ -21,7 +21,6 @@
 #include <SpriteTilemap.h>
 #include "MonkeyMovement.h"
 #include "PacManMovement.h"
-#include "Pellet.h"
 
 //Resources
 #include <Mesh.h>
@@ -43,7 +42,7 @@
 #include <Graphics.h>
 #include <Parser.h>
 
-Levels::Level1::Level1() : Level("Game")
+Levels::Level1::Level1() : Level("LevelEditor")
 {
 	// Sound manager
 	soundManager = nullptr;

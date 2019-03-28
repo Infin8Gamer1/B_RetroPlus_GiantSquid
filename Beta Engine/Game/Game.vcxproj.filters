@@ -23,9 +23,6 @@
     <ClCompile Include="Source\PacManMovement.cpp">
       <Filter>Game\Behaviors</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Pellet.cpp">
-      <Filter>Game\Behaviors</Filter>
-    </ClCompile>
     <ClCompile Include="Source\PacManLogic.cpp">
       <Filter>Game\Behaviors</Filter>
     </ClCompile>
@@ -50,9 +47,6 @@
       <Filter>Precompiled</Filter>
     </ClInclude>
     <ClInclude Include="Source\PacManMovement.h">
-      <Filter>Game\Behaviors</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Pellet.h">
       <Filter>Game\Behaviors</Filter>
     </ClInclude>
     <ClInclude Include="Source\PacManLogic.h">
