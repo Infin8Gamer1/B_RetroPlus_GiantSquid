@@ -19,7 +19,7 @@ Pellet
   ColliderCircle
   {
 	CollisionGroup : 2
-    CollisionFlags : -1, -2, 3
-	radius : 10
+    CollisionFlags : 0
+	radius : 1
   }
 }

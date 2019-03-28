@@ -111,6 +111,7 @@ xcopy ..\AntTweakBar\lib\AntTweakBar64.dll "$(OutDir)" /Y</Command>
     <ClCompile Include="Source\Level1.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\MonkeyMovement.cpp" />
+    <ClCompile Include="Source\PacManLogic.cpp" />
     <ClCompile Include="Source\PacManMovement.cpp" />
     <ClCompile Include="Source\Pellet.cpp" />
     <ClCompile Include="Source\ScreenWrap.cpp" />
@@ -124,6 +125,7 @@ xcopy ..\AntTweakBar\lib\AntTweakBar64.dll "$(OutDir)" /Y</Command>
     <ClInclude Include="Source\ColorChange.h" />
     <ClInclude Include="Source\Level1.h" />
     <ClInclude Include="Source\MonkeyMovement.h" />
+    <ClInclude Include="Source\PacManLogic.h" />
     <ClInclude Include="Source\PacManMovement.h" />
     <ClInclude Include="Source\Pellet.h" />
     <ClInclude Include="Source\ScreenWrap.h" />

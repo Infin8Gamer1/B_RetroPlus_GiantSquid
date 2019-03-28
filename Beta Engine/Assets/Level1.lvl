@@ -1,4 +1,4 @@
-LevelEditor
+Game
 {
   numGameObjects : 2
   {
@@ -27,7 +27,7 @@ LevelEditor
     }
     PacMan
     {
-      numComponents : 6
+      numComponents : 7
       Transform
       {
         translation : { -74.5, -50 }
@@ -58,7 +58,11 @@ LevelEditor
         extents : { 12.5, 12.5 }
       }
       PacManMovement
-      { } 
+      { 
+	  } 
+	  PacManLogic
+	  {
+	  }
     }
   }
 }

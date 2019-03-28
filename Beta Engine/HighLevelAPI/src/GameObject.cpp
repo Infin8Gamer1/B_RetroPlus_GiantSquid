@@ -42,6 +42,8 @@ GameObject::GameObject(const GameObject & other) : BetaObject(other.GetName())
 	damageHandler = other.damageHandler;
 	Health = other.Health;
 	Path = other.Path;
+
+	gameObjectName = other.GetName();
 }
 
 GameObject::~GameObject()

@@ -1,6 +1,6 @@
 PacMan
 {
-  numComponents : 6
+  numComponents : 7
   Transform
   {
     translation : { 0, 0 }
@@ -31,5 +31,9 @@ PacMan
     extents : { 12.5, 12.5 }
   }
   PacManMovement
-  { } 
+  { 
+  } 
+  PacManLogic
+  { 
+  }
 }

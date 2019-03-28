@@ -23,10 +23,6 @@ void PacManMapCollisionHandler(GameObject & object, const MapCollision & collisi
 	mapCollision = collision;
 }
 
-void PacManCollisionHandler(GameObject & object, GameObject & other)
-{
-}
-
 void PacManMovement::OnKeyInputDown(int key)
 {
 	switch (key)

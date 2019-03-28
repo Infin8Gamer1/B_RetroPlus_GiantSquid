@@ -43,7 +43,7 @@
 #include <Graphics.h>
 #include <Parser.h>
 
-Levels::Level1::Level1() : Level("LevelEditor")
+Levels::Level1::Level1() : Level("Game")
 {
 	// Sound manager
 	soundManager = nullptr;
@@ -59,11 +59,6 @@ void Levels::Level1::Load()
 	Graphics::GetInstance().GetCurrentCamera().Reset();
 
 	GetSpace()->GetObjectManager().AddArchetype(*GameObjectFactory::GetInstance().CreateObject("Pellet"));
-
-	////Register Custom Components
-	GameObjectFactory::GetInstance().RegisterComponent<Behaviors::MonkeyMovement>();
-	GameObjectFactory::GetInstance().RegisterComponent<PacManMovement>();
-	GameObjectFactory::GetInstance().RegisterComponent<Pellet>();
 
 	//Setup Sounds
 	soundManager = Engine::GetInstance().GetModule<SoundManager>();
@@ -85,9 +80,9 @@ void Levels::Level1::Initialize()
 	colliderTilemap = GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
 
 
-#ifdef _DEBUG
+/*#ifdef _DEBUG
 	std::cout << "Warning Not Adding Dots because they are slow in debug" << std::endl;
-#else
+#else*/
 	for (unsigned i = 0; i < colliderTilemap->GetTilemap()->GetWidth(); i++)
 	{
 		for (unsigned j = 0; j < colliderTilemap->GetTilemap()->GetHeight(); j++)
@@ -105,7 +100,7 @@ void Levels::Level1::Initialize()
 			}
 		}
 	}
-#endif // RELEASE
+//#endif // RELEASE
 
 	
 }
