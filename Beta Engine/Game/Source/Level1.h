@@ -74,6 +74,11 @@ namespace Levels
 		// Private Variables:
 		//------------------------------------------------------------------------------
 		
+		//Variables
+		GameObject* player;
+		bool cherrySpawned;
+		Vector2D cherryPos;
+
 		ColliderTilemap* colliderTilemap;
 
 		std::vector<Vector2D> avoid;
