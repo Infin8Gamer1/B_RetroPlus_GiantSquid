@@ -7,7 +7,7 @@ LevelEditor
       numComponents : 3
       Transform
       {
-        translation : { -275, 225 }
+        translation : { -375, 325 }
         rotation : 0
         scale : { 25, 25 }
       }
@@ -30,9 +30,9 @@ LevelEditor
       numComponents : 6
       Transform
       {
-        translation : { -74.5, -50 }
+        translation : { -12.5, -250 }
         rotation : 0
-        scale : { 25, 25 }
+        scale : { 50, 50 }
       }
       Sprite
       {
