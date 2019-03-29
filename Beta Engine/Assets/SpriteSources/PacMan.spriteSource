@@ -3,6 +3,6 @@ PacMan
 	textureName : pacman.png
     textureRows : 2
     textureColumns : 2
-	frameCount : -1
-	frameStart : -1
+	frameCount : 3
+	frameStart : 0
 }

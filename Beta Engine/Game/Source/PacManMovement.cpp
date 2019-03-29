@@ -21,6 +21,7 @@ bool move = false;
 void PacManMapCollisionHandler(GameObject & object, const MapCollision & collision)
 {
 	mapCollision = collision;
+    move = false;
 }
 
 void PacManMovement::OnKeyInputDown(int key)
@@ -57,7 +58,6 @@ PacManMovement::PacManMovement() : Component("PacManMovement")
 	// Components
 	transform = nullptr;
 	physics = nullptr;
-	animation = nullptr;
 	sprite = nullptr;
 	colliderTilemap = nullptr;
 }
@@ -72,7 +72,6 @@ void PacManMovement::Initialize()
 	//get Components
 	transform = GetOwner()->GetComponent<Transform>();
 	physics = GetOwner()->GetComponent<Physics>();
-	animation = GetOwner()->GetComponent<Animation>();
 	sprite = GetOwner()->GetComponent<Sprite>();
 	colliderTilemap = GetOwner()->GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
 
@@ -80,11 +79,11 @@ void PacManMovement::Initialize()
 
 	//set the collision handler for the monkey
 	GetOwner()->GetComponent<Collider>()->SetMapCollisionHandler(PacManMapCollisionHandler);
-	GetOwner()->GetComponent<Collider>()->SetCollisionHandler(PacManCollisionHandler);
 }
 
 void PacManMovement::Update(float dt)
 {
+    if(move) timer += dt;
 	Move();
 }
 
@@ -130,6 +129,14 @@ void PacManMovement::Move()
 	if (move)
 	{
 		physics->SetVelocity(transform->Forward() * moveSpeed);
+
+        if (timer >= frameTime)
+        {
+            timer = 0.0f;
+
+            if(sprite->GetFrame() < endFrame) sprite->SetFrame(sprite->GetFrame() + 1);
+            else sprite->SetFrame(0);
+        }
 	}
 }
 

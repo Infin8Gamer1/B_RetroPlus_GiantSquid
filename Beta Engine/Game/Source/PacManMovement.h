@@ -99,11 +99,14 @@ private:
 
 	// Movement properties
 	const float moveSpeed = 150.0f;
+    float timer = 0.0f;
+
+    float frameTime = 0.1f;
+    int endFrame = 3;
 
 	// Components
 	Transform* transform;
 	Physics* physics;
-	Animation* animation;
 	Sprite* sprite;
 	ColliderTilemap* colliderTilemap;
 

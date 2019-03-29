@@ -14,6 +14,7 @@
 #include "Sprite.h"
 #include "GameObject.h"
 #include <SpriteSource.h>
+#include <Parser.h>
 
 Animation::Animation() : Component("Animation")
 {
@@ -61,13 +62,13 @@ void Animation::Play(float frameDurationInput, bool isLoopingInput, bool playInR
 	isLooping = isLoopingInput;
 	playInReverse = playInReverseInput;
 
-
+    /////BROKENNNNNNNN!!!!!!!!!!!!!!!!!
 	if (!playInReverse) {
 		frameStart = sprite->GetSpriteSource()->GetFrameStart();
 		frameEnd = sprite->GetSpriteSource()->GetFrameStart() + sprite->GetSpriteSource()->GetFrameCount() - 1;
 	}
 	else {
-		frameStart = sprite->GetSpriteSource()->GetFrameStart() + sprite->GetSpriteSource()->GetFrameCount() - 1;
+		frameStart += sprite->GetSpriteSource()->GetFrameStart() + sprite->GetSpriteSource()->GetFrameCount() - 1;
 		frameEnd = sprite->GetSpriteSource()->GetFrameStart();
 	}
 	
