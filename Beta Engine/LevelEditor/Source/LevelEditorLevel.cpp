@@ -39,6 +39,7 @@
 #include <SpaceManager.h>
 #include <Graphics.h>
 #include <Parser.h>
+#include <DebugDraw.h>
 
 Levels::LevelEditorLevel::LevelEditorLevel() : Level("LevelEditor")
 {
@@ -81,6 +82,28 @@ void Levels::LevelEditorLevel::Initialize()
 void Levels::LevelEditorLevel::Update(float dt)
 {
 	UNREFERENCED_PARAMETER(dt);
+
+	GameObject* tilemap = GetSpace()->GetObjectManager().GetObjectByName("TileMap");
+
+	float wid = tilemap->GetComponent<Transform>()->GetScale().x;
+
+	float hei = tilemap->GetComponent<Transform>()->GetScale().y;
+
+	for (int x = -gridSize; x < gridSize; x++)
+	{
+		float s = x*wid+wid/2;
+
+		DebugDraw::GetInstance().AddLineToStrip(Vector2D(s, hei * gridSize), Vector2D(s, hei*gridSize*-1), Colors::Grey);
+	}
+
+	for (int y = -gridSize; y < gridSize; y++)
+	{
+		float s =y*hei + hei / 2;
+
+		DebugDraw::GetInstance().AddLineToStrip(Vector2D(wid * gridSize, s), Vector2D(wid * gridSize*-1, s), Colors::Grey);
+	}
+
+	DebugDraw::GetInstance().EndLineStrip(Graphics::GetInstance().GetCurrentCamera());
 }
 
 void Levels::LevelEditorLevel::Shutdown()
