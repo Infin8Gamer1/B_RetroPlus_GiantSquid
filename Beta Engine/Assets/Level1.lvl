@@ -1,6 +1,6 @@
 LevelEditor
 {
-  numGameObjects : 2
+  numGameObjects : 3
   {
     TileMap
     {
@@ -58,6 +58,28 @@ LevelEditor
       { } 
       PacManLogic
       { } 
+    }
+    Pellet
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { -49.5, -249.5 }
+        rotation : 0
+        scale : { 25, 25 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : Pellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
+      }
     }
   }
 }

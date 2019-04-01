@@ -38,6 +38,8 @@ PacManLogic::PacManLogic()
 	  pelletsLeft(240), isInvincible(false), invincibleTimer(10.0f)
 {
 	soundManager = Engine::GetInstance().GetModule<SoundManager>();
+	soundManager->AddEffect("pac-man_chomp.wav");
+	soundManager->AddEffect("pac-man_power pellet new.wav");
 }
 
 Component * PacManLogic::Clone() const
