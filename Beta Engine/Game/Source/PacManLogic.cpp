@@ -31,6 +31,10 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_power pellet new.wav");
 		other.Destroy();
 	}
+	if (other.GetName() == "Ghost")
+	{
+		Engine::GetInstance().Stop();
+	}
 }
 
 PacManLogic::PacManLogic()

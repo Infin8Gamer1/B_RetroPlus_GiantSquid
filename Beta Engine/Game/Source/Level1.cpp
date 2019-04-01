@@ -124,7 +124,7 @@ void Levels::Level1::Update(float dt)
 	}
 	if (player->GetComponent<PacManLogic>()->GetPellets() == 0)
 	{
-		std::cout << "This works";
+		std::cout << "WIN";
 	}
 }
 
