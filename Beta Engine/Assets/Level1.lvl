@@ -1,6 +1,6 @@
 LevelEditor
 {
-  numGameObjects : 4
+  numGameObjects : 5
   {
     TileMap
     {
@@ -86,7 +86,7 @@ LevelEditor
       numComponents : 4
       Transform
       {
-        translation : { -117.5, -242.5 }
+        translation : { -99.5, -249.5 }
         rotation : 0
         scale : { 40, 40 }
       }
@@ -106,9 +106,31 @@ LevelEditor
       }
       ColliderRectangle
       {
-        CollisionGroup : 3
+        CollisionGroup : 2
         CollisionFlags : 1, 2, -3
         extents : { 20, 20 }
+      }
+    }
+    Pellet_1
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { -99.5, -174.5 }
+        rotation : 0
+        scale : { 25, 25 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : Pellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
       }
     }
   }

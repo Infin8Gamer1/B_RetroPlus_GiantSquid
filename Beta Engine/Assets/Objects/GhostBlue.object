@@ -23,7 +23,7 @@ GhostBlue
   }
   ColliderRectangle
   {
-    CollisionGroup : 3
+    CollisionGroup : 2
     CollisionFlags : 1, 2, -3
     extents : { 20, 20 }
   }

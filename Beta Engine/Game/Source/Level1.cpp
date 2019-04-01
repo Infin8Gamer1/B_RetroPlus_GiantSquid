@@ -114,6 +114,7 @@ void Levels::Level1::Initialize()
 
 void Levels::Level1::Update(float dt)
 {
+	/*
 	if (player->GetComponent<PacManLogic>()->GetPellets() == 70 && cherrySpawned == false)
 	{
 		GameObject* cherryObj = new GameObject(*GetSpace()->GetObjectManager().GetArchetypeByName("Cherry"));
@@ -122,9 +123,10 @@ void Levels::Level1::Update(float dt)
 		GetSpace()->GetObjectManager().AddObject(*cherryObj);
 		cherrySpawned = true;
 	}
+	*/
 	if (player->GetComponent<PacManLogic>()->GetPellets() == 0)
 	{
-		std::cout << "WIN";
+		Engine::GetInstance().Stop();
 	}
 }
 
