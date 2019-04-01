@@ -1,11 +1,11 @@
-BlueGhost
+GhostBlue
 {
   numComponents : 4
   Transform
   {
     translation : { 0, 0 }
     rotation : 0
-    scale : { 25, 25 }
+    scale : { 40, 40 }
   }
   Sprite
   {
@@ -25,6 +25,6 @@ BlueGhost
   {
     CollisionGroup : 3
     CollisionFlags : 1, 2, -3
-    extents : { 12.5, 12.5 }
+    extents : { 20, 20 }
   }
 }

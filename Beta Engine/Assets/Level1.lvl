@@ -1,6 +1,6 @@
 LevelEditor
 {
-  numGameObjects : 3
+  numGameObjects : 4
   {
     TileMap
     {
@@ -79,6 +79,36 @@ LevelEditor
         CollisionGroup : 2
         CollisionFlags : 0
         radius : 1
+      }
+    }
+    GhostBlue
+    {
+      numComponents : 4
+      Transform
+      {
+        translation : { -117.5, -242.5 }
+        rotation : 0
+        scale : { 40, 40 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : GhostBlue
+      }
+      Physics
+      {
+        acceleration : { 0, 0 }
+        velocity : { 0, 0 }
+        angularVelocity : 0
+        mass : 1
+        gravity : { 0, 0 }
+      }
+      ColliderRectangle
+      {
+        CollisionGroup : 3
+        CollisionFlags : 1, 2, -3
+        extents : { 20, 20 }
       }
     }
   }
