@@ -25,6 +25,7 @@
 #include <SpriteTilemap.h>
 #include <SpriteText.h>
 #include <ColliderLine.h>
+#include <TileMapNavigation.h>
 
 GameObjectFactory::GameObjectFactory()
 {
@@ -41,6 +42,7 @@ GameObjectFactory::GameObjectFactory()
 	RegisterComponent<ColliderRectangle>();
 	RegisterComponent<ColliderTilemap>();
 	RegisterComponent<ColliderLine>();
+	//RegisterComponent<TileMapNavigation>();
 }
 
 GameObjectFactory::~GameObjectFactory()

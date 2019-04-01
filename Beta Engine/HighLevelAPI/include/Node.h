@@ -37,9 +37,10 @@ public:
 	//------------------------------------------------------------------------------
 
 	// Constructor
-	Node(Node* parent, Vector2D pos, Vector2D endPos = Vector2D(), Vector2D startPos = Vector2D());
+	Node(Node* parent, Vector2D pos);
 
-	bool operator==(const Node& rhs);
+	bool operator==(const Node& rhs) const;
+	bool checkPointerEqual(const Node& rhs, const Node* lhs);
 
 	Node* Parent;
 

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Node.h"
 
-Node::Node(Node * parent, Vector2D pos, Vector2D EndPos, Vector2D startPos)
+Node::Node(Node * parent, Vector2D pos)
 {
 	Parent = parent;
 	Position = pos;
@@ -11,7 +11,12 @@ Node::Node(Node * parent, Vector2D pos, Vector2D EndPos, Vector2D startPos)
 	F = 0.0f;
 }
 
-bool Node::operator==(const Node & rhs)
+bool Node::operator==(const Node & rhs) const
 {
-	return Position.x = rhs.Position.x && Position.y == rhs.Position.y;
+	return Position.x == rhs.Position.x && Position.y == rhs.Position.y;
+}
+
+bool Node::checkPointerEqual(const Node & rhs, const Node * lhs)
+{
+	return rhs == *lhs;
 }

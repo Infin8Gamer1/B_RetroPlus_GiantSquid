@@ -29,6 +29,7 @@
 class Transform;
 class Physics;
 class ColliderTilemap;
+class Node;
 
 //------------------------------------------------------------------------------
 // Public Structures:
@@ -72,7 +73,7 @@ private:
 	// Private Functions:
 	//------------------------------------------------------------------------------
 
-	void CalculatePath();
+	std::vector<Node*> CalculatePath();
 
 	//------------------------------------------------------------------------------
 	// Private Variables:
