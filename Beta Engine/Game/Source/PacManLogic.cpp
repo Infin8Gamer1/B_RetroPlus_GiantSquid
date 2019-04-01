@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "PacManLogic.h"
 #include "Level1.h"
+#include <string>
 #include <Space.h>
 #include <Collider.h>
 #include <GameObject.h>
@@ -9,9 +10,10 @@
 
 
 
+
 void PacManCollisionHandler(GameObject & object, GameObject & other)
 {
-	if (other.GetName() == "Pellet")
+	if (other.GetName().substr(0, 6) == "Pellet")
 	{
 		object.GetComponent<PacManLogic>()->score += object.GetComponent<PacManLogic>()->pelletScore;
 		object.GetComponent<PacManLogic>()->pelletsLeft -= 1;
@@ -31,13 +33,19 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_power pellet new.wav");
 		other.Destroy();
 	}
+	if (other.GetName().substr(0, 5) == "Ghost")
+	{
+		Engine::GetInstance().Stop();
+	}
 }
 
 PacManLogic::PacManLogic()
 	: Component("PacManLogic"), score(0), highScore(0), pelletScore(10), powerPelletScore(50), 
-	  pelletsLeft(240), isInvincible(false), invincibleTimer(10.0f)
+	  pelletsLeft(2), isInvincible(false), invincibleTimer(10.0f)
 {
 	soundManager = Engine::GetInstance().GetModule<SoundManager>();
+	soundManager->AddEffect("pac-man_chomp.wav");
+	soundManager->AddEffect("pac-man_power pellet new.wav");
 }
 
 Component * PacManLogic::Clone() const
