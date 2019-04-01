@@ -177,6 +177,57 @@ void Tilemap::Print()
 	}
 }
 
+void Tilemap::Shrink()
+{
+	int colLeft = 0;
+	int colRight = 0;
+	int rowTop = 0;
+	int rowBottom = 0;
+
+	for (int i = 0; i < GetWidth() / 2; ++i)
+	{
+		if (!isRowEmpty(i)) break;
+		rowTop = i;
+	}
+	for (int i = 0; i < GetHeight() / 2; ++i)
+	{
+		if (!isColumnEmpty(i)) break;
+		colLeft = i;
+	}
+
+	for (int i = GetWidth(); i > GetWidth() / 2; --i)
+	{
+		if (!isRowEmpty(i)) break;
+		rowBottom = i;
+	}
+
+	for (int i = GetHeight(); i > GetHeight() / 2; --i)
+	{
+		if (!isColumnEmpty(i)) break;
+		colRight = i;
+	}
+
+	Resize(-colLeft, colRight, -rowTop, rowBottom);
+}
+
+bool Tilemap::isRowEmpty(int row)
+{
+	for (int i = 0; i < GetHeight(); ++i)
+	{
+		if (data[row][i] != 0) return false;
+	}
+	return true;
+}
+
+bool Tilemap::isColumnEmpty(int column)
+{
+	for (int i = 0; i < GetWidth(); ++i)
+	{
+		if (data[i][column] != 0) return false;
+	}
+	return true;
+}
+
 void Tilemap::Resize(int columnLeft, int columnRight, int rowTop, int rowBottom)
 {
 	int columns = numColumns + columnLeft + columnRight;
