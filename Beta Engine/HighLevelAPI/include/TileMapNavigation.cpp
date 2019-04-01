@@ -74,13 +74,13 @@ std::vector<Node*> TileMapNavigation::CalculatePath()
 	while (!openList.empty())
 	{
 		//set the current node to the first node in the open list
-		Node * CurrentNode = openList[0];
+		Node* CurrentNode = openList[0];
 		size_t CurrentNodeIndex = 0;
 
-		//find the node with the lowest f and set it to current node
+		//find the node with the lowest f value and set it to current node
 		for (size_t i = 1; i < openList.size(); i++)
 		{
-			if (openList[i]->F < CurrentNode->F)
+			if (CurrentNode->F > openList[i]->F)
 			{
 				CurrentNode = openList[i];
 				CurrentNodeIndex = i;
@@ -112,71 +112,76 @@ std::vector<Node*> TileMapNavigation::CalculatePath()
 		}
 		
 		//generate children of current node
-		Vector2D pos = CurrentNode->Position + Vector2D(0, 1);
-		if (colliderTilemap->GetTilemap()->GetCellValue(pos.x, pos.y) == 0)
+		std::vector<Node*> children;
+
+		for (size_t i = 0; i < 4; i++)
 		{
-			Node upNode = Node(CurrentNode, pos);
+			Vector2D pos;
 
-			CurrentNode->children.push_back(&upNode);
-		}
+			switch (i)
+			{
+			case 0:
+				pos = CurrentNode->Position + Vector2D(0, 1);
+				break;
+			case 1:
+				pos = CurrentNode->Position + Vector2D(0, -1);
+				break;
+			case 2:
+				pos = CurrentNode->Position + Vector2D(1, 0);
+				break;
+			case 3:
+				pos = CurrentNode->Position + Vector2D(-1, 0);
+				break;
+			default:
+				break;
+			}
 
-		pos = CurrentNode->Position + Vector2D(0, -1);
-		if (colliderTilemap->GetTilemap()->GetCellValue(pos.x, pos.y) == 0)
-		{
-			Node downNode = Node(CurrentNode, pos);
+			if (colliderTilemap->GetTilemap()->GetCellValue(pos.x, pos.y) == 0)
+			{
+				Node* node = new Node(CurrentNode, pos);
 
-			CurrentNode->children.push_back(&downNode);
-		}
-
-		
-		pos = CurrentNode->Position + Vector2D(1, 0);
-		if (colliderTilemap->GetTilemap()->GetCellValue(pos.x, pos.y) == 0)
-		{
-			Node rightNode = Node(CurrentNode, pos);
-
-			CurrentNode->children.push_back(&rightNode);
-		}
-
-		pos = CurrentNode->Position + Vector2D(-1, 0);
-		if (colliderTilemap->GetTilemap()->GetCellValue(pos.x, pos.y) == 0)
-		{
-			Node leftNode = Node(CurrentNode, pos);
-
-			CurrentNode->children.push_back(&leftNode);
+				children.push_back(node);
+			}
 		}
 
 		//colliderTilemap->GetTilemap()->GetCellValue();
 
-		for (size_t i = 0; i < CurrentNode->children.size(); i++)
+		for (size_t i = 0; i < children.size(); i++)
 		{
 			for each (Node* x in closedList)
 			{
-				if (*x == *CurrentNode->children[i])
+				if (*x == *children[i])
 				{
+					delete children[i];
+
 					continue;
 				}
 			}
 
 			//Calculate G, H, and F
-			;alksdjfijwe
-			CurrentNode->children[i]->G = CurrentNode->G + 1;
-			CurrentNode->children[i]->H = abs(CurrentNode->children[i]->Position.x - endNode.Position.x) + abs(CurrentNode->children[i]->Position.y - endNode.Position.y);
-			CurrentNode->children[i]->F = CurrentNode->children[i]->G + CurrentNode->children[i]->H;
+			//;alksdjfijwe
+			float G = CurrentNode->G + 1;
+			float H = abs(children[i]->Position.x - endNode.Position.x) + abs(children[i]->Position.y - endNode.Position.y);
+			float F = G + H;
+
+			children[i]->G = G;
+			children[i]->H = H;
+			children[i]->F = F;
 
 			for each (Node* x in openList)
 			{
-				if (*x == *CurrentNode->children[i])
+				if (*x == *children[i])
 				{
-					if (x->G < CurrentNode->children[i]->G)
+					if (x->G < children[i]->G)
 					{
+						delete children[i];
 						continue;
 					}
 				}
-				
 			}
 
 			//add the child to the open list
-			openList.push_back(CurrentNode->children[i]);
+			openList.push_back(children[i]);
 		}
 		
 	}
