@@ -14,7 +14,6 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	if (other.GetName() == "Pellet")
 	{
 		object.GetComponent<PacManLogic>()->score += object.GetComponent<PacManLogic>()->pelletScore;
-		//std::cout << object.GetComponent<PacManLogic>()->score << std::endl;
 		object.GetComponent<PacManLogic>()->pelletsLeft -= 1;
 		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_chomp.wav");
 		other.Destroy();
@@ -22,16 +21,21 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	if (other.GetName() == "Cherry")
 	{
 		object.GetComponent<PacManLogic>()->score += 100;
+		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_chomp.wav");
 		other.Destroy();
 	}
 	if (other.GetName() == "PowerPellet")
 	{
 		object.GetComponent<PacManLogic>()->score += 50;
+		object.GetComponent<PacManLogic>()->isInvincible = true;
+		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_power pellet new.wav");
 		other.Destroy();
 	}
 }
 
-PacManLogic::PacManLogic() : Component("PacManLogic"), score(0), highScore(0), pelletScore(10), powerPelletScore(50), pelletsLeft(240)
+PacManLogic::PacManLogic()
+	: Component("PacManLogic"), score(0), highScore(0), pelletScore(10), powerPelletScore(50), 
+	  pelletsLeft(240), isInvincible(false), invincibleTimer(10.0f)
 {
 	soundManager = Engine::GetInstance().GetModule<SoundManager>();
 }
@@ -46,10 +50,17 @@ void PacManLogic::Initialize()
 	GetOwner()->GetComponent<Collider>()->SetCollisionHandler(PacManCollisionHandler);
 }
 
-
-
 void PacManLogic::Update(float dt)
 {
+	if (isInvincible == true)
+	{
+		invincibleTimer -= dt;
+		if (invincibleTimer <= 0)
+		{
+			invincibleTimer = 10.0f;
+			isInvincible = false;
+		}
+	}
 }
 
 int PacManLogic::GetPellets()

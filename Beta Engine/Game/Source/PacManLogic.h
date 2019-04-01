@@ -80,6 +80,9 @@ public:
 	void SetPellets(int amountOfPellets);
 
 private:
+	bool isInvincible;
+
+	float invincibleTimer;
 
 	int pelletsLeft;
 

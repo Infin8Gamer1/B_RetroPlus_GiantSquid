@@ -7,13 +7,13 @@ LevelEditor
       numComponents : 3
       Transform
       {
-        translation : { -375, 325 }
+        translation : { -625, 425 }
         rotation : 0
         scale : { 25, 25 }
       }
       SpriteTilemap
       {
-        frameIndex : 3
+        frameIndex : 32
         color : { 1 , 1 , 1 , 1 }
         spriteSourceName : TileMap
         tilemapLoc : Default
