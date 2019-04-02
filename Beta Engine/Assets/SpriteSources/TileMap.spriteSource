@@ -1,6 +1,6 @@
 TileMap
 {
-	textureName : pacman map tiles (3).png
+	textureName : TGS_Duncan_TileMap.png
     textureRows : 6
     textureColumns : 6
 	frameCount : -1

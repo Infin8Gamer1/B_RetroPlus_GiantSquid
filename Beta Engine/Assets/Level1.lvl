@@ -7,17 +7,17 @@ LevelEditor
       numComponents : 3
       Transform
       {
-        translation : { -625, 425 }
+        translation : { -355, 337 }
         rotation : 0
         scale : { 25, 25 }
       }
       SpriteTilemap
       {
-        frameIndex : 32
+        frameIndex : 3
         color : { 1 , 1 , 1 , 1 }
         spriteSourceName : TileMap
         tilemapLoc : Default
-	  }
+      }
       ColliderTilemap
       {
         CollisionGroup : 1
@@ -30,7 +30,7 @@ LevelEditor
       numComponents : 6
       Transform
       {
-        translation : { -12.5, -250 }
+        translation : { 12.5, -200.5 }
         rotation : 0
         scale : { 50, 50 }
       }
@@ -64,7 +64,7 @@ LevelEditor
       numComponents : 3
       Transform
       {
-        translation : { -49.5, -249.5 }
+        translation : { -49.5, -240.5 }
         rotation : 0
         scale : { 25, 25 }
       }
@@ -125,7 +125,7 @@ LevelEditor
       numComponents : 3
       Transform
       {
-        translation : { -99.5, -174.5 }
+        translation : { -99.5, -164.5 }
         rotation : 0
         scale : { 25, 25 }
       }
