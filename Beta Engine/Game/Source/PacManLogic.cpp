@@ -11,6 +11,7 @@
 #include <Engine.h>
 #include <Texture.h>
 #include <ResourceManager.h>
+#include <Animation.h>
 
 
 void PacManCollisionHandler(GameObject & object, GameObject & other)
@@ -28,22 +29,28 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_chomp.wav");
 		other.Destroy();
 	}
-	if (other.GetName() == "PowerPellet")
+	if (other.GetName().substr(0, 11) == "PowerPellet")
 	{
 		object.GetComponent<PacManLogic>()->score += 50;
 		object.GetComponent<PacManLogic>()->isInvincible = true;
 		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_power pellet new.wav");
 		other.Destroy();
 	}
-	if (other.GetName().substr(0, 5) == "Ghost")
+	if (other.GetName().substr(0, 5) == "Ghost" && !object.GetComponent<PacManLogic>()->isInvincible)
 	{
+
 		object.GetComponent<Sprite>()->SetSpriteSource(object.GetComponent<PacManLogic>()->pacDeathSpriteSource);
+		object.GetComponent<Animation>()->Play(0.1, false, false);
 		while (object.GetComponent<PacManLogic>()->deathTimer > 0)
 		{
 			object.GetComponent<PacManLogic>()->deathTimer -= 0.16f;
 		}
 		object.GetComponent<PacManLogic>()->deathTimer = 4;
 		Engine::GetInstance().Stop();
+	}
+	else if(object.GetComponent<PacManLogic>()->isInvincible)
+	{
+		std::cout << "GHOSTED" << std::endl;
 	}
 }
 

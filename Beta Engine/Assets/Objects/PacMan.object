@@ -1,11 +1,11 @@
 PacMan
 {
-  numComponents : 6
+  numComponents : 7
   Transform
   {
     translation : { 0, 0 }
     rotation : 0
-    scale : { 25, 25 }
+    scale : { 50, 50 }
   }
   Sprite
   {
@@ -25,7 +25,10 @@ PacMan
   {
     CollisionGroup : 3
     CollisionFlags : 1, 2, -3
-    extents : { 12.5, 12.5 }
+    extents : { 25, 25 }
+  }
+  Animation
+  {
   }
   PacManMovement
   { 
