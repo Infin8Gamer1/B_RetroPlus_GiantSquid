@@ -124,6 +124,7 @@ void TileMapNavigation::Update(float dt)
 			path = outputPath;
 			calculatePathFlag = false;
 			mode = Mode::Move;
+			pointIndex = 0;
 			return;
 		}
 
