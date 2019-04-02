@@ -11,16 +11,21 @@
 #include <DebugDraw.h>
 #include <Graphics.h>
 
-
 TileMapNavigation::TileMapNavigation() : Component("TileMapNavigation")
 {
-	target = Vector2D(13,15);
-	mode = Mode::Stationary;
+	target = Vector2D(0,0);
+	mode = Mode::Move;
+
+	fraction = 0;
+	startPointIndex = 0;
+	endPointIndex = 1;
 
 	// Components
 	transform = nullptr;
 	physics = nullptr;
 	colliderTilemap = nullptr;
+
+	calculatePathFlag = false;
 }
 
 Component * TileMapNavigation::Clone() const
@@ -33,56 +38,51 @@ void TileMapNavigation::Initialize()
 	transform = GetOwner()->GetComponent<Transform>();
 	physics = GetOwner()->GetComponent<Physics>();
 	colliderTilemap = GetOwner()->GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
-	path = CalculatePath();
+	SetTarget(Vector2D(10, 15));
 }
 
 void TileMapNavigation::Update(float dt)
 {
-	
-
+	//if the path is not empty then follow it
+	if (!path.empty())
+	{
 #ifdef _DEBUG
-	DebugDrawPath(path);
+		DebugDrawPath(path);
 #endif // _DEBUG
 
 
-	switch (mode)
-	{
-	case Stationary:
-		break;
-	case Move:
-		break;
-	default:
-		break;
+		switch (mode)
+		{
+		case Stationary:
+			break;
+		case Move:
+			if (fraction < 1)
+			{
+				fraction += dt * moveSpeed;
+				transform->SetTranslation(Lerp(colliderTilemap->ConvertTileMapCordsToWorldCords(path[startPointIndex]), colliderTilemap->ConvertTileMapCordsToWorldCords(path[endPointIndex]), fraction));
+			}
+			else
+			{
+				fraction = 0;
+				if (endPointIndex >= path.size() - 1)
+				{
+					mode = Mode::Stationary;
+				}
+				else
+				{
+					startPointIndex += 1;
+					endPointIndex += 1;
+				}
+			}
+			break;
+		default:
+			break;
+		}
 	}
-}
 
-void TileMapNavigation::SetTarget(Vector2D _target)
-{
-	target = _target;
-}
-
-void TileMapNavigation::SetMode(Mode _mode)
-{
-	mode = _mode;
-}
-
-std::vector<Vector2D> TileMapNavigation::CalculatePath()
-{
-	//Create Start and end nodes
-	Node* startNode = new Node(nullptr, colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()));
-	
-	//init both open and closed list
-	std::vector<Node*> openList;
-	std::vector<Node*> closedList;
-
-	//add start node to open list
-	openList.push_back(startNode);
-
-	int loopCount = 0;
-	while (!openList.empty() || loopCount > 500)
+	//if we need to calculate the path then do that
+	if (calculatePathFlag && !openList.empty())
 	{
-		loopCount++;
-
 		//set the current node to the first node in the open list
 		Node* CurrentNode = openList[0];
 		size_t CurrentNodeIndex = 0;
@@ -119,11 +119,12 @@ std::vector<Vector2D> TileMapNavigation::CalculatePath()
 			DeleteVector(openList);
 			DeleteVector(closedList);
 
-			return outputPath;
-
-			//break;
+			path = outputPath;
+			calculatePathFlag = false;
+			mode = Mode::Move;
+			return;
 		}
-		
+
 		//generate children of current node
 		std::vector<Node*> children;
 
@@ -217,14 +218,44 @@ std::vector<Vector2D> TileMapNavigation::CalculatePath()
 			//add the child to the open list
 			openList.push_back(child);
 		}
-		
+
+		return;
 	}
 
+
+}
+
+void TileMapNavigation::SetTarget(Vector2D _target)
+{
+	target = _target;
+
+	if (colliderTilemap->GetTilemap()->GetCellValue(_target.x, _target.y) != 0)
+	{
+		std::cout << "WARNING: target " << target << " is not a valid target!";
+	}
+	
+	CalculatePath();
+}
+
+void TileMapNavigation::SetMode(Mode _mode)
+{
+	mode = _mode;
+}
+
+void TileMapNavigation::CalculatePath()
+{
+	//reset Open and Closed Lists
 	DeleteVector(openList);
 	DeleteVector(closedList);
 
-	std::vector<Vector2D> emptyout;
-	return emptyout;
+	//Create Start and end nodes
+	Node* startNode = new Node(nullptr, colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()));
+
+	//add start node to open list
+	openList.push_back(startNode);
+
+	//set calculate Path flag
+	calculatePathFlag = true;
 }
 
 void TileMapNavigation::DebugDrawPath(std::vector<Vector2D> path)

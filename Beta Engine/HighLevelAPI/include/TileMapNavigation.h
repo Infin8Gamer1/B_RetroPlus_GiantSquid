@@ -73,7 +73,8 @@ private:
 	// Private Functions:
 	//------------------------------------------------------------------------------
 
-	std::vector<Vector2D> CalculatePath();
+	//sets up class to start calculating path
+	void CalculatePath();
 
 	void DebugDrawPath(std::vector<Vector2D> path);
 
@@ -99,7 +100,11 @@ private:
 	//------------------------------------------------------------------------------
 
 	// Movement properties
-	const float moveSpeed = 150.0f;
+	const float moveSpeed = 1.5f;
+	float fraction;
+
+	int startPointIndex;
+	int endPointIndex;
 
 	Vector2D target;
 	std::vector<Vector2D> path;
@@ -109,6 +114,13 @@ private:
 	Transform* transform;
 	Physics* physics;
 	ColliderTilemap* colliderTilemap;
+
+
+	//pathfinding vars
+	std::vector<Node*> openList;
+	std::vector<Node*> closedList;
+
+	bool calculatePathFlag;
 
 };
 
