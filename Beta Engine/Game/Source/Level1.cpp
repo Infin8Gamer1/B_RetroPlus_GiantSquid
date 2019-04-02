@@ -58,7 +58,7 @@ void Levels::Level1::Load()
 
 	Graphics::GetInstance().GetCurrentCamera().Reset();
 
-	GetSpace()->GetObjectManager().AddArchetype(*GameObjectFactory::GetInstance().CreateObject("Cherry"));
+	//GetSpace()->GetObjectManager().AddArchetype(*GameObjectFactory::GetInstance().CreateObject("Cherry"));
 
 	GetSpace()->GetObjectManager().AddArchetype(*GameObjectFactory::GetInstance().CreateObject("Pellet"));
 

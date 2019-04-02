@@ -11,6 +11,7 @@
 #include <Engine.h>
 #include <Texture.h>
 #include <ResourceManager.h>
+#include <Animation.h>
 
 
 void PacManCollisionHandler(GameObject & object, GameObject & other)
@@ -38,6 +39,7 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	if (other.GetName().substr(0, 5) == "Ghost")
 	{
 		object.GetComponent<Sprite>()->SetSpriteSource(object.GetComponent<PacManLogic>()->pacDeathSpriteSource);
+		object.GetComponent<Animation>()->Play(0.1, false, false);
 		while (object.GetComponent<PacManLogic>()->deathTimer > 0)
 		{
 			object.GetComponent<PacManLogic>()->deathTimer -= 0.16f;
