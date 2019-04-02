@@ -12,7 +12,7 @@
 
 TileMapNavigation::TileMapNavigation() : Component("TileMapNavigation")
 {
-	target = Vector2D(18,3);
+	target = Vector2D(20,4);
 	mode = Mode::Stationary;
 
 	// Components
@@ -35,7 +35,7 @@ void TileMapNavigation::Initialize()
 
 void TileMapNavigation::Update(float dt)
 {
-	std::vector<Node*> path = CalculatePath();
+	std::vector<Vector2D> path = CalculatePath();
 
 	switch (mode)
 	{
@@ -58,7 +58,7 @@ void TileMapNavigation::SetMode(Mode _mode)
 	mode = _mode;
 }
 
-std::vector<Node*> TileMapNavigation::CalculatePath()
+std::vector<Vector2D> TileMapNavigation::CalculatePath()
 {
 	//Create Start and end nodes
 	Node startNode = Node(nullptr, colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()));
@@ -97,14 +97,17 @@ std::vector<Node*> TileMapNavigation::CalculatePath()
 		if (*CurrentNode == endNode)
 		{
 			//Congratz! You've found the end! Backtrack to get path
-			std::vector<Node*> outputPath;
+			std::vector<Vector2D> outputPath;
 			Node* nextNode = CurrentNode;
 
 			while (nextNode != nullptr)
 			{
-				outputPath.insert(outputPath.begin(), nextNode);
+				outputPath.insert(outputPath.begin(), nextNode->Position);
 				nextNode = nextNode->Parent;
 			}
+
+			DeleteVector(openList);
+			DeleteVector(closedList);
 
 			return outputPath;
 
@@ -186,7 +189,9 @@ std::vector<Node*> TileMapNavigation::CalculatePath()
 		
 	}
 
+	DeleteVector(openList);
+	DeleteVector(closedList);
 
-	std::vector<Node*> emptyout;
+	std::vector<Vector2D> emptyout;
 	return emptyout;
 }

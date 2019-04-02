@@ -73,7 +73,22 @@ private:
 	// Private Functions:
 	//------------------------------------------------------------------------------
 
-	std::vector<Node*> CalculatePath();
+	std::vector<Vector2D> CalculatePath();
+
+	template<class T>
+	void DeleteVector(std::vector<T*>& vector)
+	{
+		class std::vector<T*>::iterator i;
+
+		for (i = vector.begin(); i != vector.end(); ++i)
+		{
+			delete (*i);
+			*i = nullptr;
+		}
+
+		vector.clear();
+		vector.shrink_to_fit();
+	}
 
 	//------------------------------------------------------------------------------
 	// Private Variables:
