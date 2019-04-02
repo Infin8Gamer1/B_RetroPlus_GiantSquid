@@ -17,7 +17,7 @@ LevelEditor
         color : { 1 , 1 , 1 , 1 }
         spriteSourceName : TileMap
         tilemapLoc : Default
-      }
+	  }
       ColliderTilemap
       {
         CollisionGroup : 1
