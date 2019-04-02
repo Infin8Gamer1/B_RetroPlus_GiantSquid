@@ -17,6 +17,7 @@ TileMapNavigation::TileMapNavigation() : Component("TileMapNavigation")
 	mode = Mode::Move;
 
 	fraction = 0;
+	pointIndex = 0;
 	startPointIndex = 0;
 	endPointIndex = 1;
 
@@ -38,7 +39,7 @@ void TileMapNavigation::Initialize()
 	transform = GetOwner()->GetComponent<Transform>();
 	physics = GetOwner()->GetComponent<Physics>();
 	colliderTilemap = GetOwner()->GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
-	SetTarget(Vector2D(10, 15));
+	//SetTarget(Vector2D(10, 15));
 }
 
 void TileMapNavigation::Update(float dt)
@@ -56,22 +57,23 @@ void TileMapNavigation::Update(float dt)
 		case Stationary:
 			break;
 		case Move:
-			if (fraction < 1)
+			if (fraction < 1 && pointIndex < path.size() - 1)
 			{
 				fraction += dt * moveSpeed;
-				transform->SetTranslation(Lerp(colliderTilemap->ConvertTileMapCordsToWorldCords(path[startPointIndex]), colliderTilemap->ConvertTileMapCordsToWorldCords(path[endPointIndex]), fraction));
+				transform->SetTranslation(Lerp(transform->GetTranslation(), colliderTilemap->ConvertTileMapCordsToWorldCords(path[pointIndex]), fraction));
 			}
 			else
 			{
 				fraction = 0;
-				if (endPointIndex >= path.size() - 1)
+
+				if (pointIndex >= path.size() - 1)
 				{
 					mode = Mode::Stationary;
+					pointIndex = 0;
 				}
 				else
 				{
-					startPointIndex += 1;
-					endPointIndex += 1;
+					pointIndex += 1;
 				}
 			}
 			break;
