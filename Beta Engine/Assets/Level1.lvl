@@ -1,13 +1,13 @@
 LevelEditor
 {
-  numGameObjects : 5
+  numGameObjects : 7
   {
     TileMap
     {
       numComponents : 3
       Transform
       {
-        translation : { -355, 337 }
+        translation : { -338, 351 }
         rotation : 0
         scale : { 25, 25 }
       }
@@ -30,7 +30,7 @@ LevelEditor
       numComponents : 6
       Transform
       {
-        translation : { 12.5, -200.5 }
+        translation : { 0, -225.5 }
         rotation : 0
         scale : { 50, 50 }
       }
@@ -59,34 +59,12 @@ LevelEditor
       PacManLogic
       { } 
     }
-    Pellet
-    {
-      numComponents : 3
-      Transform
-      {
-        translation : { -49.5, -240.5 }
-        rotation : 0
-        scale : { 25, 25 }
-      }
-      Sprite
-      {
-        frameIndex : 0
-        color : { 1 , 1 , 1 , 1 }
-        spriteSourceName : Pellet
-      }
-      ColliderCircle
-      {
-        CollisionGroup : 2
-        CollisionFlags : 0
-        radius : 1
-      }
-    }
     GhostBlue
     {
       numComponents : 4
       Transform
       {
-        translation : { -99.5, -238.5 }
+        translation : { 0, 0 }
         rotation : 0
         scale : { 40, 40 }
       }
@@ -111,12 +89,12 @@ LevelEditor
         extents : { 20, 20 }
       }
     }
-    Pellet_1
+    PowerPellet
     {
       numComponents : 3
       Transform
       {
-        translation : { -99.5, -164.5 }
+        translation : { -312.5, 276.5 }
         rotation : 0
         scale : { 25, 25 }
       }
@@ -124,7 +102,73 @@ LevelEditor
       {
         frameIndex : 0
         color : { 1 , 1 , 1 , 1 }
-        spriteSourceName : Pellet
+        spriteSourceName : PowerPellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
+      }
+    }
+    PowerPellet_1
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { 312.5, 276.5 }
+        rotation : 0
+        scale : { 25, 25 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : PowerPellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
+      }
+    }
+    PowerPellet_2
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { 312.5, -223.5 }
+        rotation : 0
+        scale : { 25, 25 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : PowerPellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
+      }
+    }
+    PowerPellet_3
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { -312.5, -248.5 }
+        rotation : 0
+        scale : { 25, 25 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : PowerPellet
       }
       ColliderCircle
       {
