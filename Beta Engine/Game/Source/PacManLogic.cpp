@@ -6,9 +6,11 @@
 #include <Collider.h>
 #include <GameObject.h>
 #include <SoundManager.h>
+#include <SpriteSource.h>
+#include <Sprite.h>
 #include <Engine.h>
-
-
+#include <Texture.h>
+#include <ResourceManager.h>
 
 
 void PacManCollisionHandler(GameObject & object, GameObject & other)
@@ -35,6 +37,12 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	}
 	if (other.GetName().substr(0, 5) == "Ghost")
 	{
+		object.GetComponent<Sprite>()->SetSpriteSource(object.GetComponent<PacManLogic>()->pacDeathSpriteSource);
+		while (object.GetComponent<PacManLogic>()->deathTimer > 0)
+		{
+			object.GetComponent<PacManLogic>()->deathTimer -= 0.16f;
+		}
+		object.GetComponent<PacManLogic>()->deathTimer = 4;
 		Engine::GetInstance().Stop();
 	}
 }
@@ -53,8 +61,13 @@ Component * PacManLogic::Clone() const
 	return new PacManLogic(*this);
 }
 
+void PacManLogic::Load()
+{
+}
+
 void PacManLogic::Initialize()
 {
+	pacDeathSpriteSource = ResourceManager::GetInstance().GetSpriteSource("PacDeath", true);
 	GetOwner()->GetComponent<Collider>()->SetCollisionHandler(PacManCollisionHandler);
 }
 

@@ -1,8 +1,8 @@
-PacMan
+GhostPower
 {
-	textureName : TGS_Fadiya_PacmanGo.png
+	textureName : Art_Ghost_Blue.png
     textureRows : 2
     textureColumns : 2
-	frameCount : 3
+	frameCount : 4
 	frameStart : 0
 }

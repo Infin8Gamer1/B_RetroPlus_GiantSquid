@@ -1,6 +1,6 @@
 GhostBlue
 {
-  numComponents : 4
+  numComponents : 6
   Transform
   {
     translation : { 0, 0 }
@@ -26,5 +26,11 @@ GhostBlue
     CollisionGroup : 2
     CollisionFlags : 1, 2, -3
     extents : { 20, 20 }
+  }
+  Animation
+  {
+  }
+  TileMapNavigation
+  {
   }
 }
