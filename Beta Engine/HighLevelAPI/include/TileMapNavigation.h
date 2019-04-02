@@ -75,6 +75,10 @@ private:
 
 	std::vector<Vector2D> CalculatePath();
 
+	void DebugDrawPath(std::vector<Vector2D> path);
+
+	Vector2D Lerp(Vector2D v0, Vector2D v1, float t);
+
 	template<class T>
 	void DeleteVector(std::vector<T*>& vector)
 	{
@@ -98,6 +102,7 @@ private:
 	const float moveSpeed = 150.0f;
 
 	Vector2D target;
+	std::vector<Vector2D> path;
 	Mode mode;
 
 	// Components

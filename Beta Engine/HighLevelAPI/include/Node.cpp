@@ -16,7 +16,7 @@ bool Node::operator==(const Node & rhs) const
 	return Position.x == rhs.Position.x && Position.y == rhs.Position.y;
 }
 
-bool Node::checkPointerEqual(const Node & rhs, const Node * lhs)
+bool Node::operator==(const Vector2D & rhs) const
 {
-	return rhs == *lhs;
+	return Position.x == rhs.x && Position.y == rhs.y;
 }

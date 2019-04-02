@@ -40,7 +40,7 @@ public:
 	Node(Node* parent, Vector2D pos);
 
 	bool operator==(const Node& rhs) const;
-	bool checkPointerEqual(const Node& rhs, const Node* lhs);
+	bool operator==(const Vector2D& rhs) const;
 
 	Node* Parent;
 

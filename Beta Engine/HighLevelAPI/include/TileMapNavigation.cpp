@@ -33,18 +33,17 @@ void TileMapNavigation::Initialize()
 	transform = GetOwner()->GetComponent<Transform>();
 	physics = GetOwner()->GetComponent<Physics>();
 	colliderTilemap = GetOwner()->GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
+	path = CalculatePath();
 }
 
 void TileMapNavigation::Update(float dt)
 {
-	std::vector<Vector2D> path = CalculatePath();
-
-	for (size_t i = 1; i < path.size(); i++)
-	{
-		DebugDraw::GetInstance().AddLineToStrip(colliderTilemap->ConvertTileMapCordsToWorldCords(path[i - 1]), colliderTilemap->ConvertTileMapCordsToWorldCords(path[i]));
-	}
-	DebugDraw::GetInstance().EndLineStrip(Graphics::GetInstance().GetCurrentCamera());
 	
+
+#ifdef _DEBUG
+	DebugDrawPath(path);
+#endif // _DEBUG
+
 
 	switch (mode)
 	{
@@ -71,7 +70,6 @@ std::vector<Vector2D> TileMapNavigation::CalculatePath()
 {
 	//Create Start and end nodes
 	Node* startNode = new Node(nullptr, colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()));
-	Node endNode = Node(nullptr, target);
 	
 	//init both open and closed list
 	std::vector<Node*> openList;
@@ -106,7 +104,7 @@ std::vector<Vector2D> TileMapNavigation::CalculatePath()
 		closedList.push_back(CurrentNode);
 
 		//did we found the goal
-		if (*CurrentNode == endNode)
+		if (*CurrentNode == target)
 		{
 			//Congratz! You've found the end! Backtrack to get path
 			std::vector<Vector2D> outputPath;
@@ -161,18 +159,21 @@ std::vector<Vector2D> TileMapNavigation::CalculatePath()
 
 		//loop through each child and calculate g,h and f values
 		//then add the node into the open set if it isn't already in the open set or closed set
-
-		for (size_t i = 0; i < children.size(); i++)
+		std::vector<Node*>::iterator ptr;
+		for (ptr = children.begin(); ptr < children.end(); ptr++)
 		{
+			Node* child = *ptr;
+
 			bool flag = false;
-			for each (Node* x in closedList)
+			std::vector<Node*>::iterator x;
+			for (x = closedList.begin(); x < closedList.end(); x++)
 			{
-				if (*x == *children[i])
+				if (**x == *child)
 				{
 					flag = true;
 
-					delete children[i];
-					children[i] = nullptr;
+					delete child;
+					*ptr = nullptr;
 					break;
 				}
 			}
@@ -184,23 +185,25 @@ std::vector<Vector2D> TileMapNavigation::CalculatePath()
 
 			//Calculate G, H, and F
 			float G = CurrentNode->G + 1;
-			float H = abs(children[i]->Position.x - endNode.Position.x) + abs(children[i]->Position.y - endNode.Position.y);
+			float H = abs(child->Position.x - target.x) + abs(child->Position.y - target.y);
 			float F = G + H;
 
-			children[i]->G = G;
-			children[i]->H = H;
-			children[i]->F = F;
+			child->G = G;
+			child->H = H;
+			child->F = F;
 
 			bool flag2 = false;
-			for each (Node* x in openList)
+			std::vector<Node*>::iterator y;
+			for (y = openList.begin(); y < openList.end(); y++)
 			{
-				if (*x == *children[i])
+				Node* node = *y;
+				if (*node == *child)
 				{
-					if (x->G < children[i]->G)
+					if (node->G < child->G)
 					{
 						flag2 = true;
-						delete children[i];
-						children[i] = nullptr;
+						delete child;
+						*ptr = nullptr;
 						break;
 					}
 				}
@@ -212,7 +215,7 @@ std::vector<Vector2D> TileMapNavigation::CalculatePath()
 			}
 
 			//add the child to the open list
-			openList.push_back(children[i]);
+			openList.push_back(child);
 		}
 		
 	}
@@ -222,4 +225,19 @@ std::vector<Vector2D> TileMapNavigation::CalculatePath()
 
 	std::vector<Vector2D> emptyout;
 	return emptyout;
+}
+
+void TileMapNavigation::DebugDrawPath(std::vector<Vector2D> path)
+{
+	for (size_t i = 1; i < path.size(); i++)
+	{
+		DebugDraw::GetInstance().AddLineToStrip(colliderTilemap->ConvertTileMapCordsToWorldCords(path[i - 1]), colliderTilemap->ConvertTileMapCordsToWorldCords(path[i]));
+	}
+
+	DebugDraw::GetInstance().EndLineStrip(Graphics::GetInstance().GetCurrentCamera());
+}
+
+Vector2D TileMapNavigation::Lerp(Vector2D v0, Vector2D v1, float t)
+{
+	return Vector2D(((1 - t) * v0.x + t * v1.x), ((1 - t) * v0.y + t * v1.y));
 }
