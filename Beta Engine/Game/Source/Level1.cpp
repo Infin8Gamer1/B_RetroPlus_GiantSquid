@@ -45,6 +45,11 @@
 
 Levels::Level1::Level1() : Level("LevelEditor"), cherryPos(Vector2D(0,0)), cherrySpawned(false)
 {
+    //Objects
+    player = nullptr;
+    score = nullptr;
+    highScore = nullptr;
+
 	// Sound manager
 	soundManager = nullptr;
 	musicChannel = nullptr;
@@ -80,6 +85,9 @@ void Levels::Level1::Initialize()
 	LoadLevel();
 
 	player = GetSpace()->GetObjectManager().GetObjectByName("PacMan");
+
+    score = GetSpace()->GetObjectManager().GetObjectByName("Score");
+    highScore = GetSpace()->GetObjectManager().GetObjectByName("HighScore");
 
 	colliderTilemap = GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
 

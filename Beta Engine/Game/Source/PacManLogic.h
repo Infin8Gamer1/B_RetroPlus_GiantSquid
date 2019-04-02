@@ -96,6 +96,10 @@ private:
 
 	unsigned score;
 
+    GameObject* scoreObj;
+    GameObject* highScoreObj;
+
+
 	int pelletScore;
 
 	int powerPelletScore;

@@ -58,7 +58,7 @@ void GameObjectButton::Update(float dt)
 
 	Button::Update(dt);
 
-	TextSprite->SetAlpha(sprite->GetAlpha());
+	if(TextSprite != nullptr) TextSprite->SetAlpha(sprite->GetAlpha());
 }
 
 void GameObjectButton::Clicked()
