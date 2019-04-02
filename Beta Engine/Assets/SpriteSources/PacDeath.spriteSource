@@ -1,8 +1,8 @@
 PacDeath
 {
 	textureName : TGS_Fadiya_PacmanDeath.png
-    textureRows : 2
-    textureColumns : 2
-	frameCount : 4
+    textureRows : 5
+    textureColumns : 4
+	frameCount : 20
 	frameStart : 0
 }
