@@ -1,6 +1,6 @@
 GhostBlue
 {
-  numComponents : 5
+  numComponents : 6
   Transform
   {
     translation : { 0, 0 }
@@ -28,6 +28,9 @@ GhostBlue
     extents : { 20, 20 }
   }
   Animation
+  {
+  }
+  TileMapNavigation
   {
   }
 }

@@ -37,13 +37,12 @@ public:
 	//------------------------------------------------------------------------------
 
 	// Constructor
-	Node(Node* parent, Vector2D pos, Vector2D endPos = Vector2D(), Vector2D startPos = Vector2D());
+	Node(Node* parent, Vector2D pos);
 
-	bool operator==(const Node& rhs);
+	bool operator==(const Node& rhs) const;
+	bool operator==(const Vector2D& rhs) const;
 
 	Node* Parent;
-
-	std::vector<Node*> children;
 
 	Vector2D Position;
 
