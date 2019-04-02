@@ -17,3 +17,121 @@ LevelEditor
         color : { 1 , 1 , 1 , 1 }
         spriteSourceName : TileMap
         tilemapLoc : Default
+	  }
+      ColliderTilemap
+      {
+        CollisionGroup : 1
+        CollisionFlags : 1, -2, 3
+        tilemapLoc : Default
+      }
+    }
+    PacMan
+    {
+      numComponents : 6
+      Transform
+      {
+        translation : { -12.5, -250 }
+        rotation : 0
+        scale : { 50, 50 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : PacMan
+      }
+      Physics
+      {
+        acceleration : { 0, 0 }
+        velocity : { 0, 0 }
+        angularVelocity : 0
+        mass : 1
+        gravity : { 0, 0 }
+      }
+      ColliderRectangle
+      {
+        CollisionGroup : 3
+        CollisionFlags : 1, 2, -3
+        extents : { 5, 5 }
+      }
+      PacManMovement
+      { } 
+      PacManLogic
+      { } 
+    }
+    Pellet
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { -49.5, -249.5 }
+        rotation : 0
+        scale : { 25, 25 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : Pellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
+      }
+    }
+    GhostBlue
+    {
+      numComponents : 4
+      Transform
+      {
+        translation : { -99.5, -249.5 }
+        rotation : 0
+        scale : { 40, 40 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : GhostBlue
+      }
+      Physics
+      {
+        acceleration : { 0, 0 }
+        velocity : { 0, 0 }
+        angularVelocity : 0
+        mass : 1
+        gravity : { 0, 0 }
+      }
+      ColliderRectangle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 1, 2, -3
+        extents : { 20, 20 }
+      }
+    }
+    Pellet_1
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { -99.5, -174.5 }
+        rotation : 0
+        scale : { 25, 25 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : Pellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
+      }
+    }
+  }
+}
