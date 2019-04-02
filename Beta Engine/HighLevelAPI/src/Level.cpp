@@ -124,6 +124,7 @@ void Level::SaveLevel()
 
 		try
 		{
+
 			Serialize(*parser);
 		}
 		catch (ParseException e)

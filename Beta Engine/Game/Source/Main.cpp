@@ -50,6 +50,9 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 	UNREFERENCED_PARAMETER(show);
 	UNREFERENCED_PARAMETER(instance);
 
+	// Add Sound Manager
+	Engine::GetInstance().AddModule(new SoundManager());
+
 	////Register Custom Components
 	GameObjectFactory::GetInstance().RegisterComponent<PacManMovement>();
 	GameObjectFactory::GetInstance().RegisterComponent<PacManLogic>();
@@ -63,9 +66,6 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 	spaceManager->AddSpace(*space);
 
 	Engine::GetInstance().AddModule(spaceManager);
-
-	// Add Sound Manager
-	Engine::GetInstance().AddModule(new SoundManager());
 
 	// Game engine goes!
 	int Height = 720;

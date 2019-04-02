@@ -1,0 +1,22 @@
+PowerPellet
+{
+  numComponents : 3
+  Transform
+  {
+    translation : { 0.0, 0.0 }
+    rotation : 0
+    scale : { 10, 10 }
+  }
+  Sprite
+  {
+    frameIndex : 0
+    color : { 1 , 1 , 1 , 1 }
+    spriteSourceName : PowerPellet
+  }
+  ColliderCircle
+  {
+	CollisionGroup : 2
+    CollisionFlags : 0
+	radius : 1
+  }
+}

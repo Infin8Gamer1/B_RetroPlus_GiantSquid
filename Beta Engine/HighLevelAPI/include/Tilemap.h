@@ -82,6 +82,11 @@ public:
 
 	void Print();
 
+	void Shrink();
+
+	bool isRowEmpty(int row);
+	bool isColumnEmpty(int column);
+
 	void Resize(int columnLeft, int columnRight, int rowTop, int rowBottom);
 
 private:

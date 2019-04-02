@@ -5,13 +5,13 @@ Pellet
   {
     translation : { 0.0, 0.0 }
     rotation : 0
-    scale : { 10, 10 }
+    scale : { 25, 25 }
   }
   Sprite
   {
     frameIndex : 0
     color : { 1 , 1 , 1 , 1 }
-    spriteSourceName : Circle
+    spriteSourceName : Pellet
   }
   ColliderCircle
   {

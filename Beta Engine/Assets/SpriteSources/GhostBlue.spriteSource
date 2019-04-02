@@ -1,0 +1,8 @@
+GhostBlue
+{
+	textureName : Art_Pac_Sprite.png
+    textureRows : 7
+    textureColumns : 5
+	frameCount : 2
+	frameStart : 0
+}

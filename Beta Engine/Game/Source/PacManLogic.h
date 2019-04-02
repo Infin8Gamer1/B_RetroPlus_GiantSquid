@@ -19,6 +19,8 @@
 
 #include <Vector2D.h> // Vector2D
 
+#include <fmod.hpp>
+
 
 //------------------------------------------------------------------------------
 
@@ -32,6 +34,7 @@ class Animation;
 class Sprite;
 struct MapCollision;
 class ColliderTilemap;
+class SoundManager;
 
 //------------------------------------------------------------------------------
 // Public Structures:
@@ -66,7 +69,22 @@ public:
 	//   other  = The object the monkey is colliding with.
 	friend void PacManCollisionHandler(GameObject& object, GameObject& other);
 
+	// Gets pellets in the level.
+	// Returns:
+	//   The pellets pacman has eaten
+	int GetPellets();
+
+	// Sets the pellets on the player object
+	// Params:
+	//   amountOfPellets = pellets that is being set to player object
+	void SetPellets(int amountOfPellets);
+
 private:
+	bool isInvincible;
+
+	float invincibleTimer;
+
+	int pelletsLeft;
 
 	unsigned highScore;
 
@@ -75,5 +93,9 @@ private:
 	int pelletScore;
 
 	int powerPelletScore;
+
+	// Sound manager
+	SoundManager* soundManager;
+	FMOD::Channel* musicChannel;
 
 };

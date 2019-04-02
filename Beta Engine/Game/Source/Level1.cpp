@@ -21,6 +21,7 @@
 #include <SpriteTilemap.h>
 #include "MonkeyMovement.h"
 #include "PacManMovement.h"
+#include "PacManLogic.h"
 
 //Resources
 #include <Mesh.h>
@@ -42,7 +43,7 @@
 #include <Graphics.h>
 #include <Parser.h>
 
-Levels::Level1::Level1() : Level("LevelEditor")
+Levels::Level1::Level1() : Level("LevelEditor"), cherryPos(Vector2D(0,0)), cherrySpawned(false)
 {
 	// Sound manager
 	soundManager = nullptr;
@@ -56,6 +57,8 @@ void Levels::Level1::Load()
 	System::GetInstance().SetWindowTitle(WindowTitle);
 
 	Graphics::GetInstance().GetCurrentCamera().Reset();
+
+	GetSpace()->GetObjectManager().AddArchetype(*GameObjectFactory::GetInstance().CreateObject("Cherry"));
 
 	GetSpace()->GetObjectManager().AddArchetype(*GameObjectFactory::GetInstance().CreateObject("Pellet"));
 
@@ -76,12 +79,15 @@ void Levels::Level1::Initialize()
 
 	LoadLevel();
 
+	player = GetSpace()->GetObjectManager().GetObjectByName("PacMan");
+
 	colliderTilemap = GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
 
 
 #ifdef _DEBUG
 	std::cout << "WARNING Not Adding Dots because they are slow in debug" << std::endl;
 #else
+	int pelletsSetToLevel = 0;
 	for (unsigned i = 0; i < colliderTilemap->GetTilemap()->GetWidth(); i++)
 	{
 		for (unsigned j = 0; j < colliderTilemap->GetTilemap()->GetHeight(); j++)
@@ -96,9 +102,11 @@ void Levels::Level1::Initialize()
 				obj->GetComponent<Transform>()->SetTranslation(position);
 
 				GetSpace()->GetObjectManager().AddObject(*obj);
+				pelletsSetToLevel += 1;
 			}
 		}
 	}
+	player->GetComponent<PacManLogic>()->SetPellets(pelletsSetToLevel);
 #endif RELEASE
 
 	
@@ -106,7 +114,20 @@ void Levels::Level1::Initialize()
 
 void Levels::Level1::Update(float dt)
 {
-	UNREFERENCED_PARAMETER(dt);
+	/*
+	if (player->GetComponent<PacManLogic>()->GetPellets() == 70 && cherrySpawned == false)
+	{
+		GameObject* cherryObj = new GameObject(*GetSpace()->GetObjectManager().GetArchetypeByName("Cherry"));
+		cherryPos = colliderTilemap->ConvertTileMapCordsToWorldCords(Vector2D(50, 50));
+		cherryObj->GetComponent<Transform>()->SetTranslation(cherryPos);
+		GetSpace()->GetObjectManager().AddObject(*cherryObj);
+		cherrySpawned = true;
+	}
+	*/
+	if (player->GetComponent<PacManLogic>()->GetPellets() == 0)
+	{
+		Engine::GetInstance().Stop();
+	}
 }
 
 void Levels::Level1::Shutdown()
