@@ -83,7 +83,7 @@ LevelEditor
     }
     GhostBlue
     {
-      numComponents : 6
+      numComponents : 7
 	  Transform
 	  {
 		translation : { 0, 0 }
@@ -114,6 +114,9 @@ LevelEditor
 	  {
 	  }
 	  TileMapNavigation
+	  {
+	  }
+	  GhostBehaviorBlue
 	  {
 	  }
     }

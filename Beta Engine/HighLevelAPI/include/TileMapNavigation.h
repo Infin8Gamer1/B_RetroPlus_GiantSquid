@@ -100,8 +100,10 @@ private:
 	//------------------------------------------------------------------------------
 
 	// Movement properties
-	const float moveSpeed = 1.5f;
+	const float moveSpeed = 7.5f;
 	float fraction;
+
+	int pointIndex;
 
 	int startPointIndex;
 	int endPointIndex;
