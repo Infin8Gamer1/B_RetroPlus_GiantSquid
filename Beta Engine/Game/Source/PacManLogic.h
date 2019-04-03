@@ -104,6 +104,8 @@ private:
 
 	SpriteSource* pacDeathSpriteSource;
 
+	std::vector<GameObject*> ghosts;
+
 	// Sound manager
 	SoundManager* soundManager;
 	FMOD::Channel* musicChannel;

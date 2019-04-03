@@ -35,11 +35,18 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 
 		object.GetComponent<PacManLogic>()->isInvincible = true;
 		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_power pellet new.wav");
+
+		for (unsigned i = 0; i < object.GetComponent<PacManLogic>()->ghosts.size(); ++i)
+		{
+			//object.GetComponent<PacManLogic>()->ghosts[i]->
+		}
+
 		other.Destroy();
 	}
 	if (other.GetName().substr(0, 5) == "Ghost" && !object.GetComponent<PacManLogic>()->isInvincible)
 	{
 		object.GetComponent<Sprite>()->SetSpriteSource(object.GetComponent<PacManLogic>()->pacDeathSpriteSource);
+
 		//object.GetComponent<Animation>()->Play(0.1, false, false);
 		while (object.GetComponent<PacManLogic>()->deathTimer > 0)
 		{
@@ -50,11 +57,8 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	}
 	else if(object.GetComponent<PacManLogic>()->isInvincible && other.GetName().substr(0, 5) == "Ghost")
 	{
-		other.Destroy();
 		object.GetComponent<PacManLogic>()->score += 200 * object.GetComponent<PacManLogic>()->ghostMultiplier;
 		object.GetComponent<PacManLogic>()->ghostMultiplier += 1;
-		
-		std::cout << "GHOSTED" << std::endl;
 	}
 }
 
@@ -78,6 +82,16 @@ void PacManLogic::Load()
 
 void PacManLogic::Initialize()
 {
+	std::vector<GameObject*> objs = GetOwner()->GetSpace()->GetObjectManager().GetGameObjectActiveList();
+
+	for (unsigned i = 0; i < objs.size(); ++i)
+	{
+		if (objs[i]->GetName().substr(0, 6) == "Ghost")
+		{
+			ghosts.push_back(objs[i]);
+		}
+	}
+
 	pacDeathSpriteSource = ResourceManager::GetInstance().GetSpriteSource("PacDeath", true);
 	GetOwner()->GetComponent<Collider>()->SetCollisionHandler(PacManCollisionHandler);
 }
@@ -93,6 +107,7 @@ void PacManLogic::Update(float dt)
 			isInvincible = false;
 			ghostMultiplier = 1;
 		}
+
 	}
 }
 

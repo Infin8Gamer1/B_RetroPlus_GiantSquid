@@ -90,7 +90,7 @@ LevelEditor
       {
         CollisionGroup : 3
         CollisionFlags : 1, 2, -3
-        extents : { 5, 5 }
+        extents : { 20, 20 }
       }
       PacManMovement
       { } 

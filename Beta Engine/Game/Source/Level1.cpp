@@ -139,6 +139,8 @@ void Levels::Level1::Update(float dt)
 		Engine::GetInstance().Stop();
 	}
 
+
+	////////////////////////////////////////////////////////////////////////UPDATING SCORE
 	unsigned scr = player->GetComponent<PacManLogic>()->score;
 
 	unsigned hiscr = player->GetComponent<PacManLogic>()->highScore;
@@ -156,6 +158,8 @@ void Levels::Level1::Update(float dt)
 
 	scoreObj->GetComponent<SpriteText>()->SetText(scrss.str());
 	highScoreObj->GetComponent<SpriteText>()->SetText(hiscrss.str());
+
+	////////////////////////////////////////////////////////////////////////
 }
 
 void Levels::Level1::Shutdown()
