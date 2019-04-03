@@ -12,6 +12,8 @@
 #include "stdafx.h"
 #include <Space.h>
 #include "Level1.h"
+#include <sstream>
+#include <iomanip>
 
 //Components
 #include <SpriteText.h>
@@ -137,7 +139,11 @@ void Levels::Level1::Update(float dt)
 		Engine::GetInstance().Stop();
 	}
 
-    //scoreObj->GetComponent<SpriteText>()->SetText(player->GetComponent<PacManLogic>()->score);
+	std::stringstream ss;
+
+	ss << std::setw(6) << std::setfill('0') << player->GetComponent<PacManLogic>()->score;
+
+	scoreObj->GetComponent<SpriteText>()->SetText(ss.str());
 }
 
 void Levels::Level1::Shutdown()

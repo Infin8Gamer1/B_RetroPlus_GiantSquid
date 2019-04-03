@@ -48,7 +48,7 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 		object.GetComponent<PacManLogic>()->deathTimer = 4;
 		Engine::GetInstance().Stop();
 	}
-	else if(object.GetComponent<PacManLogic>()->isInvincible)
+	else if(object.GetComponent<PacManLogic>()->isInvincible && other.GetName().substr(0, 5) == "Ghost")
 	{
 		other.Destroy();
 		object.GetComponent<PacManLogic>()->score += 200 * object.GetComponent<PacManLogic>()->ghostMultiplier;
