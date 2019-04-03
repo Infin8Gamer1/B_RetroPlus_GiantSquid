@@ -51,6 +51,8 @@ public:
 	// Constructor
 	TileMapNavigation();
 
+	~TileMapNavigation();
+
 	// Clone a component and return a pointer to the cloned component.
 	// Returns:
 	//   A pointer to a dynamically allocated clone of the component.

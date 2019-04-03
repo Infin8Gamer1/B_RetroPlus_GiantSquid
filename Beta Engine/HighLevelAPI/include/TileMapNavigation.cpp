@@ -33,6 +33,12 @@ TileMapNavigation::TileMapNavigation() : Component("TileMapNavigation")
 	calculatePathFlag = false;
 }
 
+TileMapNavigation::~TileMapNavigation()
+{
+	DeleteVector(openList);
+	DeleteVector(closedList);
+}
+
 Component * TileMapNavigation::Clone() const
 {
 	return new TileMapNavigation();
@@ -222,14 +228,15 @@ void TileMapNavigation::CalculatePath(TileMapNavigation & obj) const
 				{
 					flag = true;
 
-					delete child;
-					*ptr = nullptr;
 					break;
 				}
 			}
 
 			if (flag)
 			{
+				delete child;
+				child = nullptr;
+				*ptr = nullptr;
 				continue;
 			}
 
@@ -252,8 +259,7 @@ void TileMapNavigation::CalculatePath(TileMapNavigation & obj) const
 					if (node->G < child->G)
 					{
 						flag2 = true;
-						delete child;
-						*ptr = nullptr;
+						
 						break;
 					}
 				}
@@ -261,6 +267,10 @@ void TileMapNavigation::CalculatePath(TileMapNavigation & obj) const
 
 			if (flag2)
 			{
+				delete child;
+				child = nullptr;
+				*ptr = nullptr;
+
 				continue;
 			}
 
@@ -268,6 +278,9 @@ void TileMapNavigation::CalculatePath(TileMapNavigation & obj) const
 			obj.openList.push_back(child);
 		}
 	}
+
+	/*obj.DeleteVector(obj.openList);
+	obj.DeleteVector(obj.closedList);*/
 
 	return;
 }
