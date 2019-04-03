@@ -62,29 +62,21 @@ void TileMapNavigation::Update(float dt)
 			break;
 		case MoveLerp:
 		{
-			if (fraction < 1 && pointIndex < path.size() - 1)
+			if (fraction < 1)
 			{
-				fraction += dt * moveSpeed;
-				transform->SetTranslation(Lerp(transform->GetTranslation(), colliderTilemap->ConvertTileMapCordsToWorldCords(path[pointIndex]), fraction));
+				fraction += moveSpeed;
+				size_t index = FindClosestPointInPath(colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()), path) + 1;
+				if (index < path.size())
+				{
+					transform->SetTranslation(Lerp(transform->GetTranslation(), colliderTilemap->ConvertTileMapCordsToWorldCords(path[index]), fraction));
+				}
 			}
 			else
 			{
 				fraction = 0;
-
-				if (pointIndex >= path.size() - 1)
-				{
-					//mode = Mode::Stationary;
-					pointIndex = 0;
-				}
-				else
-				{
-					pointIndex += 1;
-				}
 			}
 			break;
 		}
-		case MovePhysics:
-			break;
 		default:
 			break;
 		}
@@ -93,7 +85,7 @@ void TileMapNavigation::Update(float dt)
 	//if we are calculating the path then run through and calcualte 10 times in this update
 	if (calculatePathFlag)
 	{
-		for (size_t i = 0; i < 10; i++)
+		for (size_t i = 0; i < 15; i++)
 		{
 			CalculatePath(*this);
 		}
@@ -120,7 +112,7 @@ void TileMapNavigation::SetMode(Mode _mode)
 
 void TileMapNavigation::StartPathCalculation()
 {
-	//reset Open and Closed Lists
+	//Reset Open and Closed Lists
 	DeleteVector(openList);
 	DeleteVector(closedList);
 
@@ -177,8 +169,8 @@ void TileMapNavigation::CalculatePath(TileMapNavigation & obj) const
 
 			obj.path = outputPath;
 			obj.calculatePathFlag = false;
+			obj.fraction = 0;
 			//obj.mode = Mode::MoveLerp;
-			obj.pointIndex = 0;
 			return;
 		}
 
@@ -293,4 +285,22 @@ void TileMapNavigation::DebugDrawPath(std::vector<Vector2D> path)
 Vector2D TileMapNavigation::Lerp(Vector2D v0, Vector2D v1, float t)
 {
 	return Vector2D(((1 - t) * v0.x + t * v1.x), ((1 - t) * v0.y + t * v1.y));
+}
+
+size_t TileMapNavigation::FindClosestPointInPath(Vector2D point, std::vector<Vector2D> path)
+{
+	size_t index = 0;
+	float currentDistance = path[0].DistanceSquared(point);
+
+	for (size_t i = 1; i < path.size(); i++)
+	{
+		float pointDistance = path[i].DistanceSquared(point);
+		if (pointDistance < currentDistance)
+		{
+			currentDistance = pointDistance;
+			index = i;
+		}
+	}
+
+	return index;
 }

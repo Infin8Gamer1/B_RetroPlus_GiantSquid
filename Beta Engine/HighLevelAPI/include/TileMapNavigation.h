@@ -38,8 +38,7 @@ class Node;
 enum Mode
 {
 	Stationary,
-	MoveLerp,
-	MovePhysics
+	MoveLerp
 };
 
 class TileMapNavigation : public Component
@@ -98,12 +97,14 @@ private:
 		vector.shrink_to_fit();
 	}
 
+	size_t FindClosestPointInPath(Vector2D point, std::vector<Vector2D> path);
+
 	//------------------------------------------------------------------------------
 	// Private Variables:
 	//------------------------------------------------------------------------------
 
 	// Movement properties
-	const float moveSpeed = 7.5f;
+	const float moveSpeed = 0.015f;
 	float fraction;
 
 	int pointIndex;
@@ -119,7 +120,6 @@ private:
 	Transform* transform;
 	Physics* physics;
 	ColliderTilemap* colliderTilemap;
-
 
 	//pathfinding vars
 	std::vector<Node*> openList;
