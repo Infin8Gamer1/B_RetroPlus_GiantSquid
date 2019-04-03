@@ -14,10 +14,6 @@
 #include <ResourceManager.h>
 #include <Animation.h>
 
-GameObject* scoreObj;
-
-unsigned score;
-
 void PacManCollisionHandler(GameObject & object, GameObject & other)
 {
 	if (other.GetName().substr(0, 6) == "Pellet")
@@ -27,7 +23,7 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_chomp.wav");
 		other.Destroy();
 	}
-	if (other.GetName() == "Cherry")
+	if (other.GetName().substr(0, 6) == "Cherry")
 	{
 		object.GetComponent<PacManLogic>()->score += 100;
 		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_chomp.wav");
@@ -37,8 +33,6 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	{
 		object.GetComponent<PacManLogic>()->score += 50;
 
-        scoreObj->GetComponent<SpriteText>()->SetText("Score: " + score);
-
 		object.GetComponent<PacManLogic>()->isInvincible = true;
 		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_power pellet new.wav");
 		other.Destroy();
@@ -46,7 +40,7 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	if (other.GetName().substr(0, 5) == "Ghost" && !object.GetComponent<PacManLogic>()->isInvincible)
 	{
 		object.GetComponent<Sprite>()->SetSpriteSource(object.GetComponent<PacManLogic>()->pacDeathSpriteSource);
-		object.GetComponent<Animation>()->Play(0.1, false, false);
+		//object.GetComponent<Animation>()->Play(0.1, false, false);
 		while (object.GetComponent<PacManLogic>()->deathTimer > 0)
 		{
 			object.GetComponent<PacManLogic>()->deathTimer -= 0.16f;
@@ -56,12 +50,16 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	}
 	else if(object.GetComponent<PacManLogic>()->isInvincible)
 	{
+		other.Destroy();
+		object.GetComponent<PacManLogic>()->score += 200 * object.GetComponent<PacManLogic>()->ghostMultiplier;
+		object.GetComponent<PacManLogic>()->ghostMultiplier += 1;
+		
 		std::cout << "GHOSTED" << std::endl;
 	}
 }
 
 PacManLogic::PacManLogic()
-	: Component("PacManLogic"), score(0), highScore(0), pelletScore(10), powerPelletScore(50), scoreObj(nullptr), highScoreObj(nullptr),
+	: Component("PacManLogic"), score(0), highScore(0), pelletScore(10), powerPelletScore(50),
 	  pelletsLeft(1), isInvincible(false), invincibleTimer(10.0f)
 {
 	soundManager = Engine::GetInstance().GetModule<SoundManager>();
@@ -82,9 +80,6 @@ void PacManLogic::Initialize()
 {
 	pacDeathSpriteSource = ResourceManager::GetInstance().GetSpriteSource("PacDeath", true);
 	GetOwner()->GetComponent<Collider>()->SetCollisionHandler(PacManCollisionHandler);
-
-    scoreObj = GetOwner()->GetSpace()->GetObjectManager().GetObjectByName("Score");
-    highScoreObj = GetOwner()->GetSpace()->GetObjectManager().GetObjectByName("HighScore");
 }
 
 void PacManLogic::Update(float dt)
@@ -96,6 +91,7 @@ void PacManLogic::Update(float dt)
 		{
 			invincibleTimer = 10.0f;
 			isInvincible = false;
+			ghostMultiplier = 1;
 		}
 	}
 }

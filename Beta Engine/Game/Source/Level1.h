@@ -79,8 +79,8 @@ namespace Levels
 		bool cherrySpawned;
 		Vector2D cherryPos;
 
-        GameObject* score;
-        GameObject* highScore;
+        GameObject* scoreObj;
+        GameObject* highScoreObj;
 
 		ColliderTilemap* colliderTilemap;
 

@@ -83,6 +83,10 @@ public:
 	//   amountOfPellets = pellets that is being set to player object
 	void SetPellets(int amountOfPellets);
 
+    unsigned highScore;
+
+    unsigned score;
+
 private:
 	bool isInvincible;
 
@@ -92,13 +96,7 @@ private:
 
 	int pelletsLeft;
 
-	unsigned highScore;
-
-	unsigned score;
-
-    GameObject* scoreObj;
-    GameObject* highScoreObj;
-
+	unsigned ghostMultiplier = 1;
 
 	int pelletScore;
 
