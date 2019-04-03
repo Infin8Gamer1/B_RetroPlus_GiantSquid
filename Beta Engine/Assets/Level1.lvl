@@ -30,7 +30,7 @@ LevelEditor
       numComponents : 2
       Transform
       {
-        translation : { 350, 200 }
+        translation : { 350, 100 }
         rotation : 0
         scale : { 50, 50 }
       }
@@ -49,7 +49,7 @@ LevelEditor
       numComponents : 2
       Transform
       {
-        translation : { 350, 110 }
+        translation : { 350, 150 }
         rotation : 0
         scale : { 50, 50 }
       }
