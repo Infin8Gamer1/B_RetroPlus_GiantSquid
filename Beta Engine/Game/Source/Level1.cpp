@@ -139,11 +139,23 @@ void Levels::Level1::Update(float dt)
 		Engine::GetInstance().Stop();
 	}
 
-	std::stringstream ss;
+	unsigned scr = player->GetComponent<PacManLogic>()->score;
 
-	ss << std::setw(6) << std::setfill('0') << player->GetComponent<PacManLogic>()->score;
+	unsigned hiscr = player->GetComponent<PacManLogic>()->highScore;
 
-	scoreObj->GetComponent<SpriteText>()->SetText(ss.str());
+	if (scr >= hiscr)
+	{
+		hiscr = scr;
+	}
+
+	std::stringstream scrss;
+	std::stringstream hiscrss;
+
+	hiscrss << std::setw(6) << hiscr;
+	scrss << std::setw(6) << scr;
+
+	scoreObj->GetComponent<SpriteText>()->SetText(scrss.str());
+	highScoreObj->GetComponent<SpriteText>()->SetText(hiscrss.str());
 }
 
 void Levels::Level1::Shutdown()
