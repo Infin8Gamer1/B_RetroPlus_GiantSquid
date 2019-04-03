@@ -80,10 +80,10 @@ void WindowSizeCallback(GLFWwindow* window, int width, int height) {
 
 void SpaceManager::Initialize()
 {
-	TwInit(TwGraphAPI::TW_OPENGL_CORE, NULL);
-
 	if (CreateTwBar)
 	{
+		TwInit(TwGraphAPI::TW_OPENGL_CORE, NULL);
+
 		int windowWidth, windowHeight;
 		GLFWwindow* handle = System::GetInstance().GetWindowHandle();
 		glfwGetWindowSize(handle, &windowWidth, &windowHeight);
@@ -132,12 +132,19 @@ void SpaceManager::Update(float dt)
 		spaceList[i]->Update(dt);
 	}
 
-	TwDraw();
+	if (CreateTwBar)
+	{
+		TwDraw();
+	}
+	
 }
 
 void SpaceManager::Shutdown(void)
 {
-	TwTerminate();
+	if (CreateTwBar)
+	{
+		TwTerminate();
+	}
 
 	std::vector<Space*>::iterator i;
 
