@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 //
 // File Name:	Level1.cpp
-// Author(s):	Jacob Holyfield
+// Author(s):	Jacob Holyfield & Nathan Miller
 // Project:		BetaEngine
 // Course:		CS230
 //
@@ -12,10 +12,12 @@
 #include "stdafx.h"
 #include <Space.h>
 #include "Level1.h"
+#include "Level2.h"
 #include <sstream>
 #include <iomanip>
 
 //Components
+#include <Transform.h>
 #include <SpriteText.h>
 #include <Transform.h>
 #include <Physics.h>
@@ -45,19 +47,19 @@
 #include <Graphics.h>
 #include <Parser.h>
 
-Levels::Level1::Level1() : Level("LevelEditor"), cherryPos(Vector2D(0,0)), cherrySpawned(false)
+Levels::Level2::Level2() : Level("LevelEditor"), cherryPos(Vector2D(0, 0)), cherrySpawned(false)
 {
-    //Objects
-    player = nullptr;
-    scoreObj = nullptr;
-    highScoreObj = nullptr;
+	//Objects
+	player = nullptr;
+	scoreObj = nullptr;
+	highScoreObj = nullptr;
 
 	// Sound manager
 	soundManager = nullptr;
 	musicChannel = nullptr;
 }
 
-void Levels::Level1::Load()
+void Levels::Level2::Load()
 {
 	std::cout << GetName() << "::Load" << std::endl;
 
@@ -73,16 +75,17 @@ void Levels::Level1::Load()
 	soundManager = Engine::GetInstance().GetModule<SoundManager>();
 	soundManager->AddMusic("Asteroid_Field.mp3");
 	soundManager->AddEffect("teleport.wav");
-	soundManager->AddEffect("pac-man_ghost new.wav");
+	//soundManager->AddEffect("pac-man_ghost new.wav");
 
 	soundManager->AddBank("Master Bank.strings.bank");
 	soundManager->AddBank("Master Bank.bank");
 
-	SetFileLocation("Assets/Level1.lvl");
+	SetFileLocation("Assets/Level2.lvl");
 }
 
-void Levels::Level1::Initialize()
+void Levels::Level2::Initialize()
 {
+	Graphics::GetInstance().SetBackgroundColor(Colors::White);
 	std::cout << GetName() << "::Initialize" << std::endl;
 
 	LoadLevel();
@@ -91,8 +94,8 @@ void Levels::Level1::Initialize()
 
 	player = GetSpace()->GetObjectManager().GetObjectByName("PacMan");
 
-    scoreObj = GetSpace()->GetObjectManager().GetObjectByName("Score");
-    highScoreObj = GetSpace()->GetObjectManager().GetObjectByName("HighScore");
+	scoreObj = GetSpace()->GetObjectManager().GetObjectByName("Score");
+	highScoreObj = GetSpace()->GetObjectManager().GetObjectByName("HighScore");
 
 	colliderTilemap = GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
 
@@ -122,19 +125,19 @@ void Levels::Level1::Initialize()
 	player->GetComponent<PacManLogic>()->SetPellets(pelletsSetToLevel);
 #endif RELEASE
 
-	
+
 }
 
-void Levels::Level1::Update(float dt)
+void Levels::Level2::Update(float dt)
 {
 	/*
 	if (player->GetComponent<PacManLogic>()->GetPellets() == 70 && cherrySpawned == false)
 	{
-		GameObject* cherryObj = new GameObject(*GetSpace()->GetObjectManager().GetArchetypeByName("Cherry"));
-		cherryPos = colliderTilemap->ConvertTileMapCordsToWorldCords(Vector2D(50, 50));
-		cherryObj->GetComponent<Transform>()->SetTranslation(cherryPos);
-		GetSpace()->GetObjectManager().AddObject(*cherryObj);
-		cherrySpawned = true;
+	GameObject* cherryObj = new GameObject(*GetSpace()->GetObjectManager().GetArchetypeByName("Cherry"));
+	cherryPos = colliderTilemap->ConvertTileMapCordsToWorldCords(Vector2D(50, 50));
+	cherryObj->GetComponent<Transform>()->SetTranslation(cherryPos);
+	GetSpace()->GetObjectManager().AddObject(*cherryObj);
+	cherrySpawned = true;
 	}
 	*/
 	if (player->GetComponent<PacManLogic>()->GetPellets() == 0)
@@ -142,30 +145,14 @@ void Levels::Level1::Update(float dt)
 		Engine::GetInstance().Stop();
 	}
 
+	std::stringstream ss;
 
-	////////////////////////////////////////////////////////////////////////UPDATING SCORE
-	unsigned scr = player->GetComponent<PacManLogic>()->score;
+	ss << std::setw(6) << std::setfill('0') << player->GetComponent<PacManLogic>()->score;
 
-	unsigned hiscr = player->GetComponent<PacManLogic>()->highScore;
-
-	if (scr >= hiscr)
-	{
-		hiscr = scr;
-	}
-
-	std::stringstream scrss;
-	std::stringstream hiscrss;
-
-	hiscrss << std::setw(6) << hiscr;
-	scrss << std::setw(6) << scr;
-
-	scoreObj->GetComponent<SpriteText>()->SetText(scrss.str());
-	highScoreObj->GetComponent<SpriteText>()->SetText(hiscrss.str());
-
-	////////////////////////////////////////////////////////////////////////
+	scoreObj->GetComponent<SpriteText>()->SetText(ss.str());
 }
 
-void Levels::Level1::Shutdown()
+void Levels::Level2::Shutdown()
 {
 	std::cout << GetName() << "::Shutdown" << std::endl;
 
@@ -175,20 +162,20 @@ void Levels::Level1::Shutdown()
 	musicChannel = nullptr;
 }
 
-void Levels::Level1::Unload()
+void Levels::Level2::Unload()
 {
 	std::cout << GetName() << "::Unload" << std::endl;
 
 	soundManager->Shutdown();
 }
 
-bool Levels::Level1::IsObjectAt(Vector2D pos)
+bool Levels::Level2::IsObjectAt(Vector2D pos)
 {
 	std::vector<GameObject*> objs = GetSpace()->GetObjectManager().GetGameObjectActiveList();
 
 	for (unsigned i = 0; i < objs.size(); i++)
 	{
-		if (AlmostEqual(objs[i]->GetComponent<Transform>()->GetTranslation(), pos)) 
+		if (AlmostEqual(objs[i]->GetComponent<Transform>()->GetTranslation(), pos))
 			return true;
 	}
 

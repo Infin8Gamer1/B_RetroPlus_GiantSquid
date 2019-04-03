@@ -113,6 +113,7 @@ private:
 	FMOD::Channel* PlayMusic(FMOD::Sound* sound);
 
 	// Add FX/BGM helper
+	//This is what I need to change in order to get looping ********************************************************/
 	void AddSound(const std::string& filename, FMOD_MODE mode);
 
 	void FMOD_Assert(FMOD_RESULT result);
