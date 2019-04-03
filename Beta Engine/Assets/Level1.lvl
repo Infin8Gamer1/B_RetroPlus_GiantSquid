@@ -1,23 +1,23 @@
 LevelEditor
 {
-  numGameObjects : 5
+  numGameObjects : 9
   {
     TileMap
     {
       numComponents : 3
       Transform
       {
-        translation : { -625, 425 }
+        translation : { -270, 280 }
         rotation : 0
-        scale : { 25, 25 }
+        scale : { 20, 20 }
       }
       SpriteTilemap
       {
-        frameIndex : 32
+        frameIndex : 3
         color : { 1 , 1 , 1 , 1 }
         spriteSourceName : TileMap
         tilemapLoc : Default
-	  }
+      }
       ColliderTilemap
       {
         CollisionGroup : 1
@@ -25,14 +25,52 @@ LevelEditor
         tilemapLoc : Default
       }
     }
+    Score
+    {
+      numComponents : 2
+      Transform
+      {
+        translation : { 350, 100 }
+        rotation : 0
+        scale : { 50, 50 }
+      }
+      SpriteText
+      {
+        frameIndex : 0
+        color : { 0 , 1 , 1 , 1 }
+        spriteSourceName : CodeNewRoman
+        text : 000000
+        horizontalAlignment : 0
+        verticalAlignment : 0
+      }
+    }
+    HighScore
+    {
+      numComponents : 2
+      Transform
+      {
+        translation : { 350, 150 }
+        rotation : 0
+        scale : { 50, 50 }
+      }
+      SpriteText
+      {
+        frameIndex : 0
+        color : { 0 , 1 , 1 , 1 }
+        spriteSourceName : CodeNewRoman
+        text : 100000
+        horizontalAlignment : 0
+        verticalAlignment : 0
+      }
+    }
     PacMan
     {
       numComponents : 6
       Transform
       {
-        translation : { -12.5, -250 }
+        translation : { 0, -180 }
         rotation : 0
-        scale : { 50, 50 }
+        scale : { 40, 40 }
       }
       Sprite
       {
@@ -59,36 +97,14 @@ LevelEditor
       PacManLogic
       { } 
     }
-    Pellet
-    {
-      numComponents : 3
-      Transform
-      {
-        translation : { -49.5, -249.5 }
-        rotation : 0
-        scale : { 25, 25 }
-      }
-      Sprite
-      {
-        frameIndex : 0
-        color : { 1 , 1 , 1 , 1 }
-        spriteSourceName : Pellet
-      }
-      ColliderCircle
-      {
-        CollisionGroup : 2
-        CollisionFlags : 0
-        radius : 1
-      }
-    }
     GhostBlue
     {
-      numComponents : 4
+      numComponents : 6
       Transform
       {
-        translation : { -99.5, -249.5 }
+        translation : { 0, 0 }
         rotation : 0
-        scale : { 40, 40 }
+        scale : { 30, 30 }
       }
       Sprite
       {
@@ -110,13 +126,19 @@ LevelEditor
         CollisionFlags : 1, 2, -3
         extents : { 20, 20 }
       }
+	  TileMapNavigation
+	  {
+	  }
+	  GhostBehaviorBlue
+	  {
+	  }
     }
-    Pellet_1
+    PowerPellet
     {
       numComponents : 3
       Transform
       {
-        translation : { -99.5, -174.5 }
+        translation : { 250.5, 220.5 }
         rotation : 0
         scale : { 25, 25 }
       }
@@ -124,7 +146,73 @@ LevelEditor
       {
         frameIndex : 0
         color : { 1 , 1 , 1 , 1 }
-        spriteSourceName : Pellet
+        spriteSourceName : PowerPellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
+      }
+    }
+    PowerPellet_1
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { -249.5, 220.5 }
+        rotation : 0
+        scale : { 25, 25 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : PowerPellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
+      }
+    }
+    PowerPellet_2
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { -249.5, -179.5 }
+        rotation : 0
+        scale : { 25, 25 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : PowerPellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
+      }
+    }
+    PowerPellet_3
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { 250.5, -179.5 }
+        rotation : 0
+        scale : { 25, 25 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : PowerPellet
       }
       ColliderCircle
       {

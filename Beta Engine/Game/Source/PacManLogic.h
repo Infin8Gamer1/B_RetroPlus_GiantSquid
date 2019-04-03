@@ -32,9 +32,11 @@ class Transform;
 class Physics;
 class Animation;
 class Sprite;
+class SpriteSource;
 struct MapCollision;
 class ColliderTilemap;
 class SoundManager;
+class Texture;
 
 //------------------------------------------------------------------------------
 // Public Structures:
@@ -54,6 +56,8 @@ public:
 	// Returns:
 	//   A pointer to a dynamically allocated clone of the component.
 	Component* Clone() const override;
+
+	void Load() override;
 
 	// Initialize this component (happens at object creation).
 	void Initialize() override;
@@ -79,20 +83,26 @@ public:
 	//   amountOfPellets = pellets that is being set to player object
 	void SetPellets(int amountOfPellets);
 
+    unsigned highScore;
+
+    unsigned score;
+
 private:
 	bool isInvincible;
 
 	float invincibleTimer;
 
+	float deathTimer = 4;
+
 	int pelletsLeft;
 
-	unsigned highScore;
-
-	unsigned score;
+	unsigned ghostMultiplier = 1;
 
 	int pelletScore;
 
 	int powerPelletScore;
+
+	SpriteSource* pacDeathSpriteSource;
 
 	// Sound manager
 	SoundManager* soundManager;

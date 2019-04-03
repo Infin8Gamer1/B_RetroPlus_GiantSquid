@@ -79,6 +79,9 @@ namespace Levels
 		bool cherrySpawned;
 		Vector2D cherryPos;
 
+        GameObject* scoreObj;
+        GameObject* highScoreObj;
+
 		ColliderTilemap* colliderTilemap;
 
 		std::vector<Vector2D> avoid;

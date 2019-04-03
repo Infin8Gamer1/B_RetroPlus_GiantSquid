@@ -27,6 +27,8 @@
 #include <GameObjectFactory.h>
 #include "PacManMovement.h"
 #include "PacManLogic.h"
+#include <TileMapNavigation.h>
+#include "GhostBehaviorBlue.h"
 
 // Initial game state
 #include "Level1.h"
@@ -56,6 +58,8 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 	////Register Custom Components
 	GameObjectFactory::GetInstance().RegisterComponent<PacManMovement>();
 	GameObjectFactory::GetInstance().RegisterComponent<PacManLogic>();
+	GameObjectFactory::GetInstance().RegisterComponent<GhostBehaviorBlue>();
+	GameObjectFactory::GetInstance().RegisterComponent<TileMapNavigation>();
 
 	// Create a new space called "Level"
 	Space* space = new Space("Level", false);

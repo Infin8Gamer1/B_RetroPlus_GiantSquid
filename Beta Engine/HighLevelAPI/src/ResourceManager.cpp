@@ -308,7 +308,7 @@ void ResourceManager::AddTilemap(Tilemap * map)
 void ResourceManager::SaveTilemapToFile(Tilemap * map)
 {
 	std::cout << "Prev " + map->GetHeight() << " Prev " + map->GetWidth() << std::endl;
-	map->Shrink();
+	//map->Shrink();
 	std::cout << "Aft " + map->GetHeight() << " Aft " + map->GetWidth() << std::endl;
 
 	Parser* parser = new Parser(TileMapsFilePath + map->GetName() + ".tileMap", std::fstream::out);

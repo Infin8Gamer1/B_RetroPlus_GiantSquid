@@ -45,6 +45,11 @@
 
 Levels::Level1::Level1() : Level("LevelEditor"), cherryPos(Vector2D(0,0)), cherrySpawned(false)
 {
+    //Objects
+    player = nullptr;
+    scoreObj = nullptr;
+    highScoreObj = nullptr;
+
 	// Sound manager
 	soundManager = nullptr;
 	musicChannel = nullptr;
@@ -58,7 +63,7 @@ void Levels::Level1::Load()
 
 	Graphics::GetInstance().GetCurrentCamera().Reset();
 
-	GetSpace()->GetObjectManager().AddArchetype(*GameObjectFactory::GetInstance().CreateObject("Cherry"));
+	//GetSpace()->GetObjectManager().AddArchetype(*GameObjectFactory::GetInstance().CreateObject("Cherry"));
 
 	GetSpace()->GetObjectManager().AddArchetype(*GameObjectFactory::GetInstance().CreateObject("Pellet"));
 
@@ -80,6 +85,9 @@ void Levels::Level1::Initialize()
 	LoadLevel();
 
 	player = GetSpace()->GetObjectManager().GetObjectByName("PacMan");
+
+    scoreObj = GetSpace()->GetObjectManager().GetObjectByName("Score");
+    highScoreObj = GetSpace()->GetObjectManager().GetObjectByName("HighScore");
 
 	colliderTilemap = GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
 
@@ -128,6 +136,8 @@ void Levels::Level1::Update(float dt)
 	{
 		Engine::GetInstance().Stop();
 	}
+
+    //scoreObj->GetComponent<SpriteText>()->SetText(player->GetComponent<PacManLogic>()->score);
 }
 
 void Levels::Level1::Shutdown()

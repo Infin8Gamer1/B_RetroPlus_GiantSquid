@@ -5,7 +5,7 @@ PowerPellet
   {
     translation : { 0.0, 0.0 }
     rotation : 0
-    scale : { 10, 10 }
+    scale : { 25, 25 }
   }
   Sprite
   {

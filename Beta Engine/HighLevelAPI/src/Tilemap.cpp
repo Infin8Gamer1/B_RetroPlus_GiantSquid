@@ -184,46 +184,48 @@ void Tilemap::Shrink()
 	int rowTop = 0;
 	int rowBottom = 0;
 
-	for (int i = 0; i < GetWidth() / 2; ++i)
-	{
-		if (!isRowEmpty(i)) break;
-		rowTop = i;
-	}
 	for (int i = 0; i < GetHeight() / 2; ++i)
 	{
-		if (!isColumnEmpty(i)) break;
-		colLeft = i;
-	}
-
-	for (int i = GetWidth(); i > GetWidth() / 2; --i)
-	{
 		if (!isRowEmpty(i)) break;
-		rowBottom = i;
+		rowTop = i+1;
+	}
+	for (int i = 0; i < GetWidth() / 2; ++i)
+	{
+		if (!isColumnEmpty(i)) break;
+		colLeft = i+1;
 	}
 
 	for (int i = GetHeight(); i > GetHeight() / 2; --i)
 	{
-		if (!isColumnEmpty(i)) break;
-		colRight = i;
+		if (!isRowEmpty(i-1)) break;
+		rowBottom = GetHeight() - i+1;
 	}
 
-	Resize(-colLeft, colRight, -rowTop, rowBottom);
+	for (int i = GetWidth(); i > GetWidth() / 2; --i)
+	{
+		if (!isColumnEmpty(i-1)) break;
+		colRight = GetWidth() - i+1;
+	}
+
+	Resize(-colLeft, -colRight, -rowTop, -rowBottom);
+
+
 }
 
 bool Tilemap::isRowEmpty(int row)
 {
-	for (int i = 0; i < GetHeight(); ++i)
+	for (int i = 0; i < GetWidth(); ++i)
 	{
-		if (data[row][i] != 0) return false;
+		if (data[i][row] != 0) return false;
 	}
 	return true;
 }
 
 bool Tilemap::isColumnEmpty(int column)
 {
-	for (int i = 0; i < GetWidth(); ++i)
+	for (int i = 0; i < GetHeight(); ++i)
 	{
-		if (data[i][column] != 0) return false;
+		if (data[column][i] != 0) return false;
 	}
 	return true;
 }
@@ -248,18 +250,37 @@ void Tilemap::Resize(int columnLeft, int columnRight, int rowTop, int rowBottom)
 		}
 	}
 
-	for (unsigned i = 0; i < numRows; i++)
+	if (columnLeft < 0 || rowTop < 0 || rowBottom < 0 || columnRight < 0)
 	{
-		for (unsigned j = 0; j < numColumns; j++)
+		for (unsigned i = 0; i < rows; i++)
 		{
-			int value = data[j][i];
+			for (unsigned j = 0; j < columns; j++)
+			{
+				int m = j + abs(columnLeft);
+				int n = i + abs(rowTop);
 
-			int x = j + columnLeft;
-			int y = i + rowTop;
+				int value = data[m][n];
 
-			temp[x][y] = value;
+				temp[j][i] = value;
+			}
 		}
 	}
+	else
+	{
+		for (unsigned i = 0; i < numRows; i++)
+		{
+			for (unsigned j = 0; j < numColumns; j++)
+			{
+				int value = data[j][i];
+
+				int x = j + columnLeft;
+				int y = i + rowTop;
+
+				temp[x][y] = value;
+			}
+		}
+	}
+
 
 	// Deleting the 2D array of ints
 	// delete in the opposite order of creation

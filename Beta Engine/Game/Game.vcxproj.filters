@@ -26,6 +26,9 @@
     <ClCompile Include="Source\PacManLogic.cpp">
       <Filter>Game\Behaviors</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GhostBehaviorBlue.cpp">
+      <Filter>Game\Behaviors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\ColorChange.h">
@@ -50,6 +53,9 @@
       <Filter>Game\Behaviors</Filter>
     </ClInclude>
     <ClInclude Include="Source\PacManLogic.h">
+      <Filter>Game\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GhostBehaviorBlue.h">
       <Filter>Game\Behaviors</Filter>
     </ClInclude>
   </ItemGroup>
