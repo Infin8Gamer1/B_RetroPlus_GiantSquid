@@ -96,6 +96,8 @@ private:
 
 	unsigned score;
 
+	unsigned ghostMultiplier = 1;
+
     GameObject* scoreObj;
     GameObject* highScoreObj;
 

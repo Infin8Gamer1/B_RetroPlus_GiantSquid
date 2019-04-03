@@ -46,7 +46,7 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	if (other.GetName().substr(0, 5) == "Ghost" && !object.GetComponent<PacManLogic>()->isInvincible)
 	{
 		object.GetComponent<Sprite>()->SetSpriteSource(object.GetComponent<PacManLogic>()->pacDeathSpriteSource);
-		object.GetComponent<Animation>()->Play(0.1, false, false);
+		//object.GetComponent<Animation>()->Play(0.1, false, false);
 		while (object.GetComponent<PacManLogic>()->deathTimer > 0)
 		{
 			object.GetComponent<PacManLogic>()->deathTimer -= 0.16f;
@@ -56,6 +56,10 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	}
 	else if(object.GetComponent<PacManLogic>()->isInvincible)
 	{
+		other.Destroy();
+		object.GetComponent<PacManLogic>()->score += 200 * object.GetComponent<PacManLogic>()->ghostMultiplier;
+		object.GetComponent<PacManLogic>()->ghostMultiplier += 1;
+		scoreObj->GetComponent<SpriteText>()->SetText("Score: " + score);
 		std::cout << "GHOSTED" << std::endl;
 	}
 }
@@ -96,6 +100,7 @@ void PacManLogic::Update(float dt)
 		{
 			invincibleTimer = 10.0f;
 			isInvincible = false;
+			ghostMultiplier = 1;
 		}
 	}
 }
