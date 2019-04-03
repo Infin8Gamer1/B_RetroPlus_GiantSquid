@@ -99,7 +99,7 @@ LevelEditor
     }
     GhostBlue
     {
-      numComponents : 4
+      numComponents : 6
       Transform
       {
         translation : { 0, 0 }
@@ -126,6 +126,12 @@ LevelEditor
         CollisionFlags : 1, 2, -3
         extents : { 20, 20 }
       }
+	  TileMapNavigation
+	  {
+	  }
+	  GhostBehaviorBlue
+	  {
+	  }
     }
     PowerPellet
     {

@@ -34,7 +34,7 @@ void GhostBehaviorBlue::Update(float dt)
 {
 	timer += dt;
 
-	if (timer > 1.0f)
+	if (timer > 0.2f)
 	{
 		navigation->SetTarget(colliderTilemap->ConvertWorldCordsToTileMapCords(PacManTransform->GetTranslation()));
 		timer = 0;

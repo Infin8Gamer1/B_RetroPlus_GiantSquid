@@ -38,7 +38,8 @@ class Node;
 enum Mode
 {
 	Stationary,
-	Move
+	MoveLerp,
+	MovePhysics
 };
 
 class TileMapNavigation : public Component
@@ -73,8 +74,10 @@ private:
 	// Private Functions:
 	//------------------------------------------------------------------------------
 
+	void StartPathCalculation();
+
 	//sets up class to start calculating path
-	void CalculatePath();
+	void CalculatePath(TileMapNavigation & obj) const;
 
 	void DebugDrawPath(std::vector<Vector2D> path);
 
@@ -123,7 +126,6 @@ private:
 	std::vector<Node*> closedList;
 
 	bool calculatePathFlag;
-
 };
 
 //------------------------------------------------------------------------------
