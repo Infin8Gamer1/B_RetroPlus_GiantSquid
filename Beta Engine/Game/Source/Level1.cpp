@@ -123,7 +123,7 @@ void Levels::Level1::Initialize()
 			}
 		}
 	}
-	player->GetComponent<PacManLogic>()->SetPellets(pelletsSetToLevel);
+	player->GetComponent<PacManLogic>()->SetPellets(pelletsSetToLevel); 
 #endif RELEASE
 	player->GetComponent<PacManLogic>()->SetPellets(player->GetComponent<PacManLogic>()->GetPellets() + 4);
 	

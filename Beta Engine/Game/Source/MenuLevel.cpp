@@ -5,18 +5,18 @@
 #include <Level.h>
 #include "Level1.h"
 
-Levels::MenuLevel::MenuLevel():Level("MenuLevel")
+Levels::MenuLevel::MenuLevel():Level("LevelMenu")
 {
 }
 
 void Levels::MenuLevel::Load()
 {
-	SetFileLocation("Assets/MenuLevel.lvl");
+	SetFileLocation("Assets/LevelMenu.lvl");
 }
 
 void Levels::MenuLevel::Initialize()
 {
-	
+	LoadLevel();
 }
 
 void Levels::MenuLevel::Update(float dt)
