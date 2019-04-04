@@ -85,6 +85,8 @@ void Levels::LevelEditorLevel::Update(float dt)
 
 	GameObject* tilemap = GetSpace()->GetObjectManager().GetObjectByName("TileMap");
 
+	if (tilemap == nullptr) return;
+
 	float wid = tilemap->GetComponent<Transform>()->GetScale().x;
 
 	float hei = tilemap->GetComponent<Transform>()->GetScale().y;

@@ -67,7 +67,7 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 }
 
 PacManLogic::PacManLogic()
-	: Component("PacManLogic"), score(0), highScore(100000), pelletScore(10), powerPelletScore(50),
+	: Component("PacManLogic"), score(0), highScore(10000), pelletScore(10), powerPelletScore(50),
 	  pelletsLeft(1), isInvincible(false), invincibleTimer(10.0f), lives(3)
 {
 	deathTimer = -1;
