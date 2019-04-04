@@ -65,7 +65,7 @@ LevelEditor
     }
     PacMan
     {
-      numComponents : 6
+      numComponents : 7
       Transform
       {
         translation : { 0, -180 }
@@ -78,6 +78,8 @@ LevelEditor
         color : { 1 , 1 , 1 , 1 }
         spriteSourceName : PacMan
       }
+	  Animation
+	  { }
       Physics
       {
         acceleration : { 0, 0 }
@@ -90,7 +92,7 @@ LevelEditor
       {
         CollisionGroup : 3
         CollisionFlags : 1, 2, -3
-        extents : { 20, 20 }
+        extents : { 10, 10 }
       }
       PacManMovement
       { } 
@@ -99,13 +101,15 @@ LevelEditor
     }
     GhostBlue
     {
-      numComponents : 6
+      numComponents : 7
       Transform
       {
         translation : { 0, 0 }
         rotation : 0
         scale : { 35, 35 }
       }
+	  Animation
+	  { }
       Sprite
       {
         frameIndex : 0

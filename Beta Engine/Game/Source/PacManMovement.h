@@ -28,8 +28,6 @@
 
 class Transform;
 class Physics;
-class Animation;
-class Sprite;
 struct MapCollision;
 class ColliderTilemap;
 
@@ -68,6 +66,8 @@ public:
 	//   dt = The (fixed) change in time since the last step.
 	void Update(float dt) override;
 
+	bool enableMove;
+
 	// Map collision handler for Monkey objects.
 	// Params:
 	//   object = The monkey object.
@@ -89,7 +89,7 @@ private:
 	// Moves horizontally based on input
 	void Move();
 
-	bool CheckDirection();
+	bool CheckDirection(Directions direction);
 
 	static void OnKeyInputDown(int key);
 
@@ -101,13 +101,9 @@ private:
 	const float moveSpeed = 150.0f;
     float timer = 0.0f;
 
-    float frameTime = 0.1f;
-    int endFrame = 3;
-
 	// Components
 	Transform* transform;
 	Physics* physics;
-	Sprite* sprite;
 	ColliderTilemap* colliderTilemap;
 
 };

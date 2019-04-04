@@ -7,6 +7,7 @@
 #include <TileMapNavigation.h>
 #include <Sprite.h>
 #include <ResourceManager.h>
+#include <Collider.h>
 
 GhostBehaviorBlue::GhostBehaviorBlue() : GhostBehavior()
 {
@@ -27,19 +28,29 @@ void GhostBehaviorBlue::Update(float dt)
 		{
 		case Dead:
 			//sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostEyes", true));
-			navigation->SetTarget(colliderTilemap->ConvertWorldCordsToTileMapCords(PacManTransform->GetTranslation()));
+			//sprite->RefreshAutoMesh();
+			navigation->SetTarget(startPos);
+			GetOwner()->GetComponent<Collider>()->Disable();
 			break;
 		case Chase:
 			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostBlue", true));
+			sprite->RefreshAutoMesh();
 			break;
 		case Scatter:
 			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostBlue", true));
+			sprite->RefreshAutoMesh();
 			break;
 		case Frightened:
 			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostPower", true));
+			sprite->RefreshAutoMesh();
 			break;
 		default:
 			break;
+		}
+
+		if (state != Dead)
+		{
+			GetOwner()->GetComponent<Collider>()->Enable();
 		}
 	}
 
@@ -54,7 +65,7 @@ void GhostBehaviorBlue::Update(float dt)
 		switch (state)
 		{
 		case Dead:
-			if (colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()).Distance(startPos) < 0.1)
+			if (colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()).Distance(startPos) < 0.1f)
 			{
 				state = Chase;
 			}

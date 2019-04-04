@@ -111,6 +111,7 @@ xcopy ..\AntTweakBar\lib\AntTweakBar64.dll "$(OutDir)" /Y</Command>
     <ClCompile Include="Source\GhostBehavior.cpp" />
     <ClCompile Include="Source\GhostBehaviorBlue.cpp" />
     <ClCompile Include="Source\Level1.cpp" />
+    <ClCompile Include="Source\Level2.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\MonkeyMovement.cpp" />
     <ClCompile Include="Source\PacManLogic.cpp" />
@@ -127,6 +128,7 @@ xcopy ..\AntTweakBar\lib\AntTweakBar64.dll "$(OutDir)" /Y</Command>
     <ClInclude Include="Source\GhostBehavior.h" />
     <ClInclude Include="Source\GhostBehaviorBlue.h" />
     <ClInclude Include="Source\Level1.h" />
+    <ClInclude Include="Source\Level2.h" />
     <ClInclude Include="Source\MonkeyMovement.h" />
     <ClInclude Include="Source\PacManLogic.h" />
     <ClInclude Include="Source\PacManMovement.h" />

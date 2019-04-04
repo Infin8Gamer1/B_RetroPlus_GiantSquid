@@ -64,6 +64,8 @@ public:
 
 	void SetState(GhostState state);
 
+	GhostState GetState();
+
 	friend GhostBehaviorBlue;
 
 private:

@@ -21,7 +21,6 @@ bool move = false;
 void PacManMapCollisionHandler(GameObject & object, const MapCollision & collision)
 {
 	mapCollision = collision;
-    move = false;
 }
 
 void PacManMovement::OnKeyInputDown(int key)
@@ -58,8 +57,9 @@ PacManMovement::PacManMovement() : Component("PacManMovement")
 	// Components
 	transform = nullptr;
 	physics = nullptr;
-	sprite = nullptr;
 	colliderTilemap = nullptr;
+
+	enableMove = true;
 }
 
 Component * PacManMovement::Clone() const
@@ -72,7 +72,6 @@ void PacManMovement::Initialize()
 	//get Components
 	transform = GetOwner()->GetComponent<Transform>();
 	physics = GetOwner()->GetComponent<Physics>();
-	sprite = GetOwner()->GetComponent<Sprite>();
 	colliderTilemap = GetOwner()->GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
 
 	CallbackInputManager::GetInstance().addKeyPressBinding(ALL_KEYS, OnKeyInputDown);
@@ -83,15 +82,20 @@ void PacManMovement::Initialize()
 
 void PacManMovement::Update(float dt)
 {
-    if(move) timer += dt;
-	Move();
+	if (enableMove)
+	{
+		Move();
+	}
+	else {
+		physics->SetVelocity(Vector2D());
+	}
 }
 
 void PacManMovement::Move()
 {
 	float previousRotation = transform->GetRotation();
 
-	if (CheckDirection())
+	if (CheckDirection(direction))
 	{
 		switch (direction)
 		{
@@ -123,31 +127,35 @@ void PacManMovement::Move()
 	if (previousRotation != transform->GetRotation())
 	{
 		Vector2D CurrentTile = colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation());
-		transform->SetTranslation(colliderTilemap->ConvertTileMapCordsToWorldCords(CurrentTile));
+		if (colliderTilemap->GetTilemap()->GetCellValue(CurrentTile.x, CurrentTile.y) == 0)
+		{
+			transform->SetTranslation(colliderTilemap->ConvertTileMapCordsToWorldCords(CurrentTile));
+		}
+		
 	}
 
 	if (move)
 	{
 		physics->SetVelocity(transform->Forward() * moveSpeed);
 
-        if (timer >= frameTime)
+        /*if (timer >= frameTime)
         {
             timer = 0.0f;
 
             if(sprite->GetFrame() < endFrame) sprite->SetFrame(sprite->GetFrame() + 1);
             else sprite->SetFrame(0);
-        }
+        }*/
 	}
 }
 
-bool PacManMovement::CheckDirection()
+bool PacManMovement::CheckDirection(Directions _direction)
 {
 	Vector2D CurrentTile = colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation());
 
 	int value = -1;
 	Vector2D nextTile = Vector2D(0, 0);
 
-	switch (direction)
+	switch (_direction)
 	{
 		case Up:
 		{

@@ -22,6 +22,7 @@
 #include <Engine.h>
 #include <SpaceManager.h>
 #include <FileOpenHelper.h>
+#include <Animation.h>
 
 Sprite::Sprite() : Component("Sprite")
 {
@@ -191,6 +192,13 @@ void Sprite::SetSpriteSource(SpriteSource * spriteSourceInput)
 {
 	spriteSource = spriteSourceInput;
 	ssName = spriteSource->GetName();
+
+	Animation* anim = GetOwner()->GetComponent<Animation>();
+
+	if (anim != nullptr)
+	{
+		anim->Play(0.1f, true);
+	}
 }
 
 SpriteSource * Sprite::GetSpriteSource()

@@ -13,6 +13,8 @@
 #include <Texture.h>
 #include <ResourceManager.h>
 #include <Animation.h>
+#include "GhostBehavior.h"
+#include "PacManMovement.h"
 
 void PacManCollisionHandler(GameObject & object, GameObject & other)
 {
@@ -38,27 +40,35 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 
 		for (unsigned i = 0; i < object.GetComponent<PacManLogic>()->ghosts.size(); ++i)
 		{
-			//object.GetComponent<PacManLogic>()->ghosts[i]->
+			object.GetComponent<PacManLogic>()->ghosts[i]->GetComponent<GhostBehavior>()->SetState(GhostState::Frightened);
 		}
 
 		other.Destroy();
 	}
-	if (other.GetName().substr(0, 5) == "Ghost" && !object.GetComponent<PacManLogic>()->isInvincible)
+	if (other.GetName().substr(0, 5) == "Ghost" && object.GetComponent<PacManLogic>()->deathTimer == -1 && other.GetComponent<GhostBehavior>()->GetState() != GhostState::Dead && other.GetComponent<GhostBehavior>()->GetState() != GhostState::Frightened)
 	{
-		object.GetComponent<Sprite>()->SetSpriteSource(object.GetComponent<PacManLogic>()->pacDeathSpriteSource);
+		object.GetComponent<Sprite>()->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("PacDeath", true));
+		object.GetComponent<Sprite>()->RefreshAutoMesh();
+		object.GetComponent<Animation>()->Play(0.075f, false, false);
 
-		//object.GetComponent<Animation>()->Play(0.1, false, false);
-		while (object.GetComponent<PacManLogic>()->deathTimer > 0)
+		//set the death timer (automagicly starts timer countdown to level reset or engine shutdown)
+		object.GetComponent<PacManLogic>()->deathTimer = 0.075f * 20;
+		object.GetComponent<PacManMovement>()->enableMove = false;
+
+		
+		/*while (object.GetComponent<PacManLogic>()->deathTimer > 0)
 		{
 			object.GetComponent<PacManLogic>()->deathTimer -= 0.16f;
 		}
 		object.GetComponent<PacManLogic>()->deathTimer = 4;
-		Engine::GetInstance().Stop();
+		Engine::GetInstance().Stop();*/
 	}
-	else if(object.GetComponent<PacManLogic>()->isInvincible && other.GetName().substr(0, 5) == "Ghost")
+	else if(object.GetComponent<PacManLogic>()->isInvincible && other.GetName().substr(0, 5) == "Ghost" && other.GetComponent<GhostBehavior>()->GetState() == GhostState::Frightened)
 	{
 		object.GetComponent<PacManLogic>()->score += 200 * object.GetComponent<PacManLogic>()->ghostMultiplier;
 		object.GetComponent<PacManLogic>()->ghostMultiplier += 1;
+
+		other.GetComponent<GhostBehavior>()->SetState(GhostState::Dead);
 	}
 }
 
@@ -66,6 +76,7 @@ PacManLogic::PacManLogic()
 	: Component("PacManLogic"), score(0), highScore(0), pelletScore(10), powerPelletScore(50),
 	  pelletsLeft(1), isInvincible(false), invincibleTimer(10.0f)
 {
+	deathTimer = -1;
 	soundManager = Engine::GetInstance().GetModule<SoundManager>();
 	soundManager->AddEffect("pac-man_chomp.wav");
 	soundManager->AddEffect("pac-man_power pellet new.wav");
@@ -82,22 +93,35 @@ void PacManLogic::Load()
 
 void PacManLogic::Initialize()
 {
-	std::vector<GameObject*> objs = GetOwner()->GetSpace()->GetObjectManager().GetGameObjectActiveList();
-
-	for (unsigned i = 0; i < objs.size(); ++i)
-	{
-		if (objs[i]->GetName().substr(0, 6) == "Ghost")
-		{
-			ghosts.push_back(objs[i]);
-		}
-	}
-
-	pacDeathSpriteSource = ResourceManager::GetInstance().GetSpriteSource("PacDeath", true);
 	GetOwner()->GetComponent<Collider>()->SetCollisionHandler(PacManCollisionHandler);
 }
 
 void PacManLogic::Update(float dt)
 {
+	if (ghosts.size() == 0)
+	{
+		std::vector<GameObject*> objs = GetOwner()->GetSpace()->GetObjectManager().GetGameObjectActiveList();
+
+		for (unsigned i = 0; i < objs.size(); ++i)
+		{
+			if (objs[i]->GetName().substr(0, 5) == "Ghost")
+			{
+				ghosts.push_back(objs[i]);
+			}
+		}
+	}
+
+	if (deathTimer != -1)
+	{
+		if (deathTimer <= 0)
+		{
+			Engine::GetInstance().Stop();
+		}
+		else {
+			deathTimer -= dt;
+		}
+	}
+
 	if (isInvincible == true)
 	{
 		invincibleTimer -= dt;
@@ -106,6 +130,12 @@ void PacManLogic::Update(float dt)
 			invincibleTimer = 10.0f;
 			isInvincible = false;
 			ghostMultiplier = 1;
+
+			//put ghosts into scatter
+			for (size_t i = 0; i < ghosts.size(); ++i)
+			{
+				ghosts[i]->GetComponent<GhostBehavior>()->SetState(GhostState::Scatter);
+			}
 		}
 
 	}

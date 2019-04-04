@@ -65,7 +65,7 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 	// Create a new space called "Level"
 	Space* space = new Space("Level", false);
 	// Set initial level to the second level.
-	space->SetLevel(new Levels::Level2());
+	space->SetLevel(new Levels::Level1());
 
 	SpaceManager* spaceManager = new SpaceManager();
 	spaceManager->AddSpace(*space);

@@ -63,7 +63,7 @@ LevelEditor
         verticalAlignment : 0
       }
     }
-    PacMan
+	PacMan
     {
       numComponents : 6
       Transform

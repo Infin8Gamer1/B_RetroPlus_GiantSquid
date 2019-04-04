@@ -32,11 +32,9 @@ class Transform;
 class Physics;
 class Animation;
 class Sprite;
-class SpriteSource;
 struct MapCollision;
 class ColliderTilemap;
 class SoundManager;
-class Texture;
 
 //------------------------------------------------------------------------------
 // Public Structures:
@@ -92,7 +90,7 @@ private:
 
 	float invincibleTimer;
 
-	float deathTimer = 4;
+	float deathTimer;
 
 	int pelletsLeft;
 
@@ -101,8 +99,6 @@ private:
 	int pelletScore;
 
 	int powerPelletScore;
-
-	SpriteSource* pacDeathSpriteSource;
 
 	std::vector<GameObject*> ghosts;
 

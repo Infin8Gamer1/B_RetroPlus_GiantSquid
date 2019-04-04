@@ -196,7 +196,14 @@ void GameObjectManager::VariableUpdate(float dt)
 
 void GameObjectManager::FixedUpdate(float dt)
 {
-	timeAccumulator += dt;
+	for (size_t i = 0; i < gameObjectActiveList.size(); i++)
+	{
+		gameObjectActiveList[i]->FixedUpdate(dt);
+	}
+
+	CheckCollisions();
+	
+	/*timeAccumulator += dt;
 
 	if (timeAccumulator >= fixedUpdateDt)
 	{
@@ -208,7 +215,8 @@ void GameObjectManager::FixedUpdate(float dt)
 		CheckCollisions();
 
 		timeAccumulator -= fixedUpdateDt;
-	}
+		//timeAccumulator = 0;
+	}*/
 }
 
 void GameObjectManager::DestroyObjects()
@@ -243,15 +251,24 @@ void GameObjectManager::CheckCollisions()
 	for (size_t i = 0; i < gameObjectActiveList.size(); i++)
 	{
 		GameObject* go1 = gameObjectActiveList[i];
+
 		if (!go1->IsDestroyed()) {
+
 			Collider* collider1 = go1->GetComponent<Collider>();
+
 			if (collider1 != nullptr) {
+
 				for (size_t x = 0; x < gameObjectActiveList.size(); x++)
 				{
+
 					GameObject* go2 = gameObjectActiveList[x];
+
 					if (!go2->IsDestroyed()) {
+
 						Collider* collider2 = go2->GetComponent<Collider>();
+
 						if (collider2 != nullptr && go1 != go2) {
+
 							collider1->CheckCollision(*collider2);
 						}
 					}

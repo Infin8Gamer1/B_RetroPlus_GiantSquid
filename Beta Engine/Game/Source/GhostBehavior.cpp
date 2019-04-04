@@ -47,5 +47,17 @@ void GhostBehavior::Update(float dt)
 
 void GhostBehavior::SetState(GhostState _state)
 {
-	state = _state;
+	switch (state)
+	{
+	case Dead:
+		break;
+	default:
+		state = _state;
+		break;
+	}
+}
+
+GhostState GhostBehavior::GetState()
+{
+	return state;
 }
