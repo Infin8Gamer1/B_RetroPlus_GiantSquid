@@ -34,6 +34,7 @@ void GhostBehavior::Initialize()
 	transform = GetOwner()->GetComponent<Transform>();
 
 	navigation->SetTarget(colliderTilemap->ConvertWorldCordsToTileMapCords(PacManTransform->GetTranslation()));
+	navigation->SetMoveSpeed(125.0f);
 
 	startPos = colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation());
 }

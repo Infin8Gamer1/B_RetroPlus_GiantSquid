@@ -8,6 +8,7 @@
 #include <Sprite.h>
 #include <ResourceManager.h>
 #include <Collider.h>
+#include <Tilemap.h>
 
 GhostBehaviorBlue::GhostBehaviorBlue() : GhostBehavior()
 {
@@ -28,21 +29,32 @@ void GhostBehaviorBlue::Update(float dt)
 		{
 		case Dead:
 			//sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostEyes", true));
-			//sprite->RefreshAutoMesh();
+			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Circle", true));
+			sprite->RefreshAutoMesh();
 			navigation->SetTarget(startPos);
 			GetOwner()->GetComponent<Collider>()->Disable();
+
+			navigation->SetMoveSpeed(150.0f);
 			break;
 		case Chase:
 			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostBlue", true));
 			sprite->RefreshAutoMesh();
+
+			navigation->SetMoveSpeed(125.0f);
 			break;
 		case Scatter:
 			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostBlue", true));
 			sprite->RefreshAutoMesh();
+
+			navigation->SetTarget(Vector2D(1,1));
+
+			navigation->SetMoveSpeed(100.0f);
 			break;
 		case Frightened:
 			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostPower", true));
 			sprite->RefreshAutoMesh();
+
+			navigation->SetMoveSpeed(80.0f);
 			break;
 		default:
 			break;
@@ -74,9 +86,26 @@ void GhostBehaviorBlue::Update(float dt)
 			navigation->SetTarget(colliderTilemap->ConvertWorldCordsToTileMapCords(PacManTransform->GetTranslation()));
 			break;
 		case Scatter:
+			if (colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()).Distance(navigation->GetTarget()) < 0.1f)
+			{
+				state = Chase;
+			}
 			break;
 		case Frightened:
+		{
+			GenerateTarget:
+
+			Vector2D target = colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation());
+			target = target + Vector2D(-4 + (std::rand() % (4 - -4 + 1)), -4 + (std::rand() % (4 - -4 + 1)));
+
+			if (colliderTilemap->GetTilemap()->GetCellValue(target.x, target.y) != 0)
+			{
+				goto GenerateTarget;
+			}
+
+			navigation->SetTarget(target);
 			break;
+		}
 		default:
 			break;
 		}

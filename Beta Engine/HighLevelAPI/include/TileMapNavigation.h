@@ -38,7 +38,8 @@ class Node;
 enum Mode
 {
 	Stationary,
-	MoveLerp
+	MoveLerp,
+	MovePhysics
 };
 
 class TileMapNavigation : public Component
@@ -68,7 +69,13 @@ public:
 
 	void SetTarget(Vector2D target);
 
+	Vector2D GetTarget();
+
 	void SetMode(Mode mode);
+
+	float GetMoveSpeed();
+
+	void SetMoveSpeed(float x);
 
 private:
 	//------------------------------------------------------------------------------
@@ -106,7 +113,7 @@ private:
 	//------------------------------------------------------------------------------
 
 	// Movement properties
-	const float moveSpeed = 0.015f;
+	float moveSpeed;
 	float fraction;
 
 	int pointIndex;
