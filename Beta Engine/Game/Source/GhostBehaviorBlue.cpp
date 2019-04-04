@@ -40,7 +40,7 @@ void GhostBehaviorBlue::Update(float dt)
 			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostBlue", true));
 			sprite->RefreshAutoMesh();
 
-			navigation->SetMoveSpeed(125.0f);
+			navigation->SetMoveSpeed(90.0f);
 			break;
 		case Scatter:
 			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostBlue", true));
@@ -48,7 +48,7 @@ void GhostBehaviorBlue::Update(float dt)
 
 			navigation->SetTarget(Vector2D(1,1));
 
-			navigation->SetMoveSpeed(100.0f);
+			navigation->SetMoveSpeed(90.0f);
 			break;
 		case Frightened:
 			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostPower", true));

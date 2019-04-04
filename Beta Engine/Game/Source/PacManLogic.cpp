@@ -35,7 +35,7 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	if (other.GetName().substr(0, 11) == "PowerPellet")
 	{
 		object.GetComponent<PacManLogic>()->score += 50;
-		std::cout << object.GetComponent<PacManLogic>()->pelletsLeft;
+		//std::cout << object.GetComponent<PacManLogic>()->pelletsLeft;
 		object.GetComponent<PacManLogic>()->pelletsLeft -= 1;
 		object.GetComponent<PacManLogic>()->isInvincible = true;
 		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_power pellet new.wav");

@@ -48,7 +48,7 @@ void GhostBehaviorOrange::Update(float dt)
 			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostOrange", true));
 			sprite->RefreshAutoMesh();
 
-			navigation->SetMoveSpeed(125.0f);
+			navigation->SetMoveSpeed(90.0f);
 			break;
 		case Scatter:
 			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostOrange", true));
@@ -56,7 +56,7 @@ void GhostBehaviorOrange::Update(float dt)
 
 			navigation->SetTarget(corner);
 
-			navigation->SetMoveSpeed(100.0f);
+			navigation->SetMoveSpeed(90.0f);
 			break;
 		case Frightened:
 			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostPower", true));
