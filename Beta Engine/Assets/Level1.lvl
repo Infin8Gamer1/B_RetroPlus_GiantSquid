@@ -1,6 +1,6 @@
 LevelEditor
 {
-  numGameObjects : 12
+  numGameObjects : 13
   {
     TileMap
     {

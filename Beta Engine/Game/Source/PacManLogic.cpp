@@ -68,11 +68,7 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 
 PacManLogic::PacManLogic()
 	: Component("PacManLogic"), score(0), highScore(100000), pelletScore(10), powerPelletScore(50),
-<<<<<<< HEAD
-	  pelletsLeft(0), isInvincible(false), invincibleTimer(10.0f)
-=======
 	  pelletsLeft(1), isInvincible(false), invincibleTimer(10.0f), lives(3)
->>>>>>> 6ab7b5b7c73579ec1d0d3beeac7c02f206ac1303
 {
 	deathTimer = -1;
 	soundManager = Engine::GetInstance().GetModule<SoundManager>();
