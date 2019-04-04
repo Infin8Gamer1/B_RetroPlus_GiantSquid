@@ -85,6 +85,8 @@ public:
 
     unsigned score;
 
+	unsigned lives;
+
 private:
 	bool isInvincible;
 
@@ -99,6 +101,8 @@ private:
 	int pelletScore;
 
 	int powerPelletScore;
+
+	Vector2D startPos;
 
 	std::vector<GameObject*> ghosts;
 

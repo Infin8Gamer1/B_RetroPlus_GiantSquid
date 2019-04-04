@@ -91,6 +91,8 @@ void Levels::Level1::Initialize()
 
 	player = GetSpace()->GetObjectManager().GetObjectByName("PacMan");
 
+	livesObj = GetSpace()->GetObjectManager().GetObjectByName("LivesText");
+
     scoreObj = GetSpace()->GetObjectManager().GetObjectByName("Score");
     highScoreObj = GetSpace()->GetObjectManager().GetObjectByName("HighScore");
 
@@ -143,6 +145,18 @@ void Levels::Level1::Update(float dt)
 		Engine::GetInstance().Stop();
 	}
 
+	switch (player->GetComponent<PacManLogic>()->lives)
+	{
+	case 3: 
+		livesObj->GetComponent<SpriteText>()->SetText("* * *");
+		break;
+	case 2: 
+		livesObj->GetComponent<SpriteText>()->SetText("* *");
+		break;
+	case 1: 
+		livesObj->GetComponent<SpriteText>()->SetText("*");
+		break;
+	}
 
 	////////////////////////////////////////////////////////////////////////UPDATING SCORE
 	unsigned scr = player->GetComponent<PacManLogic>()->score;
@@ -162,6 +176,8 @@ void Levels::Level1::Update(float dt)
 
 	scoreObj->GetComponent<SpriteText>()->SetText(scrss.str());
 	highScoreObj->GetComponent<SpriteText>()->SetText(hiscrss.str());
+
+	std::cout << scoreObj->GetComponent<SpriteText>()->GetText() << std::endl
 
 	////////////////////////////////////////////////////////////////////////
 }
