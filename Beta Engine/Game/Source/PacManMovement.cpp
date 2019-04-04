@@ -131,13 +131,15 @@ void PacManMovement::Move()
 		{
 			transform->SetTranslation(colliderTilemap->ConvertTileMapCordsToWorldCords(CurrentTile));
 		}
-		
 	}
 
 	if (move)
 	{
 		physics->SetVelocity(transform->Forward() * moveSpeed);
 
+
+        if (transform->GetTranslation().x > 280) transform->SetTranslation(Vector2D(-280, transform->GetTranslation().y));
+        else if (transform->GetTranslation().x < -280) transform->SetTranslation(Vector2D(280, transform->GetTranslation().y));
         /*if (timer >= frameTime)
         {
             timer = 0.0f;

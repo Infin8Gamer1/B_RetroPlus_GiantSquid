@@ -78,8 +78,9 @@ LevelEditor
         color : { 1 , 1 , 1 , 1 }
         spriteSourceName : PacMan
       }
-	  Animation
-	  { }
+      Animation
+      {
+      }
       Physics
       {
         acceleration : { 0, 0 }
@@ -108,8 +109,9 @@ LevelEditor
         rotation : 0
         scale : { 35, 35 }
       }
-	  Animation
-	  { }
+      Animation
+      {
+      }
       Sprite
       {
         frameIndex : 0
@@ -140,7 +142,7 @@ LevelEditor
       numComponents : 3
       Transform
       {
-        translation : { 250.5, 220.5 }
+        translation : { 252.5, 215.5 }
         rotation : 0
         scale : { 80, 80 }
       }
@@ -162,7 +164,7 @@ LevelEditor
       numComponents : 3
       Transform
       {
-        translation : { -249.5, 220.5 }
+        translation : { -247.5, 215.5 }
         rotation : 0
         scale : { 80, 80 }
       }
@@ -184,7 +186,7 @@ LevelEditor
       numComponents : 3
       Transform
       {
-        translation : { -249.5, -179.5 }
+        translation : { -247.5, -185 }
         rotation : 0
         scale : { 80, 80 }
       }
@@ -206,7 +208,7 @@ LevelEditor
       numComponents : 3
       Transform
       {
-        translation : { 250.5, -180 }
+        translation : { 252, -185 }
         rotation : 0
         scale : { 80, 80 }
       }

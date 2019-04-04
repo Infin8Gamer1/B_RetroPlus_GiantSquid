@@ -96,7 +96,6 @@ void Levels::Level1::Initialize()
 
 	colliderTilemap = GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
 
-
 #ifdef _DEBUG
 	std::cout << "WARNING Not Adding Dots because they are slow in debug" << std::endl;
 #else
@@ -108,6 +107,8 @@ void Levels::Level1::Initialize()
 			int value = colliderTilemap->GetTilemap()->GetCellValue(i, j);
 
 			Vector2D position = colliderTilemap->ConvertTileMapCordsToWorldCords(Vector2D(i, j));
+
+            if (position.x < 60 && position.x > -60 && position.y < 60 && position.y > -40) continue;
 
 			if (value == 0 && !IsObjectAt(position))
 			{
