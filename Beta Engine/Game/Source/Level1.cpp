@@ -100,7 +100,7 @@ void Levels::Level1::Initialize()
 #ifdef _DEBUG
 	std::cout << "WARNING Not Adding Dots because they are slow in debug" << std::endl;
 #else
-	int pelletsSetToLevel = 4;
+	int pelletsSetToLevel = 0;
 	for (unsigned i = 0; i < colliderTilemap->GetTilemap()->GetWidth(); i++)
 	{
 		for (unsigned j = 0; j < colliderTilemap->GetTilemap()->GetHeight(); j++)
@@ -123,7 +123,7 @@ void Levels::Level1::Initialize()
 	}
 	player->GetComponent<PacManLogic>()->SetPellets(pelletsSetToLevel);
 #endif RELEASE
-
+	player->GetComponent<PacManLogic>()->SetPellets(player->GetComponent<PacManLogic>()->GetPellets() + 4);
 	
 }
 
@@ -141,7 +141,9 @@ void Levels::Level1::Update(float dt)
 	*/
 	if (player->GetComponent<PacManLogic>()->GetPellets() == 0)
 	{
-		Level1::GetSpace()->SetLevel<Level2>();
+		//Level1::GetSpace()->SetLevel<Level2>();
+		Engine::GetInstance().Stop();
+		return;
 	}
 
 
