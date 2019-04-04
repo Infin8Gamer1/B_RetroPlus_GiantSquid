@@ -111,7 +111,7 @@ void Levels::Level1::Initialize()
 
 			Vector2D position = colliderTilemap->ConvertTileMapCordsToWorldCords(Vector2D(i, j));
 
-            if (position.x < 60 && position.x > -60 && position.y < 60 && position.y > -40) continue;
+            if (position.x < 100 && position.x > -100 && position.y < 80 && position.y > -80) continue;
 
 			if (value == 0 && !IsObjectAt(position))
 			{
@@ -174,13 +174,13 @@ void Levels::Level1::Update(float dt)
 	std::stringstream scrss;
 	std::stringstream hiscrss;
 
-	hiscrss << std::setw(6) << hiscr;
-	scrss << std::setw(6) << scr;
+	hiscrss << hiscr;
+	scrss << scr;
 
 	scoreObj->GetComponent<SpriteText>()->SetText(scrss.str());
 	highScoreObj->GetComponent<SpriteText>()->SetText(hiscrss.str());
 
-	std::cout << scoreObj->GetComponent<SpriteText>()->GetText() << std::endl
+	std::cout << scoreObj->GetComponent<SpriteText>()->GetText() << std::endl;
 
 	////////////////////////////////////////////////////////////////////////
 }

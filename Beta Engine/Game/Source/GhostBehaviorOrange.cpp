@@ -24,7 +24,7 @@ void GhostBehaviorOrange::Initialize()
 	GhostBehavior::Initialize();
 
 	
-	corner = Vector2D(1, colliderTilemap->GetTilemap()->GetHeight() - 1);
+	corner = Vector2D(1, colliderTilemap->GetTilemap()->GetHeight() - 2);
 }
 
 void GhostBehaviorOrange::Update(float dt)
