@@ -32,11 +32,9 @@ class Transform;
 class Physics;
 class Animation;
 class Sprite;
-class SpriteSource;
 struct MapCollision;
 class ColliderTilemap;
 class SoundManager;
-class Texture;
 
 //------------------------------------------------------------------------------
 // Public Structures:
@@ -87,12 +85,14 @@ public:
 
     unsigned score;
 
+	unsigned lives;
+
 private:
 	bool isInvincible;
 
 	float invincibleTimer;
 
-	float deathTimer = 4;
+	float deathTimer;
 
 	int pelletsLeft;
 
@@ -102,7 +102,9 @@ private:
 
 	int powerPelletScore;
 
-	SpriteSource* pacDeathSpriteSource;
+	Vector2D startPos;
+
+	std::vector<GameObject*> ghosts;
 
 	// Sound manager
 	SoundManager* soundManager;

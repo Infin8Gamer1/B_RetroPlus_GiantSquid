@@ -57,6 +57,11 @@ void Animation::Play(float frameDurationInput, bool isLoopingInput, bool playInR
 {
 	//std::cout << "Animation::Play" << std::endl;
 
+	if (sprite == nullptr)
+	{
+		Initialize();
+	}
+
 	lastSpriteSource = sprite->GetSpriteSource();
 
 	isLooping = isLoopingInput;

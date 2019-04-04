@@ -108,9 +108,13 @@ xcopy ..\AntTweakBar\lib\AntTweakBar64.dll "$(OutDir)" /Y</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\ColorChange.cpp" />
+    <ClCompile Include="Source\GhostBehavior.cpp" />
     <ClCompile Include="Source\GhostBehaviorBlue.cpp" />
+    <ClCompile Include="Source\GhostBehaviorOrange.cpp" />
     <ClCompile Include="Source\Level1.cpp" />
+    <ClCompile Include="Source\Level2.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\MenuLevel.cpp" />
     <ClCompile Include="Source\MonkeyMovement.cpp" />
     <ClCompile Include="Source\PacManLogic.cpp" />
     <ClCompile Include="Source\PacManMovement.cpp" />
@@ -123,8 +127,12 @@ xcopy ..\AntTweakBar\lib\AntTweakBar64.dll "$(OutDir)" /Y</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\ColorChange.h" />
+    <ClInclude Include="Source\GhostBehavior.h" />
     <ClInclude Include="Source\GhostBehaviorBlue.h" />
+    <ClInclude Include="Source\GhostBehaviorOrange.h" />
     <ClInclude Include="Source\Level1.h" />
+    <ClInclude Include="Source\Level2.h" />
+    <ClInclude Include="Source\MenuLevel.h" />
     <ClInclude Include="Source\MonkeyMovement.h" />
     <ClInclude Include="Source\PacManLogic.h" />
     <ClInclude Include="Source\PacManMovement.h" />

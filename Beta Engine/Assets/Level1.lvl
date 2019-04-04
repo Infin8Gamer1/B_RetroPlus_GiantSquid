@@ -1,6 +1,6 @@
 LevelEditor
 {
-  numGameObjects : 9
+  numGameObjects : 13
   {
     TileMap
     {
@@ -30,14 +30,14 @@ LevelEditor
       numComponents : 2
       Transform
       {
-        translation : { 350, 100 }
+        translation : { -200, 312 }
         rotation : 0
         scale : { 50, 50 }
       }
       SpriteText
       {
         frameIndex : 0
-        color : { 0 , 1 , 1 , 1 }
+        color : { 1 , 1 , 1 , 1 }
         spriteSourceName : CodeNewRoman
         text : 000000
         horizontalAlignment : 0
@@ -49,14 +49,14 @@ LevelEditor
       numComponents : 2
       Transform
       {
-        translation : { 350, 150 }
+        translation : { 0, 312 }
         rotation : 0
         scale : { 50, 50 }
       }
       SpriteText
       {
         frameIndex : 0
-        color : { 0 , 1 , 1 , 1 }
+        color : { 1 , 1 , 1 , 1 }
         spriteSourceName : CodeNewRoman
         text : 100000
         horizontalAlignment : 0
@@ -65,16 +65,19 @@ LevelEditor
     }
     PacMan
     {
-      numComponents : 6
+      numComponents : 7
       Transform
       {
         translation : { 0, -180 }
         rotation : 0
         scale : { 40, 40 }
       }
+      Animation
+      {
+      }
       Sprite
       {
-        frameIndex : 0
+        frameIndex : 1
         color : { 1 , 1 , 1 , 1 }
         spriteSourceName : PacMan
       }
@@ -90,7 +93,7 @@ LevelEditor
       {
         CollisionGroup : 3
         CollisionFlags : 1, 2, -3
-        extents : { 5, 5 }
+        extents : { 10, 10 }
       }
       PacManMovement
       { } 
@@ -99,16 +102,19 @@ LevelEditor
     }
     GhostBlue
     {
-      numComponents : 6
+      numComponents : 7
       Transform
       {
         translation : { 0, 0 }
         rotation : 0
-        scale : { 30, 30 }
+        scale : { 35, 35 }
+      }
+      Animation
+      {
       }
       Sprite
       {
-        frameIndex : 0
+        frameIndex : 1
         color : { 1 , 1 , 1 , 1 }
         spriteSourceName : GhostBlue
       }
@@ -126,21 +132,56 @@ LevelEditor
         CollisionFlags : 1, 2, -3
         extents : { 20, 20 }
       }
-	  TileMapNavigation
-	  {
-	  }
-	  GhostBehaviorBlue
-	  {
-	  }
+      TileMapNavigation
+      { } 
+      GhostBehaviorBlue
+      { } 
+    }
+	GhostOrange
+    {
+      numComponents : 7
+      Transform
+      {
+        translation : { -20, 0 }
+        rotation : 0
+        scale : { 35, 35 }
+      }
+      Animation
+      {
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : GhostOrange
+      }
+      Physics
+      {
+        acceleration : { 0, 0 }
+        velocity : { 0, 0 }
+        angularVelocity : 0
+        mass : 1
+        gravity : { 0, 0 }
+      }
+      ColliderRectangle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 1, 2, -3
+        extents : { 20, 20 }
+      }
+      TileMapNavigation
+      { } 
+      GhostBehaviorOrange
+      { } 
     }
     PowerPellet
     {
       numComponents : 3
       Transform
       {
-        translation : { 250.5, 220.5 }
+        translation : { 252.5, 215.5 }
         rotation : 0
-        scale : { 25, 25 }
+        scale : { 80, 80 }
       }
       Sprite
       {
@@ -160,9 +201,9 @@ LevelEditor
       numComponents : 3
       Transform
       {
-        translation : { -249.5, 220.5 }
+        translation : { -247.5, 215.5 }
         rotation : 0
-        scale : { 25, 25 }
+        scale : { 80, 80 }
       }
       Sprite
       {
@@ -182,9 +223,9 @@ LevelEditor
       numComponents : 3
       Transform
       {
-        translation : { -249.5, -179.5 }
+        translation : { -247.5, -185 }
         rotation : 0
-        scale : { 25, 25 }
+        scale : { 80, 80 }
       }
       Sprite
       {
@@ -204,9 +245,9 @@ LevelEditor
       numComponents : 3
       Transform
       {
-        translation : { 250.5, -179.5 }
+        translation : { 252, -185 }
         rotation : 0
-        scale : { 25, 25 }
+        scale : { 80, 80 }
       }
       Sprite
       {
@@ -219,6 +260,63 @@ LevelEditor
         CollisionGroup : 2
         CollisionFlags : 0
         radius : 1
+      }
+    }
+    HighScoreText
+    {
+      numComponents : 2
+      Transform
+      {
+        translation : { 0, 340 }
+        rotation : 0
+        scale : { 50, 50 }
+      }
+      SpriteText
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : CodeNewRoman
+        text : HIGH SCORE
+        horizontalAlignment : 0
+        verticalAlignment : 0
+      }
+    }
+    ScoreText
+    {
+      numComponents : 2
+      Transform
+      {
+        translation : { -200, 340 }
+        rotation : 0
+        scale : { 50, 50 }
+      }
+      SpriteText
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : CodeNewRoman
+        text : 1UP
+        horizontalAlignment : 0
+        verticalAlignment : 0
+      }
+    }
+    LivesText
+    {
+      numComponents : 2
+      Transform
+      {
+        translation : { 200, 312 }
+        rotation : 0
+        scale : { 50, 50 }
+      }
+      SpriteText
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : CodeNewRoman
+        text : * * *
+        horizontalAlignment : 0
+        verticalAlignment : 0
       }
     }
   }

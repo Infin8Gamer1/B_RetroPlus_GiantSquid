@@ -17,8 +17,10 @@
 
 TileMapNavigation::TileMapNavigation() : Component("TileMapNavigation")
 {
+	moveSpeed = 100.0f;
+
 	target = Vector2D(0,0);
-	mode = Mode::MoveLerp;
+	mode = Mode::MovePhysics;
 
 	fraction = 0;
 	pointIndex = 0;
@@ -83,6 +85,25 @@ void TileMapNavigation::Update(float dt)
 			}
 			break;
 		}
+		case MovePhysics:
+		{
+			size_t index = FindClosestPointInPath(colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()), path) + 1;
+			if (index < path.size())
+			{
+				Vector2D direction = colliderTilemap->ConvertTileMapCordsToWorldCords(path[index]) - transform->GetTranslation();
+				direction = direction.Normalized() * moveSpeed;
+				physics->SetVelocity(direction);
+
+				DebugDraw::GetInstance().AddLineToStrip(transform->GetTranslation(), direction * 0.5f + transform->GetTranslation(), Color(1, 0, 0));
+				DebugDraw::GetInstance().EndLineStrip(Graphics::GetInstance().GetCurrentCamera());
+			}
+			else {
+				physics->SetVelocity(Vector2D());
+			}
+
+
+			break;
+		}
 		default:
 			break;
 		}
@@ -91,7 +112,7 @@ void TileMapNavigation::Update(float dt)
 	//if we are calculating the path then run through and calcualte 10 times in this update
 	if (calculatePathFlag)
 	{
-		for (size_t i = 0; i < 15; i++)
+		for (size_t i = 0; i < 20; i++)
 		{
 			CalculatePath(*this);
 		}
@@ -111,9 +132,24 @@ void TileMapNavigation::SetTarget(Vector2D _target)
 	StartPathCalculation();
 }
 
+Vector2D TileMapNavigation::GetTarget()
+{
+	return target;
+}
+
 void TileMapNavigation::SetMode(Mode _mode)
 {
 	mode = _mode;
+}
+
+float TileMapNavigation::GetMoveSpeed()
+{
+	return moveSpeed;
+}
+
+void TileMapNavigation::SetMoveSpeed(float x)
+{
+	moveSpeed = x;
 }
 
 void TileMapNavigation::StartPathCalculation()

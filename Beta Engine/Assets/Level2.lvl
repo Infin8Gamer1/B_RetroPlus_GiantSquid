@@ -63,7 +63,7 @@ LevelEditor
         verticalAlignment : 0
       }
     }
-    PacMan
+	PacMan
     {
       numComponents : 6
       Transform
@@ -104,13 +104,13 @@ LevelEditor
       {
         translation : { 0, 0 }
         rotation : 0
-        scale : { 30, 30 }
+        scale : { 50, 50 }
       }
       Sprite
       {
         frameIndex : 0
         color : { 1 , 1 , 1 , 1 }
-        spriteSourceName : GhostBlue
+        spriteSourceName : InvertedGhostCyan
       }
       Physics
       {

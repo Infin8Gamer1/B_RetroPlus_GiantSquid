@@ -15,7 +15,7 @@
 // Include Files:
 //------------------------------------------------------------------------------
 
-#include <Component.h> // base class
+#include "GhostBehavior.h" // base class
 
 #include <Vector2D.h> // Vector2D
 
@@ -26,15 +26,13 @@
 // Forward Declarations:
 //------------------------------------------------------------------------------
 
-class Transform;
-class TileMapNavigation;
-class ColliderTilemap;
+
 
 //------------------------------------------------------------------------------
 // Public Structures:
 //------------------------------------------------------------------------------
 
-class GhostBehaviorBlue : public Component
+class GhostBehaviorBlue : public GhostBehavior
 {
 public:
 	//------------------------------------------------------------------------------
@@ -49,9 +47,6 @@ public:
 	//   A pointer to a dynamically allocated clone of the component.
 	Component* Clone() const override;
 
-	// Initialize this component (happens at object creation).
-	void Initialize() override;
-
 	// Update function for this component.
 	// Params:
 	//   dt = The (fixed) change in time since the last step.
@@ -62,12 +57,7 @@ private:
 	// Private Functions:
 	//------------------------------------------------------------------------------
 
-	float timer;
-
-	// Components
-	Transform* PacManTransform;
-	TileMapNavigation* navigation;
-	ColliderTilemap* colliderTilemap;
+	Vector2D GenerateTarget();
 
 };
 

@@ -12,6 +12,7 @@
 #include "stdafx.h"
 #include <Space.h>
 #include "Level1.h"
+#include "Level2.h"
 #include <sstream>
 #include <iomanip>
 
@@ -73,6 +74,7 @@ void Levels::Level1::Load()
 	soundManager = Engine::GetInstance().GetModule<SoundManager>();
 	soundManager->AddMusic("Asteroid_Field.mp3");
 	soundManager->AddEffect("teleport.wav");
+	soundManager->AddEffect("pac-man_ghost new.wav");
 
 	soundManager->AddBank("Master Bank.strings.bank");
 	soundManager->AddBank("Master Bank.bank");
@@ -86,13 +88,16 @@ void Levels::Level1::Initialize()
 
 	LoadLevel();
 
+	soundManager->PlaySound("pac-man_ghost new.wav");
+
 	player = GetSpace()->GetObjectManager().GetObjectByName("PacMan");
+
+	livesObj = GetSpace()->GetObjectManager().GetObjectByName("LivesText");
 
     scoreObj = GetSpace()->GetObjectManager().GetObjectByName("Score");
     highScoreObj = GetSpace()->GetObjectManager().GetObjectByName("HighScore");
 
 	colliderTilemap = GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
-
 
 #ifdef _DEBUG
 	std::cout << "WARNING Not Adding Dots because they are slow in debug" << std::endl;
@@ -106,6 +111,8 @@ void Levels::Level1::Initialize()
 
 			Vector2D position = colliderTilemap->ConvertTileMapCordsToWorldCords(Vector2D(i, j));
 
+            if (position.x < 100 && position.x > -100 && position.y < 80 && position.y > -80) continue;
+
 			if (value == 0 && !IsObjectAt(position))
 			{
 				GameObject* obj = new GameObject(*GetSpace()->GetObjectManager().GetArchetypeByName("Pellet"));
@@ -118,7 +125,7 @@ void Levels::Level1::Initialize()
 	}
 	player->GetComponent<PacManLogic>()->SetPellets(pelletsSetToLevel);
 #endif RELEASE
-
+	player->GetComponent<PacManLogic>()->SetPellets(player->GetComponent<PacManLogic>()->GetPellets() + 4);
 	
 }
 
@@ -136,14 +143,46 @@ void Levels::Level1::Update(float dt)
 	*/
 	if (player->GetComponent<PacManLogic>()->GetPellets() == 0)
 	{
+		//Level1::GetSpace()->SetLevel<Level2>();
 		Engine::GetInstance().Stop();
+		return;
 	}
 
-	std::stringstream ss;
+	switch (player->GetComponent<PacManLogic>()->lives)
+	{
+	case 3: 
+		livesObj->GetComponent<SpriteText>()->SetText("* * *");
+		break;
+	case 2: 
+		livesObj->GetComponent<SpriteText>()->SetText("* *");
+		break;
+	case 1: 
+		livesObj->GetComponent<SpriteText>()->SetText("*");
+		break;
+	}
 
-	ss << std::setw(6) << std::setfill('0') << player->GetComponent<PacManLogic>()->score;
+	////////////////////////////////////////////////////////////////////////UPDATING SCORE
+	unsigned scr = player->GetComponent<PacManLogic>()->score;
 
-	scoreObj->GetComponent<SpriteText>()->SetText(ss.str());
+	unsigned hiscr = player->GetComponent<PacManLogic>()->highScore;
+
+	if (scr >= hiscr)
+	{
+		hiscr = scr;
+	}
+
+	std::stringstream scrss;
+	std::stringstream hiscrss;
+
+	hiscrss << hiscr;
+	scrss << scr;
+
+	scoreObj->GetComponent<SpriteText>()->SetText(scrss.str());
+	highScoreObj->GetComponent<SpriteText>()->SetText(hiscrss.str());
+
+	std::cout << scoreObj->GetComponent<SpriteText>()->GetText() << std::endl;
+
+	////////////////////////////////////////////////////////////////////////
 }
 
 void Levels::Level1::Shutdown()

@@ -29,9 +29,12 @@
 #include "PacManLogic.h"
 #include <TileMapNavigation.h>
 #include "GhostBehaviorBlue.h"
+#include "GhostBehaviorOrange.h"
 
 // Initial game state
 #include "Level1.h"
+#include "Level2.h"
+#include "MenuLevel.h"
 
 //------------------------------------------------------------------------------
 
@@ -59,12 +62,13 @@ int WINAPI WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In
 	GameObjectFactory::GetInstance().RegisterComponent<PacManMovement>();
 	GameObjectFactory::GetInstance().RegisterComponent<PacManLogic>();
 	GameObjectFactory::GetInstance().RegisterComponent<GhostBehaviorBlue>();
+	GameObjectFactory::GetInstance().RegisterComponent<GhostBehaviorOrange>();
 	GameObjectFactory::GetInstance().RegisterComponent<TileMapNavigation>();
 
 	// Create a new space called "Level"
 	Space* space = new Space("Level", false);
 	// Set initial level to the second level.
-	space->SetLevel(new Levels::Level1());
+	space->SetLevel(new Levels::MenuLevel());
 
 	SpaceManager* spaceManager = new SpaceManager();
 	spaceManager->AddSpace(*space);
