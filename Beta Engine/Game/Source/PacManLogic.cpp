@@ -10,6 +10,7 @@
 #include <Sprite.h>
 #include <SpriteText.h>
 #include <Engine.h>
+#include "Transform.h"
 #include <Texture.h>
 #include <ResourceManager.h>
 #include <Animation.h>
@@ -34,6 +35,7 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	if (other.GetName().substr(0, 11) == "PowerPellet")
 	{
 		object.GetComponent<PacManLogic>()->score += 50;
+		std::cout << object.GetComponent<PacManLogic>()->pelletsLeft;
 		object.GetComponent<PacManLogic>()->pelletsLeft -= 1;
 		object.GetComponent<PacManLogic>()->isInvincible = true;
 		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_power pellet new.wav");
@@ -54,14 +56,6 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 		//set the death timer (automagicly starts timer countdown to level reset or engine shutdown)
 		object.GetComponent<PacManLogic>()->deathTimer = 0.075f * 20;
 		object.GetComponent<PacManMovement>()->enableMove = false;
-
-		
-		/*while (object.GetComponent<PacManLogic>()->deathTimer > 0)
-		{
-			object.GetComponent<PacManLogic>()->deathTimer -= 0.16f;
-		}
-		object.GetComponent<PacManLogic>()->deathTimer = 4;
-		Engine::GetInstance().Stop();*/
 	}
 	else if(object.GetComponent<PacManLogic>()->isInvincible && other.GetName().substr(0, 5) == "Ghost" && other.GetComponent<GhostBehavior>()->GetState() == GhostState::Frightened)
 	{
@@ -74,7 +68,11 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 
 PacManLogic::PacManLogic()
 	: Component("PacManLogic"), score(0), highScore(100000), pelletScore(10), powerPelletScore(50),
-	  pelletsLeft(1), isInvincible(false), invincibleTimer(10.0f)
+<<<<<<< HEAD
+	  pelletsLeft(0), isInvincible(false), invincibleTimer(10.0f)
+=======
+	  pelletsLeft(1), isInvincible(false), invincibleTimer(10.0f), lives(3)
+>>>>>>> 6ab7b5b7c73579ec1d0d3beeac7c02f206ac1303
 {
 	deathTimer = -1;
 	soundManager = Engine::GetInstance().GetModule<SoundManager>();
@@ -94,6 +92,7 @@ void PacManLogic::Load()
 void PacManLogic::Initialize()
 {
 	GetOwner()->GetComponent<Collider>()->SetCollisionHandler(PacManCollisionHandler);
+	startPos = GetOwner()->GetComponent<Transform>()->GetTranslation();
 }
 
 void PacManLogic::Update(float dt)
@@ -115,12 +114,34 @@ void PacManLogic::Update(float dt)
 	{
 		if (deathTimer <= 0)
 		{
-			Engine::GetInstance().Stop();
+			if (lives >= 1)
+			{
+				lives -= 1;
+			}
+			else
+			{
+				Engine::GetInstance().Stop();
+			}
+			GetOwner()->GetComponent<Transform>()->SetTranslation(startPos);
+			GetOwner()->GetComponent<PacManMovement>()->enableMove = true;
+
+			for (unsigned i = 0; i < GetOwner()->GetComponent<PacManLogic>()->ghosts.size(); ++i)
+			{
+				GetOwner()->GetComponent<PacManLogic>()->ghosts[i]->GetComponent<GhostBehavior>()->ResetPos();
+			}
+
+			GetOwner()->GetComponent<Sprite>()->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("PacMan", true));
+			GetOwner()->GetComponent<Sprite>()->RefreshAutoMesh();
+			GetOwner()->GetComponent<Animation>()->Play(0.075f, true, false);
+			deathTimer = -1;
 		}
-		else {
+		else 
+		{
 			deathTimer -= dt;
 		}
 	}
+
+	
 
 	if (isInvincible == true)
 	{

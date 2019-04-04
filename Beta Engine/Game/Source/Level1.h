@@ -81,6 +81,7 @@ namespace Levels
 
         GameObject* scoreObj;
         GameObject* highScoreObj;
+		GameObject* livesObj;
 
 		ColliderTilemap* colliderTilemap;
 

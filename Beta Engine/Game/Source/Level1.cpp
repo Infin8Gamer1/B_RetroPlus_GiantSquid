@@ -92,6 +92,8 @@ void Levels::Level1::Initialize()
 
 	player = GetSpace()->GetObjectManager().GetObjectByName("PacMan");
 
+	livesObj = GetSpace()->GetObjectManager().GetObjectByName("LivesText");
+
     scoreObj = GetSpace()->GetObjectManager().GetObjectByName("Score");
     highScoreObj = GetSpace()->GetObjectManager().GetObjectByName("HighScore");
 
@@ -100,7 +102,7 @@ void Levels::Level1::Initialize()
 #ifdef _DEBUG
 	std::cout << "WARNING Not Adding Dots because they are slow in debug" << std::endl;
 #else
-	int pelletsSetToLevel = 4;
+	int pelletsSetToLevel = 0;
 	for (unsigned i = 0; i < colliderTilemap->GetTilemap()->GetWidth(); i++)
 	{
 		for (unsigned j = 0; j < colliderTilemap->GetTilemap()->GetHeight(); j++)
@@ -109,7 +111,7 @@ void Levels::Level1::Initialize()
 
 			Vector2D position = colliderTilemap->ConvertTileMapCordsToWorldCords(Vector2D(i, j));
 
-            if (position.x < 60 && position.x > -60 && position.y < 60 && position.y > -40) continue;
+            if (position.x < 100 && position.x > -100 && position.y < 80 && position.y > -80) continue;
 
 			if (value == 0 && !IsObjectAt(position))
 			{
@@ -123,7 +125,7 @@ void Levels::Level1::Initialize()
 	}
 	player->GetComponent<PacManLogic>()->SetPellets(pelletsSetToLevel);
 #endif RELEASE
-
+	player->GetComponent<PacManLogic>()->SetPellets(player->GetComponent<PacManLogic>()->GetPellets() + 4);
 	
 }
 
@@ -141,9 +143,23 @@ void Levels::Level1::Update(float dt)
 	*/
 	if (player->GetComponent<PacManLogic>()->GetPellets() == 0)
 	{
-		Level1::GetSpace()->SetLevel<Level2>();
+		//Level1::GetSpace()->SetLevel<Level2>();
+		Engine::GetInstance().Stop();
+		return;
 	}
 
+	switch (player->GetComponent<PacManLogic>()->lives)
+	{
+	case 3: 
+		livesObj->GetComponent<SpriteText>()->SetText("* * *");
+		break;
+	case 2: 
+		livesObj->GetComponent<SpriteText>()->SetText("* *");
+		break;
+	case 1: 
+		livesObj->GetComponent<SpriteText>()->SetText("*");
+		break;
+	}
 
 	////////////////////////////////////////////////////////////////////////UPDATING SCORE
 	unsigned scr = player->GetComponent<PacManLogic>()->score;
@@ -158,11 +174,13 @@ void Levels::Level1::Update(float dt)
 	std::stringstream scrss;
 	std::stringstream hiscrss;
 
-	hiscrss << std::setw(6) << hiscr;
-	scrss << std::setw(6) << scr;
+	hiscrss << hiscr;
+	scrss << scr;
 
 	scoreObj->GetComponent<SpriteText>()->SetText(scrss.str());
 	highScoreObj->GetComponent<SpriteText>()->SetText(hiscrss.str());
+
+	std::cout << scoreObj->GetComponent<SpriteText>()->GetText() << std::endl;
 
 	////////////////////////////////////////////////////////////////////////
 }
