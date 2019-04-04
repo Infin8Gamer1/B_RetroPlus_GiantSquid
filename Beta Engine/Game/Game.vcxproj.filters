@@ -26,14 +26,17 @@
     <ClCompile Include="Source\PacManLogic.cpp">
       <Filter>Game\Behaviors</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GhostBehaviorBlue.cpp">
-      <Filter>Game\Behaviors</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GhostBehavior.cpp">
-      <Filter>Game\Behaviors</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Level2.cpp">
       <Filter>Game\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GhostBehavior.cpp">
+      <Filter>Game\Behaviors\GhostBehaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GhostBehaviorBlue.cpp">
+      <Filter>Game\Behaviors\GhostBehaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GhostBehaviorOrange.cpp">
+      <Filter>Game\Behaviors\GhostBehaviors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,14 +64,17 @@
     <ClInclude Include="Source\PacManLogic.h">
       <Filter>Game\Behaviors</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GhostBehaviorBlue.h">
-      <Filter>Game\Behaviors</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GhostBehavior.h">
-      <Filter>Game\Behaviors</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Level2.h">
       <Filter>Game\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GhostBehavior.h">
+      <Filter>Game\Behaviors\GhostBehaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GhostBehaviorBlue.h">
+      <Filter>Game\Behaviors\GhostBehaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GhostBehaviorOrange.h">
+      <Filter>Game\Behaviors\GhostBehaviors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +92,9 @@
     </Filter>
     <Filter Include="Precompiled">
       <UniqueIdentifier>{e5939826-553f-41c0-86ab-4a31f6293a2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Behaviors\GhostBehaviors">
+      <UniqueIdentifier>{882f1551-8e60-40b6-984a-22942a219055}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
