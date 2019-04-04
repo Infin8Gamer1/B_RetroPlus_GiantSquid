@@ -72,14 +72,14 @@ LevelEditor
         rotation : 0
         scale : { 40, 40 }
       }
+	  Animation
+      {
+      }
       Sprite
       {
         frameIndex : 0
         color : { 1 , 1 , 1 , 1 }
         spriteSourceName : PacMan
-      }
-      Animation
-      {
       }
       Physics
       {

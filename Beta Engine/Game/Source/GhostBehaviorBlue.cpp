@@ -55,6 +55,8 @@ void GhostBehaviorBlue::Update(float dt)
 			sprite->RefreshAutoMesh();
 
 			navigation->SetMoveSpeed(80.0f);
+
+			navigation->SetTarget(GenerateTarget());
 			break;
 		default:
 			break;
@@ -86,24 +88,18 @@ void GhostBehaviorBlue::Update(float dt)
 			navigation->SetTarget(colliderTilemap->ConvertWorldCordsToTileMapCords(PacManTransform->GetTranslation()));
 			break;
 		case Scatter:
-			if (colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()).Distance(navigation->GetTarget()) < 0.1f)
+			if (colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()).Distance(navigation->GetTarget()) < 0.5f)
 			{
 				state = Chase;
 			}
 			break;
 		case Frightened:
 		{
-			GenerateTarget:
-
-			Vector2D target = colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation());
-			target = target + Vector2D(-4 + (std::rand() % (4 - -4 + 1)), -4 + (std::rand() % (4 - -4 + 1)));
-
-			if (colliderTilemap->GetTilemap()->GetCellValue(target.x, target.y) != 0)
+			if (colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()).Distance(navigation->GetTarget()) < 0.2f)
 			{
-				goto GenerateTarget;
+				//state = Chase;
+				navigation->SetTarget(GenerateTarget());
 			}
-
-			navigation->SetTarget(target);
 			break;
 		}
 		default:
@@ -126,4 +122,17 @@ void GhostBehaviorBlue::Update(float dt)
 	default:
 		break;
 	}
+}
+
+Vector2D GhostBehaviorBlue::GenerateTarget()
+{
+	Vector2D target = colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation());
+	target = target + Vector2D(-6 + (std::rand() % (6 - -6 + 1)), -6 + (std::rand() % (6 - -6 + 1)));
+
+	if (colliderTilemap->GetTilemap()->GetCellValue(target.x, target.y) != 0)
+	{
+		target = GenerateTarget();
+	}
+
+	return target;
 }
