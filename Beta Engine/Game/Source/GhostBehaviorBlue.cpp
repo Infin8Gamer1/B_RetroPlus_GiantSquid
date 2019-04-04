@@ -29,7 +29,6 @@ void GhostBehaviorBlue::Update(float dt)
 		{
 		case Dead:
 			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostEyes", true));
-			//sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Circle", true));
 			sprite->RefreshAutoMesh();
 			navigation->SetTarget(startPos);
 			GetOwner()->GetComponent<Collider>()->Disable();
