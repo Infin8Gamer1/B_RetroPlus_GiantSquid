@@ -40,6 +40,8 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 		object.GetComponent<PacManLogic>()->isInvincible = true;
 		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_power pellet new.wav");
 
+		object.GetComponent<PacManLogic>()->invincibleTimer = 10.0f;
+
 		for (unsigned i = 0; i < object.GetComponent<PacManLogic>()->ghosts.size(); ++i)
 		{
 			object.GetComponent<PacManLogic>()->ghosts[i]->GetComponent<GhostBehavior>()->SetState(GhostState::Frightened);
