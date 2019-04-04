@@ -12,6 +12,7 @@
 #include "stdafx.h"
 #include <Space.h>
 #include "Level1.h"
+#include "Level2.h"
 #include <sstream>
 #include <iomanip>
 
@@ -101,7 +102,7 @@ void Levels::Level1::Initialize()
 #ifdef _DEBUG
 	std::cout << "WARNING Not Adding Dots because they are slow in debug" << std::endl;
 #else
-	int pelletsSetToLevel = 0;
+	int pelletsSetToLevel = 4;
 	for (unsigned i = 0; i < colliderTilemap->GetTilemap()->GetWidth(); i++)
 	{
 		for (unsigned j = 0; j < colliderTilemap->GetTilemap()->GetHeight(); j++)
@@ -142,7 +143,7 @@ void Levels::Level1::Update(float dt)
 	*/
 	if (player->GetComponent<PacManLogic>()->GetPellets() == 0)
 	{
-		Engine::GetInstance().Stop();
+		Level1::GetSpace()->SetLevel<Level2>();
 	}
 
 	switch (player->GetComponent<PacManLogic>()->lives)

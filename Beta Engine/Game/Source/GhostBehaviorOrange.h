@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	PacManMovement.h
+// File Name:	GhostBehaviorOrange.h
 // Author(s):	Jacob Holyfield (J.Holyfield)
 // Project:		BetaFramework
 // Course:		WANIC VGP2 2018-2019
@@ -15,7 +15,7 @@
 // Include Files:
 //------------------------------------------------------------------------------
 
-#include <Component.h> // base class
+#include "GhostBehavior.h" // base class
 
 #include <Vector2D.h> // Vector2D
 
@@ -26,26 +26,13 @@
 // Forward Declarations:
 //------------------------------------------------------------------------------
 
-class Transform;
-class TileMapNavigation;
-class ColliderTilemap;
-class Sprite;
-class GhostBehaviorBlue;
-class GhostBehaviorOrange;
+
 
 //------------------------------------------------------------------------------
 // Public Structures:
 //------------------------------------------------------------------------------
 
-enum GhostState
-{
-	Dead,
-	Chase,
-	Scatter,
-	Frightened
-};
-
-class GhostBehavior : public Component
+class GhostBehaviorOrange : public GhostBehavior
 {
 public:
 	//------------------------------------------------------------------------------
@@ -53,7 +40,12 @@ public:
 	//------------------------------------------------------------------------------
 
 	// Constructor
-	GhostBehavior();
+	GhostBehaviorOrange();
+
+	// Clone a component and return a pointer to the cloned component.
+	// Returns:
+	//   A pointer to a dynamically allocated clone of the component.
+	Component* Clone() const override;
 
 	// Initialize this component (happens at object creation).
 	void Initialize() override;
@@ -63,33 +55,14 @@ public:
 	//   dt = The (fixed) change in time since the last step.
 	void Update(float dt) override;
 
-	void SetState(GhostState state);
-
-	GhostState GetState();
-
-	void ResetPos();
-
-	friend GhostBehaviorBlue;
-	friend GhostBehaviorOrange;
-
 private:
 	//------------------------------------------------------------------------------
 	// Private Functions:
 	//------------------------------------------------------------------------------
 
-	float timer;
+	Vector2D GenerateTarget();
 
-	GhostState state;
-	GhostState previousState;
-
-	Vector2D startPos;
-
-	// Components
-	Transform* PacManTransform;
-	Transform* transform;
-	TileMapNavigation* navigation;
-	Sprite* sprite;
-	ColliderTilemap* colliderTilemap;
+	Vector2D corner;
 
 };
 

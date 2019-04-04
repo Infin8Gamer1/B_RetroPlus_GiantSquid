@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "GhostBehaviorBlue.h"
+#include "GhostBehaviorOrange.h"
 #include <ColliderTilemap.h>
 #include <GameObject.h>
 #include <Transform.h>
@@ -10,16 +10,24 @@
 #include <Collider.h>
 #include <Tilemap.h>
 
-GhostBehaviorBlue::GhostBehaviorBlue() : GhostBehavior()
+GhostBehaviorOrange::GhostBehaviorOrange() : GhostBehavior()
 {
 }
 
-Component * GhostBehaviorBlue::Clone() const
+Component * GhostBehaviorOrange::Clone() const
 {
-	return new GhostBehaviorBlue(*this);
+	return new GhostBehaviorOrange(*this);
 }
 
-void GhostBehaviorBlue::Update(float dt)
+void GhostBehaviorOrange::Initialize()
+{
+	GhostBehavior::Initialize();
+
+	
+	corner = Vector2D(1, colliderTilemap->GetTilemap()->GetHeight() - 1);
+}
+
+void GhostBehaviorOrange::Update(float dt)
 {
 	//on state change
 	//IMPORTANT needs to be before previous state gets updated in the base update function
@@ -37,16 +45,16 @@ void GhostBehaviorBlue::Update(float dt)
 			navigation->SetMoveSpeed(150.0f);
 			break;
 		case Chase:
-			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostBlue", true));
+			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostOrange", true));
 			sprite->RefreshAutoMesh();
 
 			navigation->SetMoveSpeed(125.0f);
 			break;
 		case Scatter:
-			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostBlue", true));
+			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostOrange", true));
 			sprite->RefreshAutoMesh();
 
-			navigation->SetTarget(Vector2D(1,1));
+			navigation->SetTarget(corner);
 
 			navigation->SetMoveSpeed(100.0f);
 			break;
@@ -85,7 +93,14 @@ void GhostBehaviorBlue::Update(float dt)
 			}
 			break;
 		case Chase:
-			navigation->SetTarget(colliderTilemap->ConvertWorldCordsToTileMapCords(PacManTransform->GetTranslation()));
+			if (colliderTilemap->ConvertWorldCordsToTileMapCords(PacManTransform->GetTranslation()).Distance(colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation())) < 8)
+			{
+				navigation->SetTarget(corner);
+			}
+			else {
+				navigation->SetTarget(colliderTilemap->ConvertWorldCordsToTileMapCords(PacManTransform->GetTranslation()));
+			}
+			
 			break;
 		case Scatter:
 			if (colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()).Distance(navigation->GetTarget()) < 0.5f)
@@ -105,7 +120,7 @@ void GhostBehaviorBlue::Update(float dt)
 		default:
 			break;
 		}
-		
+
 	}
 
 	//every frame
@@ -124,7 +139,7 @@ void GhostBehaviorBlue::Update(float dt)
 	}
 }
 
-Vector2D GhostBehaviorBlue::GenerateTarget()
+Vector2D GhostBehaviorOrange::GenerateTarget()
 {
 	Vector2D target = colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation());
 	target = target + Vector2D(-6 + (std::rand() % (6 - -6 + 1)), -6 + (std::rand() % (6 - -6 + 1)));
@@ -136,3 +151,4 @@ Vector2D GhostBehaviorBlue::GenerateTarget()
 
 	return target;
 }
+
