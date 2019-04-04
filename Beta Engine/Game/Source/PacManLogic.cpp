@@ -35,6 +35,7 @@ void PacManCollisionHandler(GameObject & object, GameObject & other)
 	if (other.GetName().substr(0, 11) == "PowerPellet")
 	{
 		object.GetComponent<PacManLogic>()->score += 50;
+		std::cout << object.GetComponent<PacManLogic>()->pelletsLeft;
 		object.GetComponent<PacManLogic>()->pelletsLeft -= 1;
 		object.GetComponent<PacManLogic>()->isInvincible = true;
 		object.GetComponent<PacManLogic>()->soundManager->PlaySound("pac-man_power pellet new.wav");
@@ -120,12 +121,18 @@ void PacManLogic::Update(float dt)
 			GetOwner()->GetComponent<Transform>()->SetTranslation(startPos);
 			GetOwner()->GetComponent<PacManMovement>()->enableMove = true;
 
+			for (unsigned i = 0; i < GetOwner()->GetComponent<PacManLogic>()->ghosts.size(); ++i)
+			{
+				GetOwner()->GetComponent<PacManLogic>()->ghosts[i]->GetComponent<GhostBehavior>()->ResetPos();
+			}
+
 			GetOwner()->GetComponent<Sprite>()->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("PacMan", true));
 			GetOwner()->GetComponent<Sprite>()->RefreshAutoMesh();
 			GetOwner()->GetComponent<Animation>()->Play(0.075f, true, false);
 			deathTimer = -1;
 		}
-		else {
+		else 
+		{
 			deathTimer -= dt;
 		}
 	}
