@@ -140,13 +140,6 @@ void PacManMovement::Move()
 
         if (transform->GetTranslation().x > 280) transform->SetTranslation(Vector2D(-280, transform->GetTranslation().y));
         else if (transform->GetTranslation().x < -280) transform->SetTranslation(Vector2D(280, transform->GetTranslation().y));
-        /*if (timer >= frameTime)
-        {
-            timer = 0.0f;
-
-            if(sprite->GetFrame() < endFrame) sprite->SetFrame(sprite->GetFrame() + 1);
-            else sprite->SetFrame(0);
-        }*/
 	}
 }
 

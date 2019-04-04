@@ -31,6 +31,7 @@ class TileMapNavigation;
 class ColliderTilemap;
 class Sprite;
 class GhostBehaviorBlue;
+class GhostBehaviorOrange;
 
 //------------------------------------------------------------------------------
 // Public Structures:
@@ -66,7 +67,10 @@ public:
 
 	GhostState GetState();
 
+	void ResetPos();
+
 	friend GhostBehaviorBlue;
+	friend GhostBehaviorOrange;
 
 private:
 	//------------------------------------------------------------------------------

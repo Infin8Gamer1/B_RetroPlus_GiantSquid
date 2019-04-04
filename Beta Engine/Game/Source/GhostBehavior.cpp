@@ -62,3 +62,9 @@ GhostState GhostBehavior::GetState()
 {
 	return state;
 }
+
+void GhostBehavior::ResetPos()
+{
+	transform->SetTranslation(colliderTilemap->ConvertTileMapCordsToWorldCords(startPos));
+	navigation->SetTarget(startPos);
+}
