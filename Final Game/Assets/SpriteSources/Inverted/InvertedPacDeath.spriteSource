@@ -1,0 +1,8 @@
+InvertedPacDeath
+{
+	textureName : TGS_fadiya_PacmanDeathBlk.png
+    textureRows : 5
+    textureColumns : 4
+	frameCount : 18
+	frameStart : 0
+}

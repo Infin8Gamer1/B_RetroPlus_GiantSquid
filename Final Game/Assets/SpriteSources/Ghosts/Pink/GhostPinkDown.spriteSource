@@ -1,0 +1,8 @@
+Ghosts/Pink/GhostPinkDown
+{
+	textureName : TGS_Pac_Pink_Down.png
+    textureRows : 2
+    textureColumns : 1
+	frameCount : 2
+	frameStart : 0
+}

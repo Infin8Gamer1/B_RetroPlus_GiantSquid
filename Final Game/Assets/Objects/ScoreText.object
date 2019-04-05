@@ -1,0 +1,19 @@
+ScoreText
+{
+  numComponents : 2
+  Transform
+  {
+    translation : { 0, -100 }
+    rotation : 0
+    scale : { 50, 50 }
+  }
+  SpriteText
+  {
+    frameIndex : 0
+	color : { 0 , 1 , 1 , 1 }
+	spriteSourceName : CodeNewRoman
+	text : 1UP
+	horizontalAlignment : 0
+	verticalAlignment : 0
+  }
+}

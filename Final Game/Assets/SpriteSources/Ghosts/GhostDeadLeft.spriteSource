@@ -1,0 +1,8 @@
+Ghosts/GhostDeadLeft
+{
+	textureName : TGS_Eyes_Left.png
+    textureRows : 1
+    textureColumns : 1
+	frameCount : 1
+	frameStart : 0
+}

@@ -1,0 +1,41 @@
+LevelMenu
+{
+  numGameObjects : 2
+  {
+    Logo
+    {
+      numComponents : 2
+      Transform
+      {
+        translation : { 0, 100 }
+        rotation : 0
+        scale : { 300, 100 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : Logo
+      }
+    }
+    StartText
+    {
+      numComponents : 2
+      Transform
+      {
+        translation : { 0, 0 }
+        rotation : 0
+        scale : { 50, 50 }
+      }
+      SpriteText
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : CodeNewRoman
+        text : PRESS SPACE TO START
+        horizontalAlignment : 0
+        verticalAlignment : 0
+      }
+    }
+  }
+}

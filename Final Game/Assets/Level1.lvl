@@ -1,0 +1,397 @@
+LevelEditor
+{
+  numGameObjects : 15
+  {
+    TileMap
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { -270, 280 }
+        rotation : 0
+        scale : { 20, 20 }
+      }
+      SpriteTilemap
+      {
+        frameIndex : 3
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : TileMap
+        tilemapLoc : Default
+      }
+      ColliderTilemap
+      {
+        CollisionGroup : 1
+        CollisionFlags : 1, -2, 3
+        tilemapLoc : Default
+      }
+    }
+    Score
+    {
+      numComponents : 2
+      Transform
+      {
+        translation : { -200, 312 }
+        rotation : 0
+        scale : { 50, 50 }
+      }
+      SpriteText
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : CodeNewRoman
+        text : 000000
+        horizontalAlignment : 0
+        verticalAlignment : 0
+      }
+    }
+    HighScore
+    {
+      numComponents : 2
+      Transform
+      {
+        translation : { 0, 312 }
+        rotation : 0
+        scale : { 50, 50 }
+      }
+      SpriteText
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : CodeNewRoman
+        text : 100000
+        horizontalAlignment : 0
+        verticalAlignment : 0
+      }
+    }
+    PacMan
+    {
+      numComponents : 7
+      Transform
+      {
+        translation : { 0, -180 }
+        rotation : 0
+        scale : { 40, 40 }
+      }
+      Animation
+      {
+      }
+      Sprite
+      {
+        frameIndex : 1
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : PacMan/PacManStop
+      }
+      Physics
+      {
+        acceleration : { 0, 0 }
+        velocity : { 0, 0 }
+        angularVelocity : 0
+        mass : 1
+        gravity : { 0, 0 }
+      }
+      ColliderRectangle
+      {
+        CollisionGroup : 3
+        CollisionFlags : 1, 2, -3
+        extents : { 10, 10 }
+      }
+      PacManMovement
+      { } 
+      PacManLogic
+      { } 
+    }
+    GhostBlue
+    {
+      numComponents : 7
+      Transform
+      {
+        translation : { 0, 0 }
+        rotation : 0
+        scale : { 35, 35 }
+      }
+      Animation
+      {
+      }
+      Sprite
+      {
+        frameIndex : 1
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : Ghosts/Blue/GhostBlueUp
+      }
+      Physics
+      {
+        acceleration : { 0, 0 }
+        velocity : { 0, 0 }
+        angularVelocity : 0
+        mass : 1
+        gravity : { 0, 0 }
+      }
+      ColliderRectangle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 1, 2, -3
+        extents : { 20, 20 }
+      }
+      TileMapNavigation
+      { } 
+      GhostBehaviorBlue
+      { } 
+    }
+	GhostPink
+    {
+      numComponents : 7
+      Transform
+      {
+        translation : { -20, 0 }
+        rotation : 0
+        scale : { 35, 35 }
+      }
+      Animation
+      {
+      }
+      Sprite
+      {
+        frameIndex : 1
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : Ghosts/Pink/GhostPinkDown
+      }
+      Physics
+      {
+        acceleration : { 0, 0 }
+        velocity : { 0, 0 }
+        angularVelocity : 0
+        mass : 1
+        gravity : { 0, 0 }
+      }
+      ColliderRectangle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 1, 2, -3
+        extents : { 20, 20 }
+      }
+      TileMapNavigation
+      { } 
+      GhostBehaviorPink
+      { } 
+    }
+	GhostOrange
+    {
+      numComponents : 7
+      Transform
+      {
+        translation : { -40, 0 }
+        rotation : 0
+        scale : { 35, 35 }
+      }
+      Animation
+      {
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : Ghosts/Orange/GhostOrangeUp
+      }
+      Physics
+      {
+        acceleration : { 0, 0 }
+        velocity : { 0, 0 }
+        angularVelocity : 0
+        mass : 1
+        gravity : { 0, 0 }
+      }
+      ColliderRectangle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 1, 2, -3
+        extents : { 20, 20 }
+      }
+      TileMapNavigation
+      { } 
+      GhostBehaviorOrange
+      { } 
+    }
+	GhostRed
+    {
+      numComponents : 7
+      Transform
+      {
+        translation : { 40, 0 }
+        rotation : 0
+        scale : { 35, 35 }
+      }
+      Animation
+      {
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : Ghosts/Red/GhostRedUp
+      }
+      Physics
+      {
+        acceleration : { 0, 0 }
+        velocity : { 0, 0 }
+        angularVelocity : 0
+        mass : 1
+        gravity : { 0, 0 }
+      }
+      ColliderRectangle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 1, 2, -3
+        extents : { 20, 20 }
+      }
+      TileMapNavigation
+      { } 
+      GhostBehaviorRed
+      { } 
+    }
+    PowerPellet
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { 252.5, 215.5 }
+        rotation : 0
+        scale : { 80, 80 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : PowerPellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
+      }
+    }
+    PowerPellet_1
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { -247.5, 215.5 }
+        rotation : 0
+        scale : { 80, 80 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : PowerPellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
+      }
+    }
+    PowerPellet_2
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { -247.5, -185 }
+        rotation : 0
+        scale : { 80, 80 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : PowerPellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
+      }
+    }
+    PowerPellet_3
+    {
+      numComponents : 3
+      Transform
+      {
+        translation : { 252, -185 }
+        rotation : 0
+        scale : { 80, 80 }
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : PowerPellet
+      }
+      ColliderCircle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 0
+        radius : 1
+      }
+    }
+    HighScoreText
+    {
+      numComponents : 2
+      Transform
+      {
+        translation : { 0, 340 }
+        rotation : 0
+        scale : { 50, 50 }
+      }
+      SpriteText
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : CodeNewRoman
+        text : HIGH SCORE
+        horizontalAlignment : 0
+        verticalAlignment : 0
+      }
+    }
+    ScoreText
+    {
+      numComponents : 2
+      Transform
+      {
+        translation : { -200, 340 }
+        rotation : 0
+        scale : { 50, 50 }
+      }
+      SpriteText
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : CodeNewRoman
+        text : 1UP
+        horizontalAlignment : 0
+        verticalAlignment : 0
+      }
+    }
+    LivesText
+    {
+      numComponents : 2
+      Transform
+      {
+        translation : { 200, 312 }
+        rotation : 0
+        scale : { 50, 50 }
+      }
+      SpriteText
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : CodeNewRoman
+        text : * * *
+        horizontalAlignment : 0
+        verticalAlignment : 0
+      }
+    }
+  }
+}

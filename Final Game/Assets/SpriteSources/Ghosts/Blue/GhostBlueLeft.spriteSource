@@ -1,0 +1,8 @@
+Ghosts/Blue/GhostBlueLeft
+{
+	textureName : TGS_Pac_Blue_Left.png
+    textureRows : 2
+    textureColumns : 1
+	frameCount : 2
+	frameStart : 0
+}
