@@ -80,7 +80,21 @@ void GhostBehaviorBlue::Update(float dt)
 		case Dead:
 			if (colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()).Distance(startPos) < 0.1f)
 			{
-				state = Chase;
+				if (timeOutCounter == -1)
+				{
+					timeOutCounter = 10;
+
+					sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/Red/GhostRedUp", true));
+					sprite->RefreshAutoMesh();
+				}
+
+				timeOutCounter--;
+
+				if (timeOutCounter == 0)
+				{
+					state = Chase;
+					timeOutCounter = -1;
+				}
 			}
 			break;
 		case Chase:

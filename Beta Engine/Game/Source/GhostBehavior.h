@@ -82,6 +82,7 @@ private:
 	//------------------------------------------------------------------------------
 
 	float timer;
+	int timeOutCounter;
 
 	GhostState state;
 	GhostState previousState;

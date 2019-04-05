@@ -23,7 +23,7 @@ void GhostBehaviorRed::Initialize()
 {
 	GhostBehavior::Initialize();
 
-	corner = Vector2D(colliderTilemap->GetTilemap()->GetWidth() - 2, 2); //colliderTilemap->GetTilemap()->GetHeight() - 2);
+	corner = Vector2D(colliderTilemap->GetTilemap()->GetWidth() - 2, 1); //colliderTilemap->GetTilemap()->GetHeight() - 2);
 }
 
 void GhostBehaviorRed::Update(float dt)
@@ -43,16 +43,16 @@ void GhostBehaviorRed::Update(float dt)
 			navigation->SetMoveSpeed(175.0f);
 			break;
 		case Chase:
-			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/Blue/GhostBlueUp", true));
+			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/Red/GhostRedUp", true));
 			sprite->RefreshAutoMesh();
 
-			navigation->SetMoveSpeed(90.0f);
+			navigation->SetMoveSpeed(100.0f);
 			break;
 		case Scatter:
-			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/Blue/GhostBlueUp", true));
+			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/Red/GhostRedUp", true));
 			sprite->RefreshAutoMesh();
 
-			navigation->SetTarget(Vector2D(1, 1));
+			navigation->SetTarget(corner);
 
 			navigation->SetMoveSpeed(90.0f);
 			break;
@@ -62,7 +62,7 @@ void GhostBehaviorRed::Update(float dt)
 
 			navigation->SetMoveSpeed(80.0f);
 
-			navigation->SetTarget(GenerateTarget());
+			navigation->SetTarget(corner);
 			break;
 		default:
 			break;
@@ -87,7 +87,21 @@ void GhostBehaviorRed::Update(float dt)
 		case Dead:
 			if (colliderTilemap->ConvertWorldCordsToTileMapCords(transform->GetTranslation()).Distance(startPos) < 0.1f)
 			{
-				state = Chase;
+				if (timeOutCounter == -1)
+				{
+					timeOutCounter = 10;
+
+					sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/Red/GhostRedUp", true));
+					sprite->RefreshAutoMesh();
+				}
+
+				timeOutCounter--;
+
+				if (timeOutCounter == 0)
+				{
+					state = Chase;
+					timeOutCounter = -1;
+				}
 			}
 			break;
 		case Chase:

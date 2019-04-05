@@ -17,7 +17,8 @@ GhostBehavior::GhostBehavior() : Component("GhostBehavior")
 	sprite = nullptr;
 	colliderTilemap = nullptr;
 
-	timer = 0;
+	timer = 0.0f;
+	timeOutCounter = -1;
 
 	state = GhostState::Chase;
 	previousState = state;
@@ -69,4 +70,9 @@ void GhostBehavior::ResetPos()
 {
 	transform->SetTranslation(colliderTilemap->ConvertTileMapCordsToWorldCords(startPos));
 	navigation->SetTarget(startPos);
+
+	timeOutCounter = -1;
+	timer = 0.0f;
+
+	state = Chase;
 }

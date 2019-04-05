@@ -1,6 +1,6 @@
 LevelEditor
 {
-  numGameObjects : 13
+  numGameObjects : 14
   {
     TileMap
     {
@@ -142,7 +142,7 @@ LevelEditor
       numComponents : 7
       Transform
       {
-        translation : { -20, 0 }
+        translation : { -40, 0 }
         rotation : 0
         scale : { 35, 35 }
       }
@@ -172,6 +172,43 @@ LevelEditor
       TileMapNavigation
       { } 
       GhostBehaviorOrange
+      { } 
+    }
+	GhostRed
+    {
+      numComponents : 7
+      Transform
+      {
+        translation : { 40, 0 }
+        rotation : 0
+        scale : { 35, 35 }
+      }
+      Animation
+      {
+      }
+      Sprite
+      {
+        frameIndex : 0
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : Ghosts/Red/GhostRedUp
+      }
+      Physics
+      {
+        acceleration : { 0, 0 }
+        velocity : { 0, 0 }
+        angularVelocity : 0
+        mass : 1
+        gravity : { 0, 0 }
+      }
+      ColliderRectangle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 1, 2, -3
+        extents : { 20, 20 }
+      }
+      TileMapNavigation
+      { } 
+      GhostBehaviorRed
       { } 
     }
     PowerPellet
