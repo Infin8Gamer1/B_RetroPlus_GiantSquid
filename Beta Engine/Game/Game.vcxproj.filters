@@ -44,6 +44,9 @@
     <ClCompile Include="Source\GhostBehaviorRed.cpp">
       <Filter>Game\Behaviors\GhostBehaviors</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GhostBehaviorPink.cpp">
+      <Filter>Game\Behaviors\GhostBehaviors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\ColorChange.h">
@@ -86,6 +89,9 @@
       <Filter>Game\Levels</Filter>
     </ClInclude>
     <ClInclude Include="Source\GhostBehaviorRed.h">
+      <Filter>Game\Behaviors\GhostBehaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GhostBehaviorPink.h">
       <Filter>Game\Behaviors\GhostBehaviors</Filter>
     </ClInclude>
   </ItemGroup>

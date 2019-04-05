@@ -1,6 +1,6 @@
 LevelEditor
 {
-  numGameObjects : 14
+  numGameObjects : 15
   {
     TileMap
     {
@@ -135,6 +135,43 @@ LevelEditor
       TileMapNavigation
       { } 
       GhostBehaviorBlue
+      { } 
+    }
+	GhostPink
+    {
+      numComponents : 7
+      Transform
+      {
+        translation : { -20, 0 }
+        rotation : 0
+        scale : { 35, 35 }
+      }
+      Animation
+      {
+      }
+      Sprite
+      {
+        frameIndex : 1
+        color : { 1 , 1 , 1 , 1 }
+        spriteSourceName : Ghosts/Pink/GhostPinkDown
+      }
+      Physics
+      {
+        acceleration : { 0, 0 }
+        velocity : { 0, 0 }
+        angularVelocity : 0
+        mass : 1
+        gravity : { 0, 0 }
+      }
+      ColliderRectangle
+      {
+        CollisionGroup : 2
+        CollisionFlags : 1, 2, -3
+        extents : { 20, 20 }
+      }
+      TileMapNavigation
+      { } 
+      GhostBehaviorPink
       { } 
     }
 	GhostOrange

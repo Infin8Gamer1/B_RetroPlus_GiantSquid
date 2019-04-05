@@ -33,6 +33,7 @@ class Sprite;
 class GhostBehaviorBlue;
 class GhostBehaviorOrange;
 class GhostBehaviorRed;
+class GhostBehaviorPink;
 
 //------------------------------------------------------------------------------
 // Public Structures:
@@ -73,6 +74,7 @@ public:
 	friend GhostBehaviorBlue;
 	friend GhostBehaviorOrange;
 	friend GhostBehaviorRed;
+	friend GhostBehaviorPink;
 
 	bool isFrightenedLow;
 

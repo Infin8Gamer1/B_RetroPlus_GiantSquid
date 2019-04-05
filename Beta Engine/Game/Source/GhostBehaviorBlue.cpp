@@ -82,7 +82,7 @@ void GhostBehaviorBlue::Update(float dt)
 			{
 				if (timeOutCounter == -1)
 				{
-					timeOutCounter = 10;
+					timeOutCounter = 17;
 
 					sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/Blue/GhostBlueDown", true));
 					sprite->RefreshAutoMesh();
