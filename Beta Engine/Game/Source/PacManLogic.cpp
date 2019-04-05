@@ -119,7 +119,9 @@ void PacManLogic::Update(float dt)
 			}
 			else
 			{
-				//Engine::GetInstance().Stop();
+				Engine::GetInstance().Stop();
+
+				//TODO: restart level or go back to the main menu
 			}
 			GetOwner()->GetComponent<Transform>()->SetTranslation(startPos);
 			GetOwner()->GetComponent<PacManMovement>()->enableMove = true;

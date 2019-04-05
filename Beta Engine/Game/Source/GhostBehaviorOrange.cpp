@@ -92,7 +92,7 @@ void GhostBehaviorOrange::Update(float dt)
 				{
 					timeOutCounter = 10;
 
-					sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/Red/GhostRedUp", true));
+					sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/Orange/GhostOrangeUp", true));
 					sprite->RefreshAutoMesh();
 				}
 
