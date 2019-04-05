@@ -23,6 +23,8 @@ GhostBehavior::GhostBehavior() : Component("GhostBehavior")
 	previousState = state;
 
 	startPos = Vector2D();
+
+	isFrightenedLow = false;
 }
 
 void GhostBehavior::Initialize()

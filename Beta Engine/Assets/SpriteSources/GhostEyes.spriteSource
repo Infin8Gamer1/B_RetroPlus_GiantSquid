@@ -1,8 +1,0 @@
-GhostEyes
-{
-	textureName : TGS_Eyes_Down.png
-    textureRows : 1
-    textureColumns : 1
-	frameCount : 1
-	frameStart : 0
-}

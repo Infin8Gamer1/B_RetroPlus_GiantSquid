@@ -28,8 +28,9 @@
 
 class Transform;
 class Physics;
-struct MapCollision;
 class ColliderTilemap;
+class Sprite;
+struct MapCollision;
 
 //------------------------------------------------------------------------------
 // Public Structures:
@@ -104,6 +105,7 @@ private:
 	// Components
 	Transform* transform;
 	Physics* physics;
+	Sprite* sprite;
 	ColliderTilemap* colliderTilemap;
 
 };

@@ -28,21 +28,21 @@ void GhostBehaviorBlue::Update(float dt)
 		switch (state)
 		{
 		case Dead:
-			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostEyes", true));
+			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/GhostDeadUp", true));
 			sprite->RefreshAutoMesh();
 			navigation->SetTarget(startPos);
 			GetOwner()->GetComponent<Collider>()->Disable();
 
-			navigation->SetMoveSpeed(150.0f);
+			navigation->SetMoveSpeed(175.0f);
 			break;
 		case Chase:
-			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostBlue", true));
+			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/Blue/GhostBlueUp", true));
 			sprite->RefreshAutoMesh();
 
 			navigation->SetMoveSpeed(90.0f);
 			break;
 		case Scatter:
-			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostBlue", true));
+			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/Blue/GhostBlueUp", true));
 			sprite->RefreshAutoMesh();
 
 			navigation->SetTarget(Vector2D(1,1));
@@ -50,7 +50,7 @@ void GhostBehaviorBlue::Update(float dt)
 			navigation->SetMoveSpeed(90.0f);
 			break;
 		case Frightened:
-			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("GhostPower", true));
+			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/GhostFrightened", true));
 			sprite->RefreshAutoMesh();
 
 			navigation->SetMoveSpeed(80.0f);
@@ -117,6 +117,13 @@ void GhostBehaviorBlue::Update(float dt)
 	case Scatter:
 		break;
 	case Frightened:
+		if (isFrightenedLow)
+		{
+			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("Ghosts/GhostFrightenedEnd", true));
+			sprite->RefreshAutoMesh();
+
+			isFrightenedLow = false;
+		}
 		break;
 	default:
 		break;

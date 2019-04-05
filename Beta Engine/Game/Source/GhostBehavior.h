@@ -32,6 +32,7 @@ class ColliderTilemap;
 class Sprite;
 class GhostBehaviorBlue;
 class GhostBehaviorOrange;
+class GhostBehaviorRed;
 
 //------------------------------------------------------------------------------
 // Public Structures:
@@ -71,6 +72,9 @@ public:
 
 	friend GhostBehaviorBlue;
 	friend GhostBehaviorOrange;
+	friend GhostBehaviorRed;
+
+	bool isFrightenedLow;
 
 private:
 	//------------------------------------------------------------------------------

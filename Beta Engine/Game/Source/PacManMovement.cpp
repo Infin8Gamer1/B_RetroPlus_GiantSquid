@@ -13,6 +13,8 @@
 #include <Tilemap.h>
 #include <DebugDraw.h>
 #include <Graphics.h>
+#include <ResourceManager.h>
+#include <Sprite.h>
 
 Directions direction = Directions::Up;
 MapCollision mapCollision = MapCollision(false, false, false, false);
@@ -57,6 +59,7 @@ PacManMovement::PacManMovement() : Component("PacManMovement")
 	// Components
 	transform = nullptr;
 	physics = nullptr;
+	sprite = nullptr;
 	colliderTilemap = nullptr;
 
 	enableMove = true;
@@ -72,6 +75,7 @@ void PacManMovement::Initialize()
 	//get Components
 	transform = GetOwner()->GetComponent<Transform>();
 	physics = GetOwner()->GetComponent<Physics>();
+	sprite = GetOwner()->GetComponent<Sprite>();
 	colliderTilemap = GetOwner()->GetSpace()->GetObjectManager().GetObjectByName("TileMap")->GetComponent<ColliderTilemap>();
 
 	CallbackInputManager::GetInstance().addKeyPressBinding(ALL_KEYS, OnKeyInputDown);
@@ -82,13 +86,29 @@ void PacManMovement::Initialize()
 
 void PacManMovement::Update(float dt)
 {
+	UNREFERENCED_PARAMETER(dt);
+
 	if (enableMove)
 	{
+		//update the sprite baised on if PacMan is moving or not
+		if (abs(physics->GetVelocity().x) < 0.1f && abs(physics->GetVelocity().y) < 0.1f)
+		{
+			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("PacMan/PacManStop", true));
+			sprite->RefreshAutoMesh();
+		}
+		else if (sprite->GetSpriteSource() != ResourceManager::GetInstance().GetSpriteSource("PacMan/PacManGo", true))
+		{
+			sprite->SetSpriteSource(ResourceManager::GetInstance().GetSpriteSource("PacMan/PacManGo", true));
+			sprite->RefreshAutoMesh();
+		}
+
 		Move();
 	}
 	else {
 		physics->SetVelocity(Vector2D());
 	}
+
+	
 }
 
 void PacManMovement::Move()

@@ -1,8 +1,0 @@
-InvertedGhostCyan
-{
-	textureName : CyanPink_Ghost.png
-    textureRows : 2
-    textureColumns : 1
-	frameCount : 2
-	frameStart : 0
-}

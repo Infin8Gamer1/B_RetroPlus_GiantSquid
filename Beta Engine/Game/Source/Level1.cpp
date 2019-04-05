@@ -141,10 +141,10 @@ void Levels::Level1::Update(float dt)
 		cherrySpawned = true;
 	}
 	*/
-	if (player->GetComponent<PacManLogic>()->GetPellets() == 0)
+	if (player->GetComponent<PacManLogic>()->GetPellets() == 0 || Input::GetInstance().CheckTriggered(VK_F2))
 	{
-		//Level1::GetSpace()->SetLevel<Level2>();
-		Engine::GetInstance().Stop();
+		GetSpace()->SetLevel<Level2>();
+		//Engine::GetInstance().Stop();
 		return;
 	}
 
@@ -180,7 +180,7 @@ void Levels::Level1::Update(float dt)
 	scoreObj->GetComponent<SpriteText>()->SetText(scrss.str());
 	highScoreObj->GetComponent<SpriteText>()->SetText(hiscrss.str());
 
-	std::cout << scoreObj->GetComponent<SpriteText>()->GetText() << std::endl;
+	//std::cout << scoreObj->GetComponent<SpriteText>()->GetText() << std::endl;
 
 	////////////////////////////////////////////////////////////////////////
 }

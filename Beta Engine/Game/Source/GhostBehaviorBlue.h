@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	PacManMovement.h
+// File Name:	GhostBehaviorBlue.h
 // Author(s):	Jacob Holyfield (J.Holyfield)
 // Project:		BetaFramework
 // Course:		WANIC VGP2 2018-2019

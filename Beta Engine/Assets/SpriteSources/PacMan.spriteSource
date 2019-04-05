@@ -1,8 +1,0 @@
-PacMan
-{
-	textureName : TGS_Fadiya_PacmanGo.png
-    textureRows : 2
-    textureColumns : 2
-	frameCount : 3
-	frameStart : 0
-}

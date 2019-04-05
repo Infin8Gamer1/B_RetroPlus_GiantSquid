@@ -79,7 +79,7 @@ LevelEditor
       {
         frameIndex : 1
         color : { 1 , 1 , 1 , 1 }
-        spriteSourceName : PacMan
+        spriteSourceName : PacMan/PacManStop
       }
       Physics
       {
@@ -116,7 +116,7 @@ LevelEditor
       {
         frameIndex : 1
         color : { 1 , 1 , 1 , 1 }
-        spriteSourceName : GhostBlue
+        spriteSourceName : Ghosts/Blue/GhostBlueUp
       }
       Physics
       {
@@ -153,7 +153,7 @@ LevelEditor
       {
         frameIndex : 0
         color : { 1 , 1 , 1 , 1 }
-        spriteSourceName : GhostOrange
+        spriteSourceName : Ghosts/Orange/GhostOrangeUp
       }
       Physics
       {

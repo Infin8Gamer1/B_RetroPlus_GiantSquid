@@ -1,8 +1,0 @@
-GhostPower
-{
-	textureName : TGS_Ghost_Blue.png
-    textureRows : 2
-    textureColumns : 2
-	frameCount : 4
-	frameStart : 0
-}

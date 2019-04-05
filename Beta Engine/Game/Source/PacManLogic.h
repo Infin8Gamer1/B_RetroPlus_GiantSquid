@@ -89,6 +89,7 @@ public:
 
 private:
 	bool isInvincible;
+	bool isInvincibleLow;
 
 	float invincibleTimer;
 

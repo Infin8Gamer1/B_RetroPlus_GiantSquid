@@ -1,0 +1,8 @@
+Ghosts/GhostFrightened
+{
+	textureName : TGS_Ghost_Blue.png
+    textureRows : 2
+    textureColumns : 2
+	frameCount : 2
+	frameStart : 0
+}
