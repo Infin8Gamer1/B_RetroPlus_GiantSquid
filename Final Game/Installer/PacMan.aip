@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="15.7" version="15.7" PreviousModules="simple" Modules="enterprise" RootPath="." Language="en" Id="{1D79A807-10FE-4FC6-9485-3F3A01DFD59D}">
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
+    <ROW Property="AI_FINDEXE_TITLE" Value="Select the installation package for [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
+    <ROW Property="AI_PRODUCTNAME_ARP" Value="PacMan"/>
+    <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
+    <ROW Property="ALLUSERS" Value="1" MultiBuildValue="DefaultBuild:2"/>
+    <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="ARPCONTACT" Value="Jacob@mjhsoftware.com"/>
+    <ROW Property="ARPNOREPAIR" Value="1" MultiBuildValue="DefaultBuild:1"/>
+    <ROW Property="ARPPRODUCTICON" Value="AppIcon.exe" Type="8"/>
+    <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
+    <ROW Property="CTRLS" Value="2"/>
+    <ROW Property="Manufacturer" Value="Giant Squids"/>
+    <ROW Property="ProductCode" Value="1033:{3031FA31-54AB-4E18-95EA-65D00554EDB6} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="PacMan"/>
+    <ROW Property="ProductVersion" Value="1.0.0" Type="32"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
+    <ROW Property="UpgradeCode" Value="{DB2A332E-2623-4FE0-9EBE-87458F482191}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="Assets" Directory_Parent="TARGETDIR" DefaultDir="Assets" IsPseudoRoot="1"/>
+    <ROW Directory="Assets_Dir" Directory_Parent="APPDIR" DefaultDir="Assets"/>
+    <ROW Directory="Audio_Dir" Directory_Parent="Assets_Dir" DefaultDir="Audio"/>
+    <ROW Directory="Banks_Dir" Directory_Parent="Audio_Dir" DefaultDir="Banks"/>
+    <ROW Directory="Blue_Dir" Directory_Parent="Ghosts_Dir" DefaultDir="Blue"/>
+    <ROW Directory="Ghosts_1_Dir" Directory_Parent="Inverted_Dir" DefaultDir="Ghosts"/>
+    <ROW Directory="Ghosts_Dir" Directory_Parent="SpriteSources_Dir" DefaultDir="Ghosts"/>
+    <ROW Directory="Inverted_Dir" Directory_Parent="SpriteSources_Dir" DefaultDir="Inverted"/>
+    <ROW Directory="LevelEditor_1_Dir" Directory_Parent="SpriteSources_Dir" DefaultDir="LEVELE~1|LevelEditor"/>
+    <ROW Directory="LevelEditor_Dir" Directory_Parent="Objects_Dir" DefaultDir="LEVELE~1|LevelEditor"/>
+    <ROW Directory="Objects_Dir" Directory_Parent="Assets_Dir" DefaultDir="Objects"/>
+    <ROW Directory="Orange_Dir" Directory_Parent="Ghosts_Dir" DefaultDir="Orange"/>
+    <ROW Directory="PacMan_1_Dir" Directory_Parent="Textures_Dir" DefaultDir="Pac-Man"/>
+    <ROW Directory="PacMan_Dir" Directory_Parent="SpriteSources_Dir" DefaultDir="PacMan"/>
+    <ROW Directory="Pink_Dir" Directory_Parent="Ghosts_Dir" DefaultDir="Pink"/>
+    <ROW Directory="Red_Dir" Directory_Parent="Ghosts_Dir" DefaultDir="Red"/>
+    <ROW Directory="ReferenceSpriteSources_Dir" Directory_Parent="SpriteSources_Dir" DefaultDir="REFERE~1|ReferenceSpriteSources"/>
+    <ROW Directory="RefrenceObjects_Dir" Directory_Parent="Objects_Dir" DefaultDir="REFREN~1|RefrenceObjects"/>
+    <ROW Directory="Shaders_Dir" Directory_Parent="Assets_Dir" DefaultDir="Shaders"/>
+    <ROW Directory="SpriteSources_Dir" Directory_Parent="Assets_Dir" DefaultDir="SPRITE~1|SpriteSources"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="Textures_Dir" Directory_Parent="Assets_Dir" DefaultDir="Textures"/>
+    <ROW Directory="TileMaps_Dir" Directory_Parent="Assets_Dir" DefaultDir="TileMaps"/>
+    <ROW Directory="UI_Dir" Directory_Parent="Textures_Dir" DefaultDir="UI"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="AI_CustomARPName" ComponentId="{822E5F0D-5660-41E4-B521-EE00955D25D3}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_ExePath" ComponentId="{F0051EDD-E138-40A9-8CB0-B94C1167470B}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
+    <ROW Component="AntTweakBar64.dll" ComponentId="{2810279A-011D-42FF-A386-6630D9DA69D5}" Directory_="APPDIR" Attributes="256" KeyPath="AntTweakBar64.dll"/>
+    <ROW Component="Art_Pac_Sprite.png" ComponentId="{27CD8DF0-C98F-4609-8898-539FE0F4ABCA}" Directory_="Textures_Dir" Attributes="0" KeyPath="Art_Pac_Sprite.png" Type="0"/>
+    <ROW Component="Asteroid.object" ComponentId="{93B9C3A9-499B-43BA-8987-D55DE3573690}" Directory_="RefrenceObjects_Dir" Attributes="0" KeyPath="Asteroid.object" Type="0"/>
+    <ROW Component="Asteroid.spriteSource" ComponentId="{3D681B99-DC37-46B3-BBA5-0C34F20E29A8}" Directory_="ReferenceSpriteSources_Dir" Attributes="0" KeyPath="Asteroid.spriteSource" Type="0"/>
+    <ROW Component="Axes.spriteSource" ComponentId="{362C3315-D7C3-49C0-8008-C051537939BC}" Directory_="LevelEditor_1_Dir" Attributes="0" KeyPath="Axes.spriteSource" Type="0"/>
+    <ROW Component="Brush.object" ComponentId="{C7F27DC3-ABCF-4E08-8A12-0B416A0A2DEB}" Directory_="LevelEditor_Dir" Attributes="0" KeyPath="Brush.object" Type="0"/>
+    <ROW Component="Cherry.object" ComponentId="{150D6AF0-BB88-4E71-979C-E0D548CAA0B6}" Directory_="Objects_Dir" Attributes="0" KeyPath="Cherry.object" Type="0"/>
+    <ROW Component="Cherry.spriteSource" ComponentId="{8BFC01C5-6D2F-47C5-A91E-AD4DD812D6C8}" Directory_="SpriteSources_Dir" Attributes="0" KeyPath="Cherry.spriteSource" Type="0"/>
+    <ROW Component="Default.tileMap" ComponentId="{7A072E0A-B929-474C-9338-23F53F266D7A}" Directory_="TileMaps_Dir" Attributes="0" KeyPath="Default.tileMap" Type="0"/>
+    <ROW Component="GhostBlueDown.spriteSource" ComponentId="{5559D196-A012-47ED-BFDB-6A5831E341C6}" Directory_="Blue_Dir" Attributes="0" KeyPath="GhostBlueDown.spriteSource" Type="0"/>
+    <ROW Component="GhostDeadDown.spriteSource" ComponentId="{20CE8811-884E-425F-84AA-D36BF307B040}" Directory_="Ghosts_Dir" Attributes="0" KeyPath="GhostDeadDown.spriteSource" Type="0"/>
+    <ROW Component="GhostOrangeDown.spriteSource" ComponentId="{169FD940-084D-4DDE-B800-10A0795531F6}" Directory_="Orange_Dir" Attributes="0" KeyPath="GhostOrangeDown.spriteSource" Type="0"/>
+    <ROW Component="GhostPinkDown.spriteSource" ComponentId="{62666D91-DDF7-4D81-891C-A5C70B4E74D3}" Directory_="Pink_Dir" Attributes="0" KeyPath="GhostPinkDown.spriteSource" Type="0"/>
+    <ROW Component="GhostRedDown.spriteSource" ComponentId="{975383F5-7FC0-4ABB-970E-52F24137727A}" Directory_="Red_Dir" Attributes="0" KeyPath="GhostRedDown.spriteSource" Type="0"/>
+    <ROW Component="InvertedGhostCyan.spriteSource" ComponentId="{0845FC6E-A903-4A82-B2B0-5513786EF867}" Directory_="Ghosts_1_Dir" Attributes="0" KeyPath="InvertedGhostCyan.spriteSource" Type="0"/>
+    <ROW Component="InvertedPacDeath.spriteSource" ComponentId="{76D4E26A-95C0-4239-8A27-89C4FA4DD7B1}" Directory_="Inverted_Dir" Attributes="0" KeyPath="InvertedPacDeath.spriteSource" Type="0"/>
+    <ROW Component="Level1.lvl" ComponentId="{5AE51650-7F15-499C-8EB9-9F422E001341}" Directory_="Assets_Dir" Attributes="0" KeyPath="Level1.lvl" Type="0"/>
+    <ROW Component="PacDeath.spriteSource" ComponentId="{2426337A-0BD1-4782-A354-EFAA8197BFD9}" Directory_="PacMan_Dir" Attributes="0" KeyPath="PacDeath.spriteSource" Type="0"/>
+    <ROW Component="PacMan.exe" ComponentId="{7602E3A9-E32F-4A1B-9736-3E9A356FB675}" Directory_="APPDIR" Attributes="256" KeyPath="PacMan.exe"/>
+    <ROW Component="PacMan.exeSquare44x44Logo.scale100.png" ComponentId="{08502FD2-0983-43EE-920A-B9313DCE4541}" Directory_="Assets" Attributes="0" KeyPath="PacMan.exeSquare44x44Logo.scale100.png" Type="0"/>
+    <ROW Component="ProductInformation" ComponentId="{8BFA03C6-CEEF-426A-985C-19ACFF81FCD3}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="PutImagesHere.txt" ComponentId="{158A2AEC-7830-4AB6-B085-BE4C50BFE4F9}" Directory_="PacMan_1_Dir" Attributes="0" KeyPath="PutImagesHere.txt" Type="0"/>
+    <ROW Component="barHorizontal_blue_left.png" ComponentId="{19357C40-0ABF-492D-A232-1178115B7449}" Directory_="UI_Dir" Attributes="0" KeyPath="barHorizontal_blue_left.png" Type="0"/>
+    <ROW Component="defaultShader.frag" ComponentId="{52D05370-D749-4DDE-BEAF-86F5C1F89852}" Directory_="Shaders_Dir" Attributes="0" KeyPath="defaultShader.frag" Type="0"/>
+    <ROW Component="dinosaur.wav" ComponentId="{0BACCA9D-635C-49CF-AEAD-4167E9336369}" Directory_="Banks_Dir" Attributes="0" KeyPath="dinosaur.wav" Type="0"/>
+    <ROW Component="draftpacman_ghostrunningawaynew.wav" ComponentId="{F4B2C429-D473-474F-8CCC-F6B441380F03}" Directory_="Audio_Dir" Attributes="0" KeyPath="draftpacman_ghostrunningawaynew.wav" Type="0"/>
+    <ROW Component="fmod64.dll" ComponentId="{0EC93DF5-5CFB-461A-A2D3-79759A7FA737}" Directory_="APPDIR" Attributes="256" KeyPath="fmod64.dll"/>
+    <ROW Component="fmodstudio64.dll" ComponentId="{15E7D68E-109A-4607-9457-7289B25EA981}" Directory_="APPDIR" Attributes="256" KeyPath="fmodstudio64.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="AiAppXAssets" Title="AiAppXAssets" Description="Description" Display="3" Level="0" Directory_="APPDIR" Attributes="0" Options="271" Components="PacMan.exeSquare44x44Logo.scale100.png" Builds="Build_MSIX_APPX"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_CustomARPName AI_ExePath AntTweakBar64.dll Art_Pac_Sprite.png Asteroid.object Asteroid.spriteSource Axes.spriteSource Brush.object Cherry.object Cherry.spriteSource Default.tileMap GhostBlueDown.spriteSource GhostDeadDown.spriteSource GhostOrangeDown.spriteSource GhostPinkDown.spriteSource GhostRedDown.spriteSource InvertedGhostCyan.spriteSource InvertedPacDeath.spriteSource Level1.lvl PacDeath.spriteSource PacMan.exe ProductInformation PutImagesHere.txt barHorizontal_blue_left.png defaultShader.frag dinosaur.wav draftpacman_ghostrunningawaynew.wav fmod64.dll fmodstudio64.dll"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="AntTweakBar64.dll" Component_="AntTweakBar64.dll" FileName="ANTTWE~1.DLL|AntTweakBar64.dll" Attributes="0" SourcePath="..\AntTweakBar64.dll" SelfReg="false" NextFile="fmod64.dll"/>
+    <ROW File="Art_Pac_Sprite.png" Component_="Art_Pac_Sprite.png" FileName="ART_PA~1.PNG|Art_Pac_Sprite.png" Attributes="0" SourcePath="..\Assets\Textures\Art_Pac_Sprite.png" SelfReg="false" NextFile="Art_Pac_Sprite_Inverted.png"/>
+    <ROW File="Art_Pac_Sprite_Inverted.png" Component_="Art_Pac_Sprite.png" FileName="ART_PA~2.PNG|Art_Pac_Sprite_Inverted.png" Attributes="0" SourcePath="..\Assets\Textures\Art_Pac_Sprite_Inverted.png" SelfReg="false" NextFile="Asteroid.png"/>
+    <ROW File="Asteroid.object" Component_="Asteroid.object" FileName="ASTERO~1.OBJ|Asteroid.object" Attributes="0" SourcePath="..\Assets\Objects\RefrenceObjects\Asteroid.object" SelfReg="false" NextFile="Bullet.object"/>
+    <ROW File="Asteroid.png" Component_="Art_Pac_Sprite.png" FileName="Asteroid.png" Attributes="0" SourcePath="..\Assets\Textures\Asteroid.png" SelfReg="false" NextFile="Bullet.png"/>
+    <ROW File="Asteroid.spriteSource" Component_="Asteroid.spriteSource" FileName="ASTERO~1.SPR|Asteroid.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\ReferenceSpriteSources\Asteroid.spriteSource" SelfReg="false" NextFile="Bullet.spriteSource"/>
+    <ROW File="Asteroid_Field.mp3" Component_="draftpacman_ghostrunningawaynew.wav" FileName="ASTERO~1.MP3|Asteroid_Field.mp3" Attributes="0" SourcePath="..\Assets\Audio\Asteroid_Field.mp3" SelfReg="false" NextFile="dinosaur.wav"/>
+    <ROW File="Axes.spriteSource" Component_="Axes.spriteSource" FileName="AXES~1.SPR|Axes.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\LevelEditor\Axes.spriteSource" SelfReg="false" NextFile="EmptyTileLogo.spriteSource"/>
+    <ROW File="Brush.object" Component_="Brush.object" FileName="BRUSH~1.OBJ|Brush.object" Attributes="0" SourcePath="..\Assets\Objects\LevelEditor\Brush.object" SelfReg="false" NextFile="CameraManager.object"/>
+    <ROW File="Bullet.object" Component_="Asteroid.object" FileName="BULLET~1.OBJ|Bullet.object" Attributes="0" SourcePath="..\Assets\Objects\RefrenceObjects\Bullet.object" SelfReg="false" NextFile="Instructions.object"/>
+    <ROW File="Bullet.png" Component_="Art_Pac_Sprite.png" FileName="Bullet.png" Attributes="0" SourcePath="..\Assets\Textures\Bullet.png" SelfReg="false" NextFile="Circle.png"/>
+    <ROW File="Bullet.spriteSource" Component_="Asteroid.spriteSource" FileName="BULLET~1.SPR|Bullet.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\ReferenceSpriteSources\Bullet.spriteSource" SelfReg="false" NextFile="Ship.spriteSource"/>
+    <ROW File="CameraManager.object" Component_="Brush.object" FileName="CAMERA~1.OBJ|CameraManager.object" Attributes="0" SourcePath="..\Assets\Objects\LevelEditor\CameraManager.object" SelfReg="false" NextFile="GameObjectPlacer.object"/>
+    <ROW File="Cherry.object" Component_="Cherry.object" FileName="CHERRY~1.OBJ|Cherry.object" Attributes="0" SourcePath="..\Assets\Objects\Cherry.object" SelfReg="false" NextFile="Circle.object"/>
+    <ROW File="Cherry.spriteSource" Component_="Cherry.spriteSource" FileName="CHERRY~1.SPR|Cherry.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Cherry.spriteSource" SelfReg="false" NextFile="Circle.spriteSource"/>
+    <ROW File="Circle.object" Component_="Cherry.object" FileName="CIRCLE~1.OBJ|Circle.object" Attributes="0" SourcePath="..\Assets\Objects\Circle.object" SelfReg="false" NextFile="GhostBlue.object"/>
+    <ROW File="Circle.png" Component_="Art_Pac_Sprite.png" FileName="Circle.png" Attributes="0" SourcePath="..\Assets\Textures\Circle.png" SelfReg="false" NextFile="CodeNewRoman.pdn"/>
+    <ROW File="Circle.spriteSource" Component_="Cherry.spriteSource" FileName="CIRCLE~1.SPR|Circle.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Circle.spriteSource" SelfReg="false" NextFile="CodeNewRoman.spriteSource"/>
+    <ROW File="CodeNewRoman.pdn" Component_="Art_Pac_Sprite.png" FileName="CODENE~1.PDN|CodeNewRoman.pdn" Attributes="0" SourcePath="..\Assets\Textures\CodeNewRoman.pdn" SelfReg="false" NextFile="CodeNewRoman.png"/>
+    <ROW File="CodeNewRoman.png" Component_="Art_Pac_Sprite.png" FileName="CODENE~1.PNG|CodeNewRoman.png" Attributes="0" SourcePath="..\Assets\Textures\CodeNewRoman.png" SelfReg="false" NextFile="CyanPink_Ghost.png"/>
+    <ROW File="CodeNewRoman.spriteSource" Component_="Cherry.spriteSource" FileName="CODENE~1.SPR|CodeNewRoman.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\CodeNewRoman.spriteSource" SelfReg="false" NextFile="Empty.spriteSource"/>
+    <ROW File="CyanPink_Ghost.png" Component_="Art_Pac_Sprite.png" FileName="CYANPI~1.PNG|CyanPink_Ghost.png" Attributes="0" SourcePath="..\Assets\Textures\CyanPink_Ghost.png" SelfReg="false" NextFile="EmptyTileLogo.png"/>
+    <ROW File="Default.tileMap" Component_="Default.tileMap" FileName="DEFAUL~1.TIL|Default.tileMap" Attributes="0" SourcePath="..\Assets\TileMaps\Default.tileMap" SelfReg="false" NextFile="AntTweakBar64.dll"/>
+    <ROW File="Drone_cadence.wav" Component_="dinosaur.wav" FileName="DRONE_~1.WAV|Drone_cadence.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Drone_cadence.wav" SelfReg="false" NextFile="Drone_low.wav"/>
+    <ROW File="Drone_low.wav" Component_="dinosaur.wav" FileName="DRONE_~2.WAV|Drone_low.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Drone_low.wav" SelfReg="false" NextFile="Drone_octave.wav"/>
+    <ROW File="Drone_octave.wav" Component_="dinosaur.wav" FileName="DRONE_~3.WAV|Drone_octave.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Drone_octave.wav" SelfReg="false" NextFile="Flute_1.wav"/>
+    <ROW File="Empty.spriteSource" Component_="Cherry.spriteSource" FileName="EMPTY~1.SPR|Empty.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Empty.spriteSource" SelfReg="false" NextFile="GhostBlueDown.spriteSource"/>
+    <ROW File="EmptyTileLogo.png" Component_="Art_Pac_Sprite.png" FileName="EMPTYT~1.PNG|EmptyTileLogo.png" Attributes="0" SourcePath="..\Assets\Textures\EmptyTileLogo.png" SelfReg="false" NextFile="Monkey.png"/>
+    <ROW File="EmptyTileLogo.spriteSource" Component_="Axes.spriteSource" FileName="EMPTYT~1.SPR|EmptyTileLogo.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\LevelEditor\EmptyTileLogo.spriteSource" SelfReg="false" NextFile="Menu.spriteSource"/>
+    <ROW File="Flute_1.wav" Component_="dinosaur.wav" FileName="Flute_1.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Flute_1.wav" SelfReg="false" NextFile="Flute_2.wav"/>
+    <ROW File="Flute_2.wav" Component_="dinosaur.wav" FileName="Flute_2.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Flute_2.wav" SelfReg="false" NextFile="High_Sine.wav"/>
+    <ROW File="GOButton.object" Component_="Brush.object" FileName="GOBUTT~1.OBJ|GOButton.object" Attributes="0" SourcePath="..\Assets\Objects\LevelEditor\GOButton.object" SelfReg="false" NextFile="MenuController.object"/>
+    <ROW File="GameObjectPlacer.object" Component_="Brush.object" FileName="GAMEOB~1.OBJ|GameObjectPlacer.object" Attributes="0" SourcePath="..\Assets\Objects\LevelEditor\GameObjectPlacer.object" SelfReg="false" NextFile="GOButton.object"/>
+    <ROW File="GhostBlue.object" Component_="Cherry.object" FileName="GHOSTB~1.OBJ|GhostBlue.object" Attributes="0" SourcePath="..\Assets\Objects\GhostBlue.object" SelfReg="false" NextFile="HighScore.object"/>
+    <ROW File="GhostBlueDown.spriteSource" Component_="GhostBlueDown.spriteSource" FileName="GHOSTB~1.SPR|GhostBlueDown.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\Blue\GhostBlueDown.spriteSource" SelfReg="false" NextFile="GhostBlueLeft.spriteSource"/>
+    <ROW File="GhostBlueLeft.spriteSource" Component_="GhostBlueDown.spriteSource" FileName="GHOSTB~2.SPR|GhostBlueLeft.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\Blue\GhostBlueLeft.spriteSource" SelfReg="false" NextFile="GhostBlueRight.spriteSource"/>
+    <ROW File="GhostBlueRight.spriteSource" Component_="GhostBlueDown.spriteSource" FileName="GHOSTB~3.SPR|GhostBlueRight.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\Blue\GhostBlueRight.spriteSource" SelfReg="false" NextFile="GhostBlueUp.spriteSource"/>
+    <ROW File="GhostBlueUp.spriteSource" Component_="GhostBlueDown.spriteSource" FileName="GHOSTB~4.SPR|GhostBlueUp.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\Blue\GhostBlueUp.spriteSource" SelfReg="false" NextFile="GhostDeadDown.spriteSource"/>
+    <ROW File="GhostDeadDown.spriteSource" Component_="GhostDeadDown.spriteSource" FileName="GHOSTD~1.SPR|GhostDeadDown.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\GhostDeadDown.spriteSource" SelfReg="false" NextFile="GhostDeadLeft.spriteSource"/>
+    <ROW File="GhostDeadLeft.spriteSource" Component_="GhostDeadDown.spriteSource" FileName="GHOSTD~2.SPR|GhostDeadLeft.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\GhostDeadLeft.spriteSource" SelfReg="false" NextFile="GhostDeadRight.spriteSource"/>
+    <ROW File="GhostDeadRight.spriteSource" Component_="GhostDeadDown.spriteSource" FileName="GHOSTD~3.SPR|GhostDeadRight.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\GhostDeadRight.spriteSource" SelfReg="false" NextFile="GhostDeadUp.spriteSource"/>
+    <ROW File="GhostDeadUp.spriteSource" Component_="GhostDeadDown.spriteSource" FileName="GHOSTD~4.SPR|GhostDeadUp.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\GhostDeadUp.spriteSource" SelfReg="false" NextFile="GhostFrightened.spriteSource"/>
+    <ROW File="GhostFrightened.spriteSource" Component_="GhostDeadDown.spriteSource" FileName="GHOSTF~1.SPR|GhostFrightened.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\GhostFrightened.spriteSource" SelfReg="false" NextFile="GhostFrightenedEnd.spriteSource"/>
+    <ROW File="GhostFrightenedEnd.spriteSource" Component_="GhostDeadDown.spriteSource" FileName="GHOSTF~2.SPR|GhostFrightenedEnd.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\GhostFrightenedEnd.spriteSource" SelfReg="false" NextFile="GhostOrangeDown.spriteSource"/>
+    <ROW File="GhostOrangeDown.spriteSource" Component_="GhostOrangeDown.spriteSource" FileName="GHOSTO~1.SPR|GhostOrangeDown.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\Orange\GhostOrangeDown.spriteSource" SelfReg="false" NextFile="GhostOrangeLeft.spriteSource"/>
+    <ROW File="GhostOrangeLeft.spriteSource" Component_="GhostOrangeDown.spriteSource" FileName="GHOSTO~2.SPR|GhostOrangeLeft.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\Orange\GhostOrangeLeft.spriteSource" SelfReg="false" NextFile="GhostOrangeRight.spriteSource"/>
+    <ROW File="GhostOrangeRight.spriteSource" Component_="GhostOrangeDown.spriteSource" FileName="GHOSTO~3.SPR|GhostOrangeRight.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\Orange\GhostOrangeRight.spriteSource" SelfReg="false" NextFile="GhostOrangeUp.spriteSource"/>
+    <ROW File="GhostOrangeUp.spriteSource" Component_="GhostOrangeDown.spriteSource" FileName="GHOSTO~4.SPR|GhostOrangeUp.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\Orange\GhostOrangeUp.spriteSource" SelfReg="false" NextFile="GhostPinkDown.spriteSource"/>
+    <ROW File="GhostPinkDown.spriteSource" Component_="GhostPinkDown.spriteSource" FileName="GHOSTP~1.SPR|GhostPinkDown.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\Pink\GhostPinkDown.spriteSource" SelfReg="false" NextFile="GhostRedDown.spriteSource"/>
+    <ROW File="GhostRedDown.spriteSource" Component_="GhostRedDown.spriteSource" FileName="GHOSTR~1.SPR|GhostRedDown.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\Red\GhostRedDown.spriteSource" SelfReg="false" NextFile="GhostRedLeft.spriteSource"/>
+    <ROW File="GhostRedLeft.spriteSource" Component_="GhostRedDown.spriteSource" FileName="GHOSTR~2.SPR|GhostRedLeft.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\Red\GhostRedLeft.spriteSource" SelfReg="false" NextFile="GhostRedRight.spriteSource"/>
+    <ROW File="GhostRedRight.spriteSource" Component_="GhostRedDown.spriteSource" FileName="GHOSTR~3.SPR|GhostRedRight.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\Red\GhostRedRight.spriteSource" SelfReg="false" NextFile="GhostRedUp.spriteSource"/>
+    <ROW File="GhostRedUp.spriteSource" Component_="GhostRedDown.spriteSource" FileName="GHOSTR~4.SPR|GhostRedUp.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Ghosts\Red\GhostRedUp.spriteSource" SelfReg="false" NextFile="InvertedGhostCyan.spriteSource"/>
+    <ROW File="HighScore.object" Component_="Cherry.object" FileName="HIGHSC~1.OBJ|HighScore.object" Attributes="0" SourcePath="..\Assets\Objects\HighScore.object" SelfReg="false" NextFile="HighScoreText.object"/>
+    <ROW File="HighScoreText.object" Component_="Cherry.object" FileName="HIGHSC~2.OBJ|HighScoreText.object" Attributes="0" SourcePath="..\Assets\Objects\HighScoreText.object" SelfReg="false" NextFile="Brush.object"/>
+    <ROW File="High_Sine.wav" Component_="dinosaur.wav" FileName="HIGH_S~1.WAV|High_Sine.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\High_Sine.wav" SelfReg="false" NextFile="High_Square.wav"/>
+    <ROW File="High_Square.wav" Component_="dinosaur.wav" FileName="HIGH_S~2.WAV|High_Square.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\High_Square.wav" SelfReg="false" NextFile="Intro.wav"/>
+    <ROW File="Instructions.object" Component_="Asteroid.object" FileName="INSTRU~1.OBJ|Instructions.object" Attributes="0" SourcePath="..\Assets\Objects\RefrenceObjects\Instructions.object" SelfReg="false" NextFile="Line.object"/>
+    <ROW File="Intro.wav" Component_="dinosaur.wav" FileName="Intro.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Intro.wav" SelfReg="false" NextFile="Low_Sine.wav"/>
+    <ROW File="InvertedGhostCyan.spriteSource" Component_="InvertedGhostCyan.spriteSource" FileName="INVERT~1.SPR|InvertedGhostCyan.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Inverted\Ghosts\InvertedGhostCyan.spriteSource" SelfReg="false" NextFile="InvertedGhostOrange.spriteSource"/>
+    <ROW File="InvertedGhostOrange.spriteSource" Component_="InvertedGhostCyan.spriteSource" FileName="INVERT~2.SPR|InvertedGhostOrange.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Inverted\Ghosts\InvertedGhostOrange.spriteSource" SelfReg="false" NextFile="InvertedGhostPink.spriteSource"/>
+    <ROW File="InvertedGhostPink.spriteSource" Component_="InvertedGhostCyan.spriteSource" FileName="INVERT~3.SPR|InvertedGhostPink.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Inverted\Ghosts\InvertedGhostPink.spriteSource" SelfReg="false" NextFile="InvertedGhostRed.spriteSource"/>
+    <ROW File="InvertedGhostRed.spriteSource" Component_="InvertedGhostCyan.spriteSource" FileName="INVERT~4.SPR|InvertedGhostRed.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Inverted\Ghosts\InvertedGhostRed.spriteSource" SelfReg="false" NextFile="InvertedPacDeath.spriteSource"/>
+    <ROW File="InvertedPacDeath.spriteSource" Component_="InvertedPacDeath.spriteSource" FileName="INVERT~1.SPR|InvertedPacDeath.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Inverted\InvertedPacDeath.spriteSource" SelfReg="false" NextFile="InvertedPacman.spriteSource"/>
+    <ROW File="InvertedPacman.spriteSource" Component_="InvertedPacDeath.spriteSource" FileName="INVERT~2.SPR|InvertedPacman.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Inverted\InvertedPacman.spriteSource" SelfReg="false" NextFile="Axes.spriteSource"/>
+    <ROW File="Level1.lvl" Component_="Level1.lvl" FileName="Level1.lvl" Attributes="0" SourcePath="..\Assets\Level1.lvl" SelfReg="false" NextFile="Level2.lvl"/>
+    <ROW File="Level2.lvl" Component_="Level1.lvl" FileName="Level2.lvl" Attributes="0" SourcePath="..\Assets\Level2.lvl" SelfReg="false" NextFile="LevelMenu.lvl"/>
+    <ROW File="LevelMenu.lvl" Component_="Level1.lvl" FileName="LEVELM~1.LVL|LevelMenu.lvl" Attributes="0" SourcePath="..\Assets\LevelMenu.lvl" SelfReg="false" NextFile="Cherry.object"/>
+    <ROW File="Line.object" Component_="Asteroid.object" FileName="LINE~1.OBJ|Line.object" Attributes="0" SourcePath="..\Assets\Objects\RefrenceObjects\Line.object" SelfReg="false" NextFile="Monkey.object_1"/>
+    <ROW File="LivesText.object" Component_="Cherry.object" FileName="LIVEST~1.OBJ|LivesText.object" Attributes="0" SourcePath="..\Assets\Objects\LivesText.object" SelfReg="false" NextFile="Logo.object"/>
+    <ROW File="Logo.object" Component_="Cherry.object" FileName="LOGO~1.OBJ|Logo.object" Attributes="0" SourcePath="..\Assets\Objects\Logo.object" SelfReg="false" NextFile="Monkey.object"/>
+    <ROW File="Logo.spriteSource" Component_="Cherry.spriteSource" FileName="LOGO~1.SPR|Logo.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Logo.spriteSource" SelfReg="false" NextFile="PacDeath.spriteSource"/>
+    <ROW File="Low_Sine.wav" Component_="dinosaur.wav" FileName="Low_Sine.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Low_Sine.wav" SelfReg="false" NextFile="Low_Square.wav"/>
+    <ROW File="Low_Square.wav" Component_="dinosaur.wav" FileName="LOW_SQ~1.WAV|Low_Square.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Low_Square.wav" SelfReg="false" NextFile="MasterBank.bank"/>
+    <ROW File="MasterBank.bank" Component_="dinosaur.wav" FileName="MASTER~1.BAN|Master Bank.bank" Attributes="0" SourcePath="..\Assets\Audio\Banks\Master Bank.bank" SelfReg="false" NextFile="MasterBank.strings.bank"/>
+    <ROW File="MasterBank.strings.bank" Component_="dinosaur.wav" FileName="MASTER~2.BAN|Master Bank.strings.bank" Attributes="0" SourcePath="..\Assets\Audio\Banks\Master Bank.strings.bank" SelfReg="false" NextFile="Menu_Transition.wav"/>
+    <ROW File="Menu.spriteSource" Component_="Axes.spriteSource" FileName="MENU~1.SPR|Menu.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\LevelEditor\Menu.spriteSource" SelfReg="false" NextFile="Tab.spriteSource"/>
+    <ROW File="MenuController.object" Component_="Brush.object" FileName="MENUCO~1.OBJ|MenuController.object" Attributes="0" SourcePath="..\Assets\Objects\LevelEditor\MenuController.object" SelfReg="false" NextFile="ObjectMenu.object"/>
+    <ROW File="Menu_Transition.wav" Component_="dinosaur.wav" FileName="MENU_T~1.WAV|Menu_Transition.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Menu_Transition.wav" SelfReg="false" NextFile="Mid_Sine.wav"/>
+    <ROW File="Mid_Sine.wav" Component_="dinosaur.wav" FileName="Mid_Sine.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Mid_Sine.wav" SelfReg="false" NextFile="Mid_Square.wav"/>
+    <ROW File="Mid_Square.wav" Component_="dinosaur.wav" FileName="MID_SQ~1.WAV|Mid_Square.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Mid_Square.wav" SelfReg="false" NextFile="Outro.wav"/>
+    <ROW File="Monkey.object" Component_="Cherry.object" FileName="MONKEY~1.OBJ|Monkey.object" Attributes="0" SourcePath="..\Assets\Objects\Monkey.object" SelfReg="false" NextFile="PacMan.object"/>
+    <ROW File="Monkey.object_1" Component_="Asteroid.object" FileName="MONKEY~1.OBJ|Monkey.object" Attributes="0" SourcePath="..\Assets\Objects\RefrenceObjects\Monkey.object" SelfReg="false" NextFile="Point.object"/>
+    <ROW File="Monkey.png" Component_="Art_Pac_Sprite.png" FileName="Monkey.png" Attributes="0" SourcePath="..\Assets\Textures\Monkey.png" SelfReg="false" NextFile="OrangeBlue_Ghost.png"/>
+    <ROW File="ObjectMenu.object" Component_="Brush.object" FileName="OBJECT~1.OBJ|ObjectMenu.object" Attributes="0" SourcePath="..\Assets\Objects\LevelEditor\ObjectMenu.object" SelfReg="false" NextFile="SpriteText.object"/>
+    <ROW File="OrangeBlue_Ghost.png" Component_="Art_Pac_Sprite.png" FileName="ORANGE~1.PNG|OrangeBlue_Ghost.png" Attributes="0" SourcePath="..\Assets\Textures\OrangeBlue_Ghost.png" SelfReg="false" NextFile="PutImagesHere.txt"/>
+    <ROW File="Outro.wav" Component_="dinosaur.wav" FileName="Outro.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Outro.wav" SelfReg="false" NextFile="Percussion.wav"/>
+    <ROW File="PacDeath.spriteSource" Component_="PacDeath.spriteSource" FileName="PACDEA~1.SPR|PacDeath.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\PacMan\PacDeath.spriteSource" SelfReg="false" NextFile="PacManGo.spriteSource"/>
+    <ROW File="PacMan.exe" Component_="PacMan.exe" FileName="PacMan.exe" Attributes="0" SourcePath="..\PacMan.exe" SelfReg="false" NextFile="PacMan.exeSquare44x44Logo.scale100.png" DigSign="true"/>
+    <ROW File="PacMan.exeBadgeLogo.scale100.png" Component_="PacMan.exeSquare44x44Logo.scale100.png" FileName="PACMAN~3.PNG|PacMan.exeBadgeLogo.scale-100.png" Attributes="0" SourcePath="..\..\Beta Engine\Assets\Textures\AppIcon50x50.png" SelfReg="false" NextFile="PacMan.exeSquare71x71Logo.scale100.png"/>
+    <ROW File="PacMan.exeSquare150x150Logo.scale100.png" Component_="PacMan.exeSquare44x44Logo.scale100.png" FileName="PACMAN~2.PNG|PacMan.exeSquare150x150Logo.scale-100.png" Attributes="0" SourcePath="..\..\Beta Engine\Assets\Textures\AppIcon50x50.png" SelfReg="false" NextFile="Store50x50Logo.scale100.png"/>
+    <ROW File="PacMan.exeSquare44x44Logo.scale100.png" Component_="PacMan.exeSquare44x44Logo.scale100.png" FileName="PACMAN~1.PNG|PacMan.exeSquare44x44Logo.scale-100.png" Attributes="0" SourcePath="..\..\Beta Engine\Assets\Textures\AppIcon50x50.png" SelfReg="false" NextFile="PacMan.exeSquare150x150Logo.scale100.png"/>
+    <ROW File="PacMan.exeSquare71x71Logo.scale100.png" Component_="PacMan.exeSquare44x44Logo.scale100.png" FileName="PACMAN~4.PNG|PacMan.exeSquare71x71Logo.scale-100.png" Attributes="0" SourcePath="..\..\Beta Engine\Assets\Textures\AppIcon50x50.png" SelfReg="false" NextFile="PacMan.exeWide310x150Logo.scale100.png"/>
+    <ROW File="PacMan.exeWide310x150Logo.scale100.png" Component_="PacMan.exeSquare44x44Logo.scale100.png" FileName="PACMAN~5.PNG|PacMan.exeWide310x150Logo.scale-100.png" Attributes="0" SourcePath="..\..\Beta Engine\Assets\Textures\AppIcon50x50.png" SelfReg="false"/>
+    <ROW File="PacMan.object" Component_="Cherry.object" FileName="PACMAN~1.OBJ|PacMan.object" Attributes="0" SourcePath="..\Assets\Objects\PacMan.object" SelfReg="false" NextFile="Pellet.object"/>
+    <ROW File="PacManGo.spriteSource" Component_="PacDeath.spriteSource" FileName="PACMAN~1.SPR|PacManGo.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\PacMan\PacManGo.spriteSource" SelfReg="false" NextFile="PacManStop.spriteSource"/>
+    <ROW File="PacManStop.spriteSource" Component_="PacDeath.spriteSource" FileName="PACMAN~2.SPR|PacManStop.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\PacMan\PacManStop.spriteSource" SelfReg="false" NextFile="Pellet.spriteSource"/>
+    <ROW File="PacmanTitle.png" Component_="Art_Pac_Sprite.png" FileName="PACMAN~2.PNG|PacmanTitle.png" Attributes="0" SourcePath="..\Assets\Textures\PacmanTitle.png" SelfReg="false" NextFile="Pellet.png"/>
+    <ROW File="Pellet.object" Component_="Cherry.object" FileName="PELLET~1.OBJ|Pellet.object" Attributes="0" SourcePath="..\Assets\Objects\Pellet.object" SelfReg="false" NextFile="PowerPellet.object"/>
+    <ROW File="Pellet.png" Component_="Art_Pac_Sprite.png" FileName="Pellet.png" Attributes="0" SourcePath="..\Assets\Textures\Pellet.png" SelfReg="false" NextFile="PinkGreen_Ghost.png"/>
+    <ROW File="Pellet.spriteSource" Component_="Cherry.spriteSource" FileName="PELLET~1.SPR|Pellet.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\Pellet.spriteSource" SelfReg="false" NextFile="PowerPellet.spriteSource"/>
+    <ROW File="Percussion.wav" Component_="dinosaur.wav" FileName="PERCUS~1.WAV|Percussion.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Percussion.wav" SelfReg="false" NextFile="Ruan_1.wav"/>
+    <ROW File="PinkGreen_Ghost.png" Component_="Art_Pac_Sprite.png" FileName="PINKGR~1.PNG|PinkGreen_Ghost.png" Attributes="0" SourcePath="..\Assets\Textures\PinkGreen_Ghost.png" SelfReg="false" NextFile="PlusPellet.png"/>
+    <ROW File="PlotAxes.png" Component_="barHorizontal_blue_left.png" FileName="PlotAxes.png" Attributes="0" SourcePath="..\Assets\Textures\UI\PlotAxes.png" SelfReg="false" NextFile="squareBlue.png"/>
+    <ROW File="PlusPellet.png" Component_="Art_Pac_Sprite.png" FileName="PLUSPE~1.PNG|PlusPellet.png" Attributes="0" SourcePath="..\Assets\Textures\PlusPellet.png" SelfReg="false" NextFile="PlusPower.png"/>
+    <ROW File="PlusPower.png" Component_="Art_Pac_Sprite.png" FileName="PLUSPO~1.PNG|PlusPower.png" Attributes="0" SourcePath="..\Assets\Textures\PlusPower.png" SelfReg="false" NextFile="Power.png"/>
+    <ROW File="Point.object" Component_="Asteroid.object" FileName="POINT~1.OBJ|Point.object" Attributes="0" SourcePath="..\Assets\Objects\RefrenceObjects\Point.object" SelfReg="false" NextFile="Rectangle.object_1"/>
+    <ROW File="Power.png" Component_="Art_Pac_Sprite.png" FileName="Power.png" Attributes="0" SourcePath="..\Assets\Textures\Power.png" SelfReg="false" NextFile="RedCyan_Ghost.png"/>
+    <ROW File="PowerPellet.object" Component_="Cherry.object" FileName="POWERP~1.OBJ|PowerPellet.object" Attributes="0" SourcePath="..\Assets\Objects\PowerPellet.object" SelfReg="false" NextFile="Rectangle.object"/>
+    <ROW File="PowerPellet.spriteSource" Component_="Cherry.spriteSource" FileName="POWERP~1.SPR|PowerPellet.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\PowerPellet.spriteSource" SelfReg="false" NextFile="Asteroid.spriteSource"/>
+    <ROW File="PutImagesHere.txt" Component_="PutImagesHere.txt" FileName="PUTIMA~1.TXT|Put Images Here.txt" Attributes="0" SourcePath="..\Assets\Textures\Pac-Man\Put Images Here.txt" SelfReg="false" NextFile="pacmanmaptiles3.png"/>
+    <ROW File="Rectangle.object" Component_="Cherry.object" FileName="RECTAN~1.OBJ|Rectangle.object" Attributes="0" SourcePath="..\Assets\Objects\Rectangle.object" SelfReg="false" NextFile="Asteroid.object"/>
+    <ROW File="Rectangle.object_1" Component_="Asteroid.object" FileName="RECTAN~1.OBJ|Rectangle.object" Attributes="0" SourcePath="..\Assets\Objects\RefrenceObjects\Rectangle.object" SelfReg="false" NextFile="ScoreText.object"/>
+    <ROW File="RedCyan_Ghost.png" Component_="Art_Pac_Sprite.png" FileName="REDCYA~1.PNG|RedCyan_Ghost.png" Attributes="0" SourcePath="..\Assets\Textures\RedCyan_Ghost.png" SelfReg="false" NextFile="Ship.png"/>
+    <ROW File="Ruan_1.wav" Component_="dinosaur.wav" FileName="Ruan_1.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Ruan_1.wav" SelfReg="false" NextFile="Ruan_2.wav"/>
+    <ROW File="Ruan_2.wav" Component_="dinosaur.wav" FileName="Ruan_2.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Ruan_2.wav" SelfReg="false" NextFile="Synth.wav"/>
+    <ROW File="Score.object" Component_="Cherry.object" FileName="SCORE~1.OBJ|Score.object" Attributes="0" SourcePath="..\Assets\Objects\Score.object" SelfReg="false" NextFile="ScoreText.object_1"/>
+    <ROW File="ScoreText.object" Component_="Asteroid.object" FileName="SCORET~1.OBJ|ScoreText.object" Attributes="0" SourcePath="..\Assets\Objects\RefrenceObjects\ScoreText.object" SelfReg="false" NextFile="Ship.object"/>
+    <ROW File="ScoreText.object_1" Component_="Cherry.object" FileName="SCORET~1.OBJ|ScoreText.object" Attributes="0" SourcePath="..\Assets\Objects\ScoreText.object" SelfReg="false" NextFile="StartText.object"/>
+    <ROW File="Ship.object" Component_="Asteroid.object" FileName="SHIP~1.OBJ|Ship.object" Attributes="0" SourcePath="..\Assets\Objects\RefrenceObjects\Ship.object" SelfReg="false" NextFile="Text.object"/>
+    <ROW File="Ship.png" Component_="Art_Pac_Sprite.png" FileName="Ship.png" Attributes="0" SourcePath="..\Assets\Textures\Ship.png" SelfReg="false" NextFile="TGS_Duncan_TileMap.pdn"/>
+    <ROW File="Ship.spriteSource" Component_="Asteroid.spriteSource" FileName="SHIP~1.SPR|Ship.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\ReferenceSpriteSources\Ship.spriteSource" SelfReg="false" NextFile="TileMap.spriteSource"/>
+    <ROW File="SpriteText.object" Component_="Brush.object" FileName="SPRITE~1.OBJ|SpriteText.object" Attributes="0" SourcePath="..\Assets\Objects\LevelEditor\SpriteText.object" SelfReg="false" NextFile="Tab.object"/>
+    <ROW File="StartText.object" Component_="Cherry.object" FileName="STARTT~1.OBJ|StartText.object" Attributes="0" SourcePath="..\Assets\Objects\StartText.object" SelfReg="false" NextFile="TileMap.object_1"/>
+    <ROW File="Store50x50Logo.scale100.png" Component_="PacMan.exeSquare44x44Logo.scale100.png" FileName="STORE5~1.PNG|Store50x50Logo.scale-100.png" Attributes="0" SourcePath="..\..\Beta Engine\Assets\Textures\AppIcon50x50.png" SelfReg="false" NextFile="PacMan.exeBadgeLogo.scale100.png"/>
+    <ROW File="Synth.wav" Component_="dinosaur.wav" FileName="Synth.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\Synth.wav" SelfReg="false" NextFile="pacmancherrypluslevel.wav"/>
+    <ROW File="TGS_Duncan_TileMap.pdn" Component_="Art_Pac_Sprite.png" FileName="TGS_DU~1.PDN|TGS_Duncan_TileMap.pdn" Attributes="0" SourcePath="..\Assets\Textures\TGS_Duncan_TileMap.pdn" SelfReg="false" NextFile="TGS_Duncan_TileMap.png"/>
+    <ROW File="TGS_Duncan_TileMap.png" Component_="Art_Pac_Sprite.png" FileName="TGS_DU~1.PNG|TGS_Duncan_TileMap.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Duncan_TileMap.png" SelfReg="false" NextFile="TGS_Eyes_Down.png"/>
+    <ROW File="TGS_Eyes_Down.png" Component_="Art_Pac_Sprite.png" FileName="TGS_EY~1.PNG|TGS_Eyes_Down.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Eyes_Down.png" SelfReg="false" NextFile="TGS_Eyes_Left.png"/>
+    <ROW File="TGS_Eyes_Left.png" Component_="Art_Pac_Sprite.png" FileName="TGS_EY~2.PNG|TGS_Eyes_Left.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Eyes_Left.png" SelfReg="false" NextFile="TGS_Eyes_Right.png"/>
+    <ROW File="TGS_Eyes_Right.png" Component_="Art_Pac_Sprite.png" FileName="TGS_EY~3.PNG|TGS_Eyes_Right.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Eyes_Right.png" SelfReg="false" NextFile="TGS_Eyes_Up.png"/>
+    <ROW File="TGS_Eyes_Up.png" Component_="Art_Pac_Sprite.png" FileName="TGS_EY~4.PNG|TGS_Eyes_Up.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Eyes_Up.png" SelfReg="false" NextFile="TGS_Fadiya_PacmanDeath.png"/>
+    <ROW File="TGS_Fadiya_PacmanDeath.png" Component_="Art_Pac_Sprite.png" FileName="TGS_FA~1.PNG|TGS_Fadiya_PacmanDeath.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Fadiya_PacmanDeath.png" SelfReg="false" NextFile="TGS_fadiya_PacmanDeathBlk.png"/>
+    <ROW File="TGS_Fadiya_PacmanGo.png" Component_="Art_Pac_Sprite.png" FileName="TGS_FA~3.PNG|TGS_Fadiya_PacmanGo.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Fadiya_PacmanGo.png" SelfReg="false" NextFile="TGS_fadiya_PacmanGoBlk.png"/>
+    <ROW File="TGS_Fruit_Cherry.png" Component_="Art_Pac_Sprite.png" FileName="TGS_FR~1.PNG|TGS_Fruit_Cherry.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Fruit_Cherry.png" SelfReg="false" NextFile="TGS_Fruit_Strawberry.png"/>
+    <ROW File="TGS_Fruit_Strawberry.png" Component_="Art_Pac_Sprite.png" FileName="TGS_FR~2.PNG|TGS_Fruit_Strawberry.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Fruit_Strawberry.png" SelfReg="false" NextFile="TGS_Ghost_Blue.png"/>
+    <ROW File="TGS_Ghost_Blue.png" Component_="Art_Pac_Sprite.png" FileName="TGS_GH~1.PNG|TGS_Ghost_Blue.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Ghost_Blue.png" SelfReg="false" NextFile="TGS_Inverted_Cherry.png"/>
+    <ROW File="TGS_Inverted_Cherry.png" Component_="Art_Pac_Sprite.png" FileName="TGS_IN~1.PNG|TGS_Inverted_Cherry.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Inverted_Cherry.png" SelfReg="false" NextFile="TGS_Inverted_PowerupGhost.png"/>
+    <ROW File="TGS_Inverted_PowerupGhost.png" Component_="Art_Pac_Sprite.png" FileName="TGS_IN~2.PNG|TGS_Inverted_PowerupGhost.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Inverted_PowerupGhost.png" SelfReg="false" NextFile="TGS_Inverted_Strawberry.png"/>
+    <ROW File="TGS_Inverted_Strawberry.png" Component_="Art_Pac_Sprite.png" FileName="TGS_IN~3.PNG|TGS_Inverted_Strawberry.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Inverted_Strawberry.png" SelfReg="false" NextFile="TGS_Pac_Blue_Down.png"/>
+    <ROW File="TGS_Pac_Blue_Down.png" Component_="Art_Pac_Sprite.png" FileName="TGS_PA~1.PNG|TGS_Pac_Blue_Down.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Blue_Down.png" SelfReg="false" NextFile="TGS_Pac_Blue_Left.png"/>
+    <ROW File="TGS_Pac_Blue_Left.png" Component_="Art_Pac_Sprite.png" FileName="TGS_PA~2.PNG|TGS_Pac_Blue_Left.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Blue_Left.png" SelfReg="false" NextFile="TGS_Pac_Blue_Right.png"/>
+    <ROW File="TGS_Pac_Blue_Right.png" Component_="Art_Pac_Sprite.png" FileName="TGS_PA~3.PNG|TGS_Pac_Blue_Right.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Blue_Right.png" SelfReg="false" NextFile="TGS_Pac_Blue_Up.png"/>
+    <ROW File="TGS_Pac_Blue_Up.png" Component_="Art_Pac_Sprite.png" FileName="TGS_PA~4.PNG|TGS_Pac_Blue_Up.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Blue_Up.png" SelfReg="false" NextFile="TGS_Pac_Brown_Down.png"/>
+    <ROW File="TGS_Pac_Brown_Down.png" Component_="Art_Pac_Sprite.png" FileName="TGS_PA~5.PNG|TGS_Pac_Brown_Down.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Brown_Down.png" SelfReg="false" NextFile="TGS_Pac_Brown_Left.png"/>
+    <ROW File="TGS_Pac_Brown_Left.png" Component_="Art_Pac_Sprite.png" FileName="TGS_PA~6.PNG|TGS_Pac_Brown_Left.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Brown_Left.png" SelfReg="false" NextFile="TGS_Pac_Brown_Right.png"/>
+    <ROW File="TGS_Pac_Brown_Right.png" Component_="Art_Pac_Sprite.png" FileName="TGS_PA~7.PNG|TGS_Pac_Brown_Right.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Brown_Right.png" SelfReg="false" NextFile="TGS_Pac_Brown_Up.png"/>
+    <ROW File="TGS_Pac_Brown_Up.png" Component_="Art_Pac_Sprite.png" FileName="TGS_PA~8.PNG|TGS_Pac_Brown_Up.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Brown_Up.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Blue_Down.png"/>
+    <ROW File="TGS_Pac_Inverted_Blue_Down.png" Component_="Art_Pac_Sprite.png" FileName="TGS_PA~9.PNG|TGS_Pac_Inverted_Blue_Down.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Blue_Down.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Blue_Left.png"/>
+    <ROW File="TGS_Pac_Inverted_Blue_Left.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~10.PNG|TGS_Pac_Inverted_Blue_Left.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Blue_Left.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Blue_Right.png"/>
+    <ROW File="TGS_Pac_Inverted_Blue_Right.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~11.PNG|TGS_Pac_Inverted_Blue_Right.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Blue_Right.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Blue_Up.png"/>
+    <ROW File="TGS_Pac_Inverted_Blue_Up.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~12.PNG|TGS_Pac_Inverted_Blue_Up.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Blue_Up.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Cyan_Down.png"/>
+    <ROW File="TGS_Pac_Inverted_Cyan_Down.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~13.PNG|TGS_Pac_Inverted_Cyan_Down.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Cyan_Down.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Cyan_Left.png"/>
+    <ROW File="TGS_Pac_Inverted_Cyan_Left.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~14.PNG|TGS_Pac_Inverted_Cyan_Left.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Cyan_Left.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Cyan_Right.png"/>
+    <ROW File="TGS_Pac_Inverted_Cyan_Right.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~15.PNG|TGS_Pac_Inverted_Cyan_Right.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Cyan_Right.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Cyan_Up.png"/>
+    <ROW File="TGS_Pac_Inverted_Cyan_Up.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~16.PNG|TGS_Pac_Inverted_Cyan_Up.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Cyan_Up.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Green_Down.png"/>
+    <ROW File="TGS_Pac_Inverted_Green_Down.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~17.PNG|TGS_Pac_Inverted_Green_Down.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Green_Down.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Green_Left.png"/>
+    <ROW File="TGS_Pac_Inverted_Green_Left.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~18.PNG|TGS_Pac_Inverted_Green_Left.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Green_Left.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Green_Right.png"/>
+    <ROW File="TGS_Pac_Inverted_Green_Right.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~19.PNG|TGS_Pac_Inverted_Green_Right.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Green_Right.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Green_Up.png"/>
+    <ROW File="TGS_Pac_Inverted_Green_Up.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~20.PNG|TGS_Pac_Inverted_Green_Up.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Green_Up.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Red_Down.png"/>
+    <ROW File="TGS_Pac_Inverted_Red_Down.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~21.PNG|TGS_Pac_Inverted_Red_Down.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Red_Down.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Red_Left.png"/>
+    <ROW File="TGS_Pac_Inverted_Red_Left.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~22.PNG|TGS_Pac_Inverted_Red_Left.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Red_Left.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Red_Right.png"/>
+    <ROW File="TGS_Pac_Inverted_Red_Right.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~23.PNG|TGS_Pac_Inverted_Red_Right.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Red_Right.png" SelfReg="false" NextFile="TGS_Pac_Inverted_Red_Up.png"/>
+    <ROW File="TGS_Pac_Inverted_Red_Up.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~24.PNG|TGS_Pac_Inverted_Red_Up.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Inverted_Red_Up.png" SelfReg="false" NextFile="TGS_Pac_Pink_Down.png"/>
+    <ROW File="TGS_Pac_Pink_Down.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~25.PNG|TGS_Pac_Pink_Down.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Pink_Down.png" SelfReg="false" NextFile="TGS_Pac_Pink_Left.png"/>
+    <ROW File="TGS_Pac_Pink_Left.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~26.PNG|TGS_Pac_Pink_Left.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Pink_Left.png" SelfReg="false" NextFile="TGS_Pac_Pink_Right.png"/>
+    <ROW File="TGS_Pac_Pink_Right.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~27.PNG|TGS_Pac_Pink_Right.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Pink_Right.png" SelfReg="false" NextFile="TGS_Pac_Pink_Up.png"/>
+    <ROW File="TGS_Pac_Pink_Up.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~28.PNG|TGS_Pac_Pink_Up.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Pink_Up.png" SelfReg="false" NextFile="TGS_Pac_Red_Down.png"/>
+    <ROW File="TGS_Pac_Red_Down.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~29.PNG|TGS_Pac_Red_Down.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Red_Down.png" SelfReg="false" NextFile="TGS_Pac_Red_Left.png"/>
+    <ROW File="TGS_Pac_Red_Left.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~30.PNG|TGS_Pac_Red_Left.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Red_Left.png" SelfReg="false" NextFile="TGS_Pac_Red_Right.png"/>
+    <ROW File="TGS_Pac_Red_Right.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~31.PNG|TGS_Pac_Red_Right.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Red_Right.png" SelfReg="false" NextFile="TGS_Pac_Red_Up.png"/>
+    <ROW File="TGS_Pac_Red_Up.png" Component_="Art_Pac_Sprite.png" FileName="TGS_P~32.PNG|TGS_Pac_Red_Up.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_Pac_Red_Up.png" SelfReg="false" NextFile="Tilemap.png"/>
+    <ROW File="TGS_fadiya_PacmanDeathBlk.png" Component_="Art_Pac_Sprite.png" FileName="TGS_FA~2.PNG|TGS_fadiya_PacmanDeathBlk.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_fadiya_PacmanDeathBlk.png" SelfReg="false" NextFile="TGS_Fadiya_PacmanGo.png"/>
+    <ROW File="TGS_fadiya_PacmanGoBlk.png" Component_="Art_Pac_Sprite.png" FileName="TGS_FA~4.PNG|TGS_fadiya_PacmanGoBlk.png" Attributes="0" SourcePath="..\Assets\Textures\TGS_fadiya_PacmanGoBlk.png" SelfReg="false" NextFile="TGS_Fruit_Cherry.png"/>
+    <ROW File="Tab.object" Component_="Brush.object" FileName="TAB~1.OBJ|Tab.object" Attributes="0" SourcePath="..\Assets\Objects\LevelEditor\Tab.object" SelfReg="false" NextFile="TileButton.object"/>
+    <ROW File="Tab.spriteSource" Component_="Axes.spriteSource" FileName="TAB~1.SPR|Tab.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\LevelEditor\Tab.spriteSource" SelfReg="false" NextFile="UICircle.spriteSource"/>
+    <ROW File="Text.object" Component_="Asteroid.object" FileName="TEXT~1.OBJ|Text.object" Attributes="0" SourcePath="..\Assets\Objects\RefrenceObjects\Text.object" SelfReg="false" NextFile="tileMap.object"/>
+    <ROW File="TileButton.object" Component_="Brush.object" FileName="TILEBU~1.OBJ|TileButton.object" Attributes="0" SourcePath="..\Assets\Objects\LevelEditor\TileButton.object" SelfReg="false" NextFile="TileMenu.object"/>
+    <ROW File="TileMap.object_1" Component_="Cherry.object" FileName="TILEMA~1.OBJ|TileMap.object" Attributes="0" SourcePath="..\Assets\Objects\TileMap.object" SelfReg="false" NextFile="defaultShader.frag"/>
+    <ROW File="TileMap.spriteSource" Component_="Cherry.spriteSource" FileName="TILEMA~1.SPR|TileMap.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\TileMap.spriteSource" SelfReg="false" NextFile="Art_Pac_Sprite.png"/>
+    <ROW File="TileMenu.object" Component_="Brush.object" FileName="TILEME~1.OBJ|TileMenu.object" Attributes="0" SourcePath="..\Assets\Objects\LevelEditor\TileMenu.object" SelfReg="false" NextFile="UICircle.object"/>
+    <ROW File="Tilemap.png" Component_="Art_Pac_Sprite.png" FileName="Tilemap.png" Attributes="0" SourcePath="..\Assets\Textures\Tilemap.png" SelfReg="false" NextFile="barHorizontal_blue_left.png"/>
+    <ROW File="UICircle.object" Component_="Brush.object" FileName="UICIRC~1.OBJ|UICircle.object" Attributes="0" SourcePath="..\Assets\Objects\LevelEditor\UICircle.object" SelfReg="false" NextFile="LivesText.object"/>
+    <ROW File="UICircle.spriteSource" Component_="Axes.spriteSource" FileName="UICIRC~1.SPR|UICircle.spriteSource" Attributes="0" SourcePath="..\Assets\SpriteSources\LevelEditor\UICircle.spriteSource" SelfReg="false" NextFile="Logo.spriteSource"/>
+    <ROW File="Walls.object" Component_="Asteroid.object" FileName="WALLS~1.OBJ|Walls.object" Attributes="0" SourcePath="..\Assets\Objects\RefrenceObjects\Walls.object" SelfReg="false" NextFile="Score.object"/>
+    <ROW File="barHorizontal_blue_left.png" Component_="barHorizontal_blue_left.png" FileName="BARHOR~1.PNG|barHorizontal_blue_left.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_blue_left.png" SelfReg="false" NextFile="barHorizontal_blue_mid.png"/>
+    <ROW File="barHorizontal_blue_mid.png" Component_="barHorizontal_blue_left.png" FileName="BARHOR~2.PNG|barHorizontal_blue_mid.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_blue_mid.png" SelfReg="false" NextFile="barHorizontal_blue_right.png"/>
+    <ROW File="barHorizontal_blue_right.png" Component_="barHorizontal_blue_left.png" FileName="BARHOR~3.PNG|barHorizontal_blue_right.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_blue_right.png" SelfReg="false" NextFile="barHorizontal_green_left.png"/>
+    <ROW File="barHorizontal_green_left.png" Component_="barHorizontal_blue_left.png" FileName="BARHOR~4.PNG|barHorizontal_green_left.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_green_left.png" SelfReg="false" NextFile="barHorizontal_green_mid.png"/>
+    <ROW File="barHorizontal_green_mid.png" Component_="barHorizontal_blue_left.png" FileName="BARHOR~5.PNG|barHorizontal_green_mid.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_green_mid.png" SelfReg="false" NextFile="barHorizontal_green_right.png"/>
+    <ROW File="barHorizontal_green_right.png" Component_="barHorizontal_blue_left.png" FileName="BARHOR~6.PNG|barHorizontal_green_right.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_green_right.png" SelfReg="false" NextFile="barHorizontal_red_left.png"/>
+    <ROW File="barHorizontal_red_left.png" Component_="barHorizontal_blue_left.png" FileName="BARHOR~7.PNG|barHorizontal_red_left.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_red_left.png" SelfReg="false" NextFile="barHorizontal_red_mid.png"/>
+    <ROW File="barHorizontal_red_mid.png" Component_="barHorizontal_blue_left.png" FileName="BARHOR~8.PNG|barHorizontal_red_mid.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_red_mid.png" SelfReg="false" NextFile="barHorizontal_red_right.png"/>
+    <ROW File="barHorizontal_red_right.png" Component_="barHorizontal_blue_left.png" FileName="BARHOR~9.PNG|barHorizontal_red_right.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_red_right.png" SelfReg="false" NextFile="barHorizontal_shadow_left.png"/>
+    <ROW File="barHorizontal_shadow_left.png" Component_="barHorizontal_blue_left.png" FileName="BARHO~10.PNG|barHorizontal_shadow_left.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_shadow_left.png" SelfReg="false" NextFile="barHorizontal_shadow_mid.png"/>
+    <ROW File="barHorizontal_shadow_mid.png" Component_="barHorizontal_blue_left.png" FileName="BARHO~11.PNG|barHorizontal_shadow_mid.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_shadow_mid.png" SelfReg="false" NextFile="barHorizontal_shadow_right.png"/>
+    <ROW File="barHorizontal_shadow_right.png" Component_="barHorizontal_blue_left.png" FileName="BARHO~12.PNG|barHorizontal_shadow_right.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_shadow_right.png" SelfReg="false" NextFile="barHorizontal_white_left.png"/>
+    <ROW File="barHorizontal_white_left.png" Component_="barHorizontal_blue_left.png" FileName="BARHO~13.PNG|barHorizontal_white_left.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_white_left.png" SelfReg="false" NextFile="barHorizontal_white_mid.png"/>
+    <ROW File="barHorizontal_white_mid.png" Component_="barHorizontal_blue_left.png" FileName="BARHO~14.PNG|barHorizontal_white_mid.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_white_mid.png" SelfReg="false" NextFile="barHorizontal_white_right.png"/>
+    <ROW File="barHorizontal_white_right.png" Component_="barHorizontal_blue_left.png" FileName="BARHO~15.PNG|barHorizontal_white_right.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_white_right.png" SelfReg="false" NextFile="barHorizontal_yellow_left.png"/>
+    <ROW File="barHorizontal_yellow_left.png" Component_="barHorizontal_blue_left.png" FileName="BARHO~16.PNG|barHorizontal_yellow_left.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_yellow_left.png" SelfReg="false" NextFile="barHorizontal_yellow_mid.png"/>
+    <ROW File="barHorizontal_yellow_mid.png" Component_="barHorizontal_blue_left.png" FileName="BARHO~17.PNG|barHorizontal_yellow_mid.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_yellow_mid.png" SelfReg="false" NextFile="barHorizontal_yellow_right.png"/>
+    <ROW File="barHorizontal_yellow_right.png" Component_="barHorizontal_blue_left.png" FileName="BARHO~18.PNG|barHorizontal_yellow_right.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barHorizontal_yellow_right.png" SelfReg="false" NextFile="barVertical_blue_bottom.png"/>
+    <ROW File="barVertical_blue_bottom.png" Component_="barHorizontal_blue_left.png" FileName="BARVER~1.PNG|barVertical_blue_bottom.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_blue_bottom.png" SelfReg="false" NextFile="barVertical_blue_mid.png"/>
+    <ROW File="barVertical_blue_mid.png" Component_="barHorizontal_blue_left.png" FileName="BARVER~2.PNG|barVertical_blue_mid.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_blue_mid.png" SelfReg="false" NextFile="barVertical_blue_top.png"/>
+    <ROW File="barVertical_blue_top.png" Component_="barHorizontal_blue_left.png" FileName="BARVER~3.PNG|barVertical_blue_top.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_blue_top.png" SelfReg="false" NextFile="barVertical_green_bottom.png"/>
+    <ROW File="barVertical_green_bottom.png" Component_="barHorizontal_blue_left.png" FileName="BARVER~4.PNG|barVertical_green_bottom.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_green_bottom.png" SelfReg="false" NextFile="barVertical_green_mid.png"/>
+    <ROW File="barVertical_green_mid.png" Component_="barHorizontal_blue_left.png" FileName="BARVER~5.PNG|barVertical_green_mid.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_green_mid.png" SelfReg="false" NextFile="barVertical_green_top.png"/>
+    <ROW File="barVertical_green_top.png" Component_="barHorizontal_blue_left.png" FileName="BARVER~6.PNG|barVertical_green_top.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_green_top.png" SelfReg="false" NextFile="barVertical_red_bottom.png"/>
+    <ROW File="barVertical_red_bottom.png" Component_="barHorizontal_blue_left.png" FileName="BARVER~7.PNG|barVertical_red_bottom.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_red_bottom.png" SelfReg="false" NextFile="barVertical_red_mid.png"/>
+    <ROW File="barVertical_red_mid.png" Component_="barHorizontal_blue_left.png" FileName="BARVER~8.PNG|barVertical_red_mid.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_red_mid.png" SelfReg="false" NextFile="barVertical_red_top.png"/>
+    <ROW File="barVertical_red_top.png" Component_="barHorizontal_blue_left.png" FileName="BARVER~9.PNG|barVertical_red_top.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_red_top.png" SelfReg="false" NextFile="barVertical_shadow_bottom.png"/>
+    <ROW File="barVertical_shadow_bottom.png" Component_="barHorizontal_blue_left.png" FileName="BARVE~10.PNG|barVertical_shadow_bottom.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_shadow_bottom.png" SelfReg="false" NextFile="barVertical_shadow_mid.png"/>
+    <ROW File="barVertical_shadow_mid.png" Component_="barHorizontal_blue_left.png" FileName="BARVE~11.PNG|barVertical_shadow_mid.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_shadow_mid.png" SelfReg="false" NextFile="barVertical_shadow_top.png"/>
+    <ROW File="barVertical_shadow_top.png" Component_="barHorizontal_blue_left.png" FileName="BARVE~12.PNG|barVertical_shadow_top.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_shadow_top.png" SelfReg="false" NextFile="barVertical_white_bottom.png"/>
+    <ROW File="barVertical_white_bottom.png" Component_="barHorizontal_blue_left.png" FileName="BARVE~13.PNG|barVertical_white_bottom.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_white_bottom.png" SelfReg="false" NextFile="barVertical_white_mid.png"/>
+    <ROW File="barVertical_white_mid.png" Component_="barHorizontal_blue_left.png" FileName="BARVE~14.PNG|barVertical_white_mid.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_white_mid.png" SelfReg="false" NextFile="barVertical_white_top.png"/>
+    <ROW File="barVertical_white_top.png" Component_="barHorizontal_blue_left.png" FileName="BARVE~15.PNG|barVertical_white_top.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_white_top.png" SelfReg="false" NextFile="barVertical_yellow_bottom.png"/>
+    <ROW File="barVertical_yellow_bottom.png" Component_="barHorizontal_blue_left.png" FileName="BARVE~16.PNG|barVertical_yellow_bottom.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_yellow_bottom.png" SelfReg="false" NextFile="barVertical_yellow_mid.png"/>
+    <ROW File="barVertical_yellow_mid.png" Component_="barHorizontal_blue_left.png" FileName="BARVE~17.PNG|barVertical_yellow_mid.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_yellow_mid.png" SelfReg="false" NextFile="barVertical_yellow_top.png"/>
+    <ROW File="barVertical_yellow_top.png" Component_="barHorizontal_blue_left.png" FileName="BARVE~18.PNG|barVertical_yellow_top.png" Attributes="0" SourcePath="..\Assets\Textures\UI\barVertical_yellow_top.png" SelfReg="false" NextFile="crossair_black.png"/>
+    <ROW File="crossair_black.png" Component_="barHorizontal_blue_left.png" FileName="CROSSA~1.PNG|crossair_black.png" Attributes="0" SourcePath="..\Assets\Textures\UI\crossair_black.png" SelfReg="false" NextFile="crossair_blackOutline.png"/>
+    <ROW File="crossair_blackOutline.png" Component_="barHorizontal_blue_left.png" FileName="CROSSA~2.PNG|crossair_blackOutline.png" Attributes="0" SourcePath="..\Assets\Textures\UI\crossair_blackOutline.png" SelfReg="false" NextFile="crossair_blue.png"/>
+    <ROW File="crossair_blue.png" Component_="barHorizontal_blue_left.png" FileName="CROSSA~3.PNG|crossair_blue.png" Attributes="0" SourcePath="..\Assets\Textures\UI\crossair_blue.png" SelfReg="false" NextFile="crossair_blueOutline.png"/>
+    <ROW File="crossair_blueOutline.png" Component_="barHorizontal_blue_left.png" FileName="CROSSA~4.PNG|crossair_blueOutline.png" Attributes="0" SourcePath="..\Assets\Textures\UI\crossair_blueOutline.png" SelfReg="false" NextFile="crossair_red.png"/>
+    <ROW File="crossair_red.png" Component_="barHorizontal_blue_left.png" FileName="CROSSA~5.PNG|crossair_red.png" Attributes="0" SourcePath="..\Assets\Textures\UI\crossair_red.png" SelfReg="false" NextFile="crossair_redOutline.png"/>
+    <ROW File="crossair_redOutline.png" Component_="barHorizontal_blue_left.png" FileName="CROSSA~6.PNG|crossair_redOutline.png" Attributes="0" SourcePath="..\Assets\Textures\UI\crossair_redOutline.png" SelfReg="false" NextFile="crossair_white.png"/>
+    <ROW File="crossair_white.png" Component_="barHorizontal_blue_left.png" FileName="CROSSA~7.PNG|crossair_white.png" Attributes="0" SourcePath="..\Assets\Textures\UI\crossair_white.png" SelfReg="false" NextFile="crossair_whiteOutline.png"/>
+    <ROW File="crossair_whiteOutline.png" Component_="barHorizontal_blue_left.png" FileName="CROSSA~8.PNG|crossair_whiteOutline.png" Attributes="0" SourcePath="..\Assets\Textures\UI\crossair_whiteOutline.png" SelfReg="false" NextFile="cursor_hand.png"/>
+    <ROW File="cursor_hand.png" Component_="barHorizontal_blue_left.png" FileName="CURSOR~1.PNG|cursor_hand.png" Attributes="0" SourcePath="..\Assets\Textures\UI\cursor_hand.png" SelfReg="false" NextFile="cursor_pointer3D.png"/>
+    <ROW File="cursor_pointer3D.png" Component_="barHorizontal_blue_left.png" FileName="CURSOR~2.PNG|cursor_pointer3D.png" Attributes="0" SourcePath="..\Assets\Textures\UI\cursor_pointer3D.png" SelfReg="false" NextFile="cursor_pointer3D_shadow.png"/>
+    <ROW File="cursor_pointer3D_shadow.png" Component_="barHorizontal_blue_left.png" FileName="CURSOR~3.PNG|cursor_pointer3D_shadow.png" Attributes="0" SourcePath="..\Assets\Textures\UI\cursor_pointer3D_shadow.png" SelfReg="false" NextFile="cursor_pointerFlat.png"/>
+    <ROW File="cursor_pointerFlat.png" Component_="barHorizontal_blue_left.png" FileName="CURSOR~4.PNG|cursor_pointerFlat.png" Attributes="0" SourcePath="..\Assets\Textures\UI\cursor_pointerFlat.png" SelfReg="false" NextFile="cursor_pointerFlat_shadow.png"/>
+    <ROW File="cursor_pointerFlat_shadow.png" Component_="barHorizontal_blue_left.png" FileName="CURSOR~5.PNG|cursor_pointerFlat_shadow.png" Attributes="0" SourcePath="..\Assets\Textures\UI\cursor_pointerFlat_shadow.png" SelfReg="false" NextFile="dotBlue.png"/>
+    <ROW File="defaultShader.frag" Component_="defaultShader.frag" FileName="DEFAUL~1.FRA|defaultShader.frag" Attributes="0" SourcePath="..\Assets\Shaders\defaultShader.frag" SelfReg="false" NextFile="defaultShader.vert"/>
+    <ROW File="defaultShader.vert" Component_="defaultShader.frag" FileName="DEFAUL~1.VER|defaultShader.vert" Attributes="0" SourcePath="..\Assets\Shaders\defaultShader.vert" SelfReg="false" NextFile="Cherry.spriteSource"/>
+    <ROW File="dinosaur.wav" Component_="dinosaur.wav" FileName="dinosaur.wav" Attributes="0" SourcePath="..\Assets\Audio\Banks\dinosaur.wav" SelfReg="false" NextFile="Drone_cadence.wav"/>
+    <ROW File="dotBlue.png" Component_="barHorizontal_blue_left.png" FileName="dotBlue.png" Attributes="0" SourcePath="..\Assets\Textures\UI\dotBlue.png" SelfReg="false" NextFile="dotGreen.png"/>
+    <ROW File="dotGreen.png" Component_="barHorizontal_blue_left.png" FileName="dotGreen.png" Attributes="0" SourcePath="..\Assets\Textures\UI\dotGreen.png" SelfReg="false" NextFile="dotRed.png"/>
+    <ROW File="dotRed.png" Component_="barHorizontal_blue_left.png" FileName="dotRed.png" Attributes="0" SourcePath="..\Assets\Textures\UI\dotRed.png" SelfReg="false" NextFile="dotWhite.png"/>
+    <ROW File="dotWhite.png" Component_="barHorizontal_blue_left.png" FileName="dotWhite.png" Attributes="0" SourcePath="..\Assets\Textures\UI\dotWhite.png" SelfReg="false" NextFile="dotYellow.png"/>
+    <ROW File="dotYellow.png" Component_="barHorizontal_blue_left.png" FileName="DOTYEL~1.PNG|dotYellow.png" Attributes="0" SourcePath="..\Assets\Textures\UI\dotYellow.png" SelfReg="false" NextFile="dot_shadow.png"/>
+    <ROW File="dot_shadow.png" Component_="barHorizontal_blue_left.png" FileName="DOT_SH~1.PNG|dot_shadow.png" Attributes="0" SourcePath="..\Assets\Textures\UI\dot_shadow.png" SelfReg="false" NextFile="glassPanel.png"/>
+    <ROW File="draftpacman_ghostrunningawaynew.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="(DRAFT~1.WAV|(draft) pac-man_ghost running away new.wav" Attributes="0" SourcePath="..\Assets\Audio\(draft) pac-man_ghost running away new.wav" SelfReg="false" NextFile="Asteroid_Field.mp3"/>
+    <ROW File="fmod64.dll" Component_="fmod64.dll" FileName="fmod64.dll" Attributes="0" SourcePath="..\fmod64.dll" SelfReg="false" NextFile="fmodstudio64.dll"/>
+    <ROW File="fmodstudio64.dll" Component_="fmodstudio64.dll" FileName="FMODST~1.DLL|fmodstudio64.dll" Attributes="0" SourcePath="..\fmodstudio64.dll" SelfReg="false" NextFile="PacMan.exe"/>
+    <ROW File="glassPanel.png" Component_="barHorizontal_blue_left.png" FileName="GLASSP~1.PNG|glassPanel.png" Attributes="0" SourcePath="..\Assets\Textures\UI\glassPanel.png" SelfReg="false" NextFile="glassPanel_cornerBL.png"/>
+    <ROW File="glassPanel_cornerBL.png" Component_="barHorizontal_blue_left.png" FileName="GLASSP~2.PNG|glassPanel_cornerBL.png" Attributes="0" SourcePath="..\Assets\Textures\UI\glassPanel_cornerBL.png" SelfReg="false" NextFile="glassPanel_cornerBR.png"/>
+    <ROW File="glassPanel_cornerBR.png" Component_="barHorizontal_blue_left.png" FileName="GLASSP~3.PNG|glassPanel_cornerBR.png" Attributes="0" SourcePath="..\Assets\Textures\UI\glassPanel_cornerBR.png" SelfReg="false" NextFile="glassPanel_corners.png"/>
+    <ROW File="glassPanel_cornerTL.png" Component_="barHorizontal_blue_left.png" FileName="GLASSP~5.PNG|glassPanel_cornerTL.png" Attributes="0" SourcePath="..\Assets\Textures\UI\glassPanel_cornerTL.png" SelfReg="false" NextFile="glassPanel_cornerTR.png"/>
+    <ROW File="glassPanel_cornerTR.png" Component_="barHorizontal_blue_left.png" FileName="GLASSP~6.PNG|glassPanel_cornerTR.png" Attributes="0" SourcePath="..\Assets\Textures\UI\glassPanel_cornerTR.png" SelfReg="false" NextFile="glassPanel_menu.png"/>
+    <ROW File="glassPanel_corners.png" Component_="barHorizontal_blue_left.png" FileName="GLASSP~4.PNG|glassPanel_corners.png" Attributes="0" SourcePath="..\Assets\Textures\UI\glassPanel_corners.png" SelfReg="false" NextFile="glassPanel_cornerTL.png"/>
+    <ROW File="glassPanel_menu.png" Component_="barHorizontal_blue_left.png" FileName="GLASSP~7.PNG|glassPanel_menu.png" Attributes="0" SourcePath="..\Assets\Textures\UI\glassPanel_menu.png" SelfReg="false" NextFile="glassPanel_projection.png"/>
+    <ROW File="glassPanel_projection.png" Component_="barHorizontal_blue_left.png" FileName="GLASSP~8.PNG|glassPanel_projection.png" Attributes="0" SourcePath="..\Assets\Textures\UI\glassPanel_projection.png" SelfReg="false" NextFile="glassPanel_tab.png"/>
+    <ROW File="glassPanel_tab.png" Component_="barHorizontal_blue_left.png" FileName="GLASSP~9.PNG|glassPanel_tab.png" Attributes="0" SourcePath="..\Assets\Textures\UI\glassPanel_tab.png" SelfReg="false" NextFile="metalPanel.png"/>
+    <ROW File="metalPanel.png" Component_="barHorizontal_blue_left.png" FileName="METALP~1.PNG|metalPanel.png" Attributes="0" SourcePath="..\Assets\Textures\UI\metalPanel.png" SelfReg="false" NextFile="metalPanel_blue.png"/>
+    <ROW File="metalPanel_blue.png" Component_="barHorizontal_blue_left.png" FileName="METALP~2.PNG|metalPanel_blue.png" Attributes="0" SourcePath="..\Assets\Textures\UI\metalPanel_blue.png" SelfReg="false" NextFile="metalPanel_blueCorner.png"/>
+    <ROW File="metalPanel_blueCorner.png" Component_="barHorizontal_blue_left.png" FileName="METALP~3.PNG|metalPanel_blueCorner.png" Attributes="0" SourcePath="..\Assets\Textures\UI\metalPanel_blueCorner.png" SelfReg="false" NextFile="metalPanel_green.png"/>
+    <ROW File="metalPanel_green.png" Component_="barHorizontal_blue_left.png" FileName="METALP~4.PNG|metalPanel_green.png" Attributes="0" SourcePath="..\Assets\Textures\UI\metalPanel_green.png" SelfReg="false" NextFile="metalPanel_greenCorner.png"/>
+    <ROW File="metalPanel_greenCorner.png" Component_="barHorizontal_blue_left.png" FileName="METALP~5.PNG|metalPanel_greenCorner.png" Attributes="0" SourcePath="..\Assets\Textures\UI\metalPanel_greenCorner.png" SelfReg="false" NextFile="metalPanel_plateButton.png"/>
+    <ROW File="metalPanel_plate.png" Component_="barHorizontal_blue_left.png" FileName="METALP~7.PNG|metalPanel_plate.png" Attributes="0" SourcePath="..\Assets\Textures\UI\metalPanel_plate.png" SelfReg="false" NextFile="metalPanel_red.png"/>
+    <ROW File="metalPanel_plateButton.png" Component_="barHorizontal_blue_left.png" FileName="METALP~6.PNG|metalPanel_plate-Button.png" Attributes="0" SourcePath="..\Assets\Textures\UI\metalPanel_plate-Button.png" SelfReg="false" NextFile="metalPanel_plate.png"/>
+    <ROW File="metalPanel_red.png" Component_="barHorizontal_blue_left.png" FileName="METALP~8.PNG|metalPanel_red.png" Attributes="0" SourcePath="..\Assets\Textures\UI\metalPanel_red.png" SelfReg="false" NextFile="metalPanel_redCorner.png"/>
+    <ROW File="metalPanel_redCorner.png" Component_="barHorizontal_blue_left.png" FileName="METALP~9.PNG|metalPanel_redCorner.png" Attributes="0" SourcePath="..\Assets\Textures\UI\metalPanel_redCorner.png" SelfReg="false" NextFile="metalPanel_yellow.png"/>
+    <ROW File="metalPanel_yellow.png" Component_="barHorizontal_blue_left.png" FileName="METAL~10.PNG|metalPanel_yellow.png" Attributes="0" SourcePath="..\Assets\Textures\UI\metalPanel_yellow.png" SelfReg="false" NextFile="metalPanel_yellowCorner.png"/>
+    <ROW File="metalPanel_yellowCorner.png" Component_="barHorizontal_blue_left.png" FileName="METAL~11.PNG|metalPanel_yellowCorner.png" Attributes="0" SourcePath="..\Assets\Textures\UI\metalPanel_yellowCorner.png" SelfReg="false" NextFile="PlotAxes.png"/>
+    <ROW File="pacman_chomp.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-MA~8.WAV|pac-man_chomp.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man_chomp.wav" SelfReg="false" NextFile="pacman_eatghostnew.wav"/>
+    <ROW File="pacman_eatghostnew.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-MA~9.WAV|pac-man_eat ghost new.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man_eat ghost new.wav" SelfReg="false" NextFile="pacman_extrapacnew.wav"/>
+    <ROW File="pacman_extrapacnew.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-M~10.WAV|pac-man_extrapac new .wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man_extrapac new .wav" SelfReg="false" NextFile="pacman_extrapacplus.wav"/>
+    <ROW File="pacman_extrapacplus.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-M~11.WAV|pac-man_extrapac plus.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man_extrapac plus.wav" SelfReg="false" NextFile="pacman_ghostnew.wav"/>
+    <ROW File="pacman_ghostnew.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-M~12.WAV|pac-man_ghost new.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man_ghost new.wav" SelfReg="false" NextFile="pacman_intermissionnew.wav"/>
+    <ROW File="pacman_intermissionnew.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-M~13.WAV|pac-man_intermission new.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man_intermission new.wav" SelfReg="false" NextFile="pacman_intronew.wav"/>
+    <ROW File="pacman_intronew.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-M~14.WAV|pac-man_intro new.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man_intro new.wav" SelfReg="false" NextFile="pacman_introplus.wav"/>
+    <ROW File="pacman_introplus.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-M~15.WAV|pac-man_intro plus.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man_intro plus.wav" SelfReg="false" NextFile="pacman_powerpelletnew.wav"/>
+    <ROW File="pacman_powerpelletnew.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-M~16.WAV|pac-man_power pellet new.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man_power pellet new.wav" SelfReg="false" NextFile="possiblepluslevelmusic.wav"/>
+    <ROW File="pacmancherry.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-MA~2.WAV|pac-man cherry.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man cherry.wav" SelfReg="false" NextFile="pacmandeathpluslevel.wav"/>
+    <ROW File="pacmancherrypluslevel.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-MA~1.WAV|pac-man cherry pluslevel.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man cherry pluslevel.wav" SelfReg="false" NextFile="pacmancherry.wav"/>
+    <ROW File="pacmandeath.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-MA~4.WAV|pac-man death.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man death.wav" SelfReg="false" NextFile="pacmaneatghostpluslevel.wav"/>
+    <ROW File="pacmandeathpluslevel.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-MA~3.WAV|pac-man death pluslevel.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man death pluslevel.wav" SelfReg="false" NextFile="pacmandeath.wav"/>
+    <ROW File="pacmaneatghostpluslevel.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-MA~5.WAV|pac-man eatghost pluslevel.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man eatghost pluslevel.wav" SelfReg="false" NextFile="pacmanpowerpelletpluslevel.wav"/>
+    <ROW File="pacmanmaptiles3.png" Component_="Art_Pac_Sprite.png" FileName="PACMAN~1.PNG|pacman map tiles (3).png" Attributes="0" SourcePath="..\Assets\Textures\pacman map tiles (3).png" SelfReg="false" NextFile="PacmanTitle.png"/>
+    <ROW File="pacmanpowerpelletpluslevel.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-MA~6.WAV|pac-man powerpellet pluslevel.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man powerpellet pluslevel.wav" SelfReg="false" NextFile="pacmanthememusicpluslevel.wav"/>
+    <ROW File="pacmanthememusicpluslevel.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="PAC-MA~7.WAV|pac-man thememusic pluslevel.wav" Attributes="0" SourcePath="..\Assets\Audio\pac-man thememusic pluslevel.wav" SelfReg="false" NextFile="pacman_chomp.wav"/>
+    <ROW File="possiblepluslevelmusic.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="POSSIB~1.WAV|possible plus level music.wav" Attributes="0" SourcePath="..\Assets\Audio\possible plus level music.wav" SelfReg="false" NextFile="teleport.wav"/>
+    <ROW File="squareBlue.png" Component_="barHorizontal_blue_left.png" FileName="SQUARE~1.PNG|squareBlue.png" Attributes="0" SourcePath="..\Assets\Textures\UI\squareBlue.png" SelfReg="false" NextFile="squareGreen.png"/>
+    <ROW File="squareGreen.png" Component_="barHorizontal_blue_left.png" FileName="SQUARE~2.PNG|squareGreen.png" Attributes="0" SourcePath="..\Assets\Textures\UI\squareGreen.png" SelfReg="false" NextFile="squareRed.png"/>
+    <ROW File="squareRed.png" Component_="barHorizontal_blue_left.png" FileName="SQUARE~3.PNG|squareRed.png" Attributes="0" SourcePath="..\Assets\Textures\UI\squareRed.png" SelfReg="false" NextFile="squareWhite.png"/>
+    <ROW File="squareWhite.png" Component_="barHorizontal_blue_left.png" FileName="SQUARE~4.PNG|squareWhite.png" Attributes="0" SourcePath="..\Assets\Textures\UI\squareWhite.png" SelfReg="false" NextFile="squareYellow.png"/>
+    <ROW File="squareYellow.png" Component_="barHorizontal_blue_left.png" FileName="SQUARE~5.PNG|squareYellow.png" Attributes="0" SourcePath="..\Assets\Textures\UI\squareYellow.png" SelfReg="false" NextFile="square_shadow.png"/>
+    <ROW File="square_shadow.png" Component_="barHorizontal_blue_left.png" FileName="SQUARE~6.PNG|square_shadow.png" Attributes="0" SourcePath="..\Assets\Textures\UI\square_shadow.png" SelfReg="false" NextFile="Default.tileMap"/>
+    <ROW File="teleport.wav" Component_="draftpacman_ghostrunningawaynew.wav" FileName="teleport.wav" Attributes="0" SourcePath="..\Assets\Audio\teleport.wav" SelfReg="false" NextFile="Level1.lvl"/>
+    <ROW File="tileMap.object" Component_="Asteroid.object" FileName="TILEMA~1.OBJ|tileMap.object" Attributes="0" SourcePath="..\Assets\Objects\RefrenceObjects\tileMap.object" SelfReg="false" NextFile="Walls.object"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.AppXCfgComponent">
+    <ROW ID="Configuration" Order="1" ManifestFile="AppxManifest.xml" TargetOs="4"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
+    <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="Build_MSIX_APPX" BuildName="Build_MSIX_APPX" BuildOrder="2" BuildType="7" PackageFolder="Build_MSIX_APPXSetupFiles" Languages="en" UwpTargetDesktop="TargetDeviceFamily"/>
+    <ROW BuildKey="Build_MSIX_APPXSubBuild" BuildName="x64" BuildOrder="2" BuildType="8" ParentBuild="Build_MSIX_APPX"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="." PackageFileName="PacMan-Installer" Languages="en" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExeIconPath="..\..\Beta Engine\Assets\Textures\AppIcon.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" UseLargeSchema="true" ExeName="PacMan-Installer"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
+    <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1" Thumbprint="dea1fdcb85dd22790f96fd28e42fd805a64f104d Subject: Test01D4EC37BBEAF140&#10;Issuer: Test01D4EC37BBEAF140&#10;Valid from 04/05/2019 to 04/05/2020"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="InstallDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\InstallDlg.aip"/>
+    <ROW Fragment="LicenseAgreementDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\LicenseAgreementDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;surface\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;surface\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;surface\fragments\VerifyRepairDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.GenericXmlAttributeComponent">
+    <ROW XmlAttribute="AppListEntry" XmlElement="VisualElements" Name="AppListEntry" Flags="0" Order="0" Value="default"/>
+    <ROW XmlAttribute="BackgroundColor" XmlElement="VisualElements" Name="BackgroundColor" Flags="0" Order="0" Value="transparent"/>
+    <ROW XmlAttribute="BadgeLogo" XmlElement="LockScreen" Name="BadgeLogo" Flags="0" Order="0" FileId="PacMan.exeBadgeLogo.scale100.png"/>
+    <ROW XmlAttribute="Description" XmlElement="VisualElements" Name="Description" Flags="0" Order="0" Value="A game baised on PacMan built in the Beta Game Engine"/>
+    <ROW XmlAttribute="DisplayName" XmlElement="VisualElements" Name="DisplayName" Flags="0" Order="0" Value="PacMan"/>
+    <ROW XmlAttribute="EntryPoint" XmlElement="Application" Name="EntryPoint" Flags="0" Order="0" Value="Windows.FullTrustApplication"/>
+    <ROW XmlAttribute="Executable" XmlElement="Application" Name="Executable" Flags="0" Order="0" FileId="PacMan.exe"/>
+    <ROW XmlAttribute="Id" XmlElement="Application" Name="Id" Flags="0" Order="0" Value="PacMan.exe"/>
+    <ROW XmlAttribute="IgnorableNamespaces" XmlElement="Package" Name="IgnorableNamespaces" Flags="0" Order="0" Value="build uap rescap"/>
+    <ROW XmlAttribute="Language" XmlElement="Resource_1" Name="Language" Flags="0" Order="0" Value="en-US"/>
+    <ROW XmlAttribute="MaxVersionTested" XmlElement="TargetDeviceFamily" Name="MaxVersionTested" Flags="0" Order="0" Value="10.0.17763.0"/>
+    <ROW XmlAttribute="MigrationUninstallCode" XmlElement="Package" Name="MigrationUninstallCode" Flags="0" Order="0" Value="{DB2A332E-2623-4FE0-9EBE-87458F482191}"/>
+    <ROW XmlAttribute="MinVersion" XmlElement="TargetDeviceFamily" Name="MinVersion" Flags="0" Order="0" Value="10.0.14393.0"/>
+    <ROW XmlAttribute="Name" XmlElement="Identity" Name="Name" Flags="0" Order="0" Value="GiantSquids.PacMan"/>
+    <ROW XmlAttribute="Name_1" XmlElement="TargetDeviceFamily" Name="Name" Flags="0" Order="0" Value="Windows.Desktop"/>
+    <ROW XmlAttribute="Name_2" XmlElement="Capability" Name="Name" Flags="0" Order="0" Value="runFullTrust"/>
+    <ROW XmlAttribute="Notification" XmlElement="LockScreen" Name="Notification" Flags="0" Order="0" Value="badge"/>
+    <ROW XmlAttribute="Preference" XmlElement="Rotation" Name="Preference" Flags="0" Order="0" Value="portrait"/>
+    <ROW XmlAttribute="Preference_1" XmlElement="Rotation_1" Name="Preference" Flags="0" Order="0" Value="landscape"/>
+    <ROW XmlAttribute="ProcessorArchitecture" XmlElement="Identity" Name="ProcessorArchitecture" Flags="0" Order="0" Value="x64"/>
+    <ROW XmlAttribute="Publisher" XmlElement="Identity" Name="Publisher" Flags="0" Order="0" Value="CN=Test01D4EC37BBEAF140"/>
+    <ROW XmlAttribute="Scale" XmlElement="Resource" Name="Scale" Flags="0" Order="0" Value="100"/>
+    <ROW XmlAttribute="Square150x150Logo" XmlElement="VisualElements" Name="Square150x150Logo" Flags="0" Order="0" FileId="PacMan.exeSquare150x150Logo.scale100.png"/>
+    <ROW XmlAttribute="Square44x44Logo" XmlElement="VisualElements" Name="Square44x44Logo" Flags="0" Order="0" FileId="PacMan.exeSquare44x44Logo.scale100.png"/>
+    <ROW XmlAttribute="Square71x71Logo" XmlElement="DefaultTile" Name="Square71x71Logo" Flags="0" Order="0" FileId="PacMan.exeSquare71x71Logo.scale100.png"/>
+    <ROW XmlAttribute="Version" XmlElement="Identity" Name="Version" Flags="0" Order="0" Value="1.0.0.0"/>
+    <ROW XmlAttribute="Wide310x150Logo" XmlElement="DefaultTile" Name="Wide310x150Logo" Flags="0" Order="0" FileId="PacMan.exeWide310x150Logo.scale100.png"/>
+    <ROW XmlAttribute="WorkingDirectory" XmlElement="Application" Name="WorkingDirectory" Flags="0" Order="0" Value="APPDIR"/>
+    <ROW XmlAttribute="xmlns" XmlElement="Package" Name="xmlns" Flags="14" Order="1" Value="http://schemas.microsoft.com/appx/manifest/foundation/windows10"/>
+    <ROW XmlAttribute="xmlnsbuild" XmlElement="Package" Name="xmlns:build" Flags="14" Order="2" Value="http://schemas.microsoft.com/developer/appx/2015/build"/>
+    <ROW XmlAttribute="xmlnsrescap" XmlElement="Package" Name="xmlns:rescap" Flags="14" Order="4" Value="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"/>
+    <ROW XmlAttribute="xmlnsuap" XmlElement="Package" Name="xmlns:uap" Flags="14" Order="3" Value="http://schemas.microsoft.com/appx/manifest/uap/windows10"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.GenericXmlElementComponent">
+    <ROW XmlElement="Application" ParentElement="Applications" Name="Application" Order="0" Flags="0" Type="4"/>
+    <ROW XmlElement="Applications" ParentElement="Package" Name="Applications" Order="5" Flags="0" Type="3"/>
+    <ROW XmlElement="Capabilities" ParentElement="Package" Name="Capabilities" Order="3" Flags="0" Type="0"/>
+    <ROW XmlElement="Capability" ParentElement="Capabilities" Name="Capability" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="DefaultTile" ParentElement="VisualElements" Name="DefaultTile" Order="2" Flags="0" Type="0"/>
+    <ROW XmlElement="Dependencies" ParentElement="Package" Name="Dependencies" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="DisplayName" ParentElement="Properties" Name="DisplayName" Order="1" Flags="0" Text="PacMan" Type="0"/>
+    <ROW XmlElement="Identity" ParentElement="Package" Name="Identity" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="InitialRotationPreference" ParentElement="VisualElements" Name="InitialRotationPreference" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="LockScreen" ParentElement="VisualElements" Name="LockScreen" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="Logo" ParentElement="Properties" Name="Logo" Order="2" Flags="0" FileId="Store50x50Logo.scale100.png" Type="0"/>
+    <ROW XmlElement="Package" Name="Package" Order="0" Flags="0" Type="6"/>
+    <ROW XmlElement="Properties" ParentElement="Package" Name="Properties" Order="4" Flags="0" Type="0"/>
+    <ROW XmlElement="PublisherDisplayName" ParentElement="Properties" Name="PublisherDisplayName" Order="0" Flags="0" Text="Giant Squids" Type="0"/>
+    <ROW XmlElement="Resource" ParentElement="Resources" Name="Resource" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="Resource_1" ParentElement="Resources" Name="Resource" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="Resources" ParentElement="Package" Name="Resources" Order="2" Flags="0" Type="0"/>
+    <ROW XmlElement="Rotation" ParentElement="InitialRotationPreference" Name="Rotation" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="Rotation_1" ParentElement="InitialRotationPreference" Name="Rotation" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="TargetDeviceFamily" ParentElement="Dependencies" Name="TargetDeviceFamily" Order="0" Flags="0" Type="28"/>
+    <ROW XmlElement="VisualElements" ParentElement="Application" Name="VisualElements" Order="0" Flags="0" Type="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.GenericXmlFileComponent">
+    <ROW XmlFile="AppxManifest.xml" FileName="AppxManifest.xml" RootElement="Package" Flags="89" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_DeleteLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_DeleteRLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractFiles" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractLzma" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="DefaultBuild"/>
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_CU" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="ExternalUICleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ExternalUICleaner.dll"/>
+    <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
+    <ROW Dialog_="CustomizeDlg" Control="CustomizeDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
+    <ROW Dialog_="MsiRMFilesInUse" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="MsiRMFilesInUse#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control="PatchWelcomeDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control="ProductNameTitle" Type="Text" X="83" Y="21" Width="245" Height="50" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="600" TextLocId="Metro.Control.Text.ProductName" MsiKey="PatchWelcomeDlg#ProductNameTitle"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control="CompanyText" Type="Text" X="83" Y="16" Width="191" Height="12" Attributes="196611" Text="[Manufacturer]" TextStyle="[ManufacturerFont]" Order="700" TextLocId="Metro.Control.Text.Manufacturer" MsiKey="PatchWelcomeDlg#CompanyText"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="800" MsiKey="PatchWelcomeDlg#ProductLogo"/>
+    <ROW Dialog_="VerifyReadyDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="VerifyReadyDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
+    <ROW Dialog_="VerifyReadyDlg" Control="Back" Type="PushButton" X="5" Y="381" Width="11" Height="11" Attributes="2" Text="Control.Text.VerifyReadyDlg#Back" Help="Back|" Order="200" TextLocId="Control.Text.VerifyReadyDlg#Back" HelpLocId="Air.Control.Help#Back" MsiKey="VerifyReadyDlg#Back" Options="1" ExtType="PushButton" ExtData="[ButtonText_Back]" ExtDataLocId="-"/>
+    <ROW Dialog_="VerifyReadyDlg" Control="ReadyToInstall" Type="Text" X="17" Y="105" Width="312" Height="19" Attributes="196611" Text="Ready to Install" TextStyle="[SubTitleStyle]" Order="400" TextLocId="Control.Text.VerifyReadyDlg#Title" MsiKey="VerifyReadyDlg#ReadyToInstall"/>
+    <ROW Dialog_="VerifyReadyDlg" Control="Text_2" Type="Text" X="17" Y="139" Width="312" Height="100" Attributes="65539" Text="The [Wizard] is ready to begin the [ProductName] installation" Order="500" TextLocId="Control.Text.VerifyReadyDlg#Description" MsiKey="VerifyReadyDlg#Text_2"/>
+    <ROW Dialog_="VerifyReadyDlg" Control="InstallButton" Type="ImageButton" X="251" Y="359" Width="78" Height="28" Attributes="3" Text="[metrobuttonimage]" TextStyle="[MetroButtonText]" Order="600" MsiKey="VerifyReadyDlg#InstallButton" ExtType="ImageButton" ExtData="INSTALL" ExtDataLocId="Metro.Control.ExtData.VerifyReadyDlg#InstallButton"/>
+    <ROW Dialog_="VerifyReadyDlg" Control="ProductNameTitle" Type="Text" X="83" Y="21" Width="245" Height="50" Attributes="196611" Text="[ProductName]" TextStyle="[ProductNameForSplash]" Order="700" TextLocId="Metro.Control.Text.ProductName" MsiKey="VerifyReadyDlg#ProductNameTitle"/>
+    <ROW Dialog_="VerifyReadyDlg" Control="CompanyText" Type="Text" X="83" Y="16" Width="191" Height="12" Attributes="196611" Text="[Manufacturer]" TextStyle="[ManufacturerFont]" Order="800" TextLocId="Metro.Control.Text.Manufacturer" MsiKey="VerifyReadyDlg#CompanyText"/>
+    <ROW Dialog_="VerifyReadyDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="5" Width="59" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="900" MsiKey="VerifyReadyDlg#ProductLogo"/>
+    <ROW Dialog_="VerifyReadyDlg" Control="AdvInst" Type="Text" X="5" Y="388" Width="74" Height="11" Attributes="196611" Text="Advanced Installer" TextStyle="[BrandingStyle]" Order="1000" MsiKey="VerifyReadyDlg#AdvInst"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control="Cancel" Type="ImageButton" X="163" Y="359" Width="78" Height="28" Attributes="2" Text="[NextCancelButtons]" TextStyle="[MetroButtonText]" Order="100" MsiKey="VerifyRemoveDlg#Cancel" Options="1" ExtType="ImageButton" ExtData="[ButtonText_Cancel]" ExtDataLocId="-"/>
+    <ROW Dialog_="VerifyRepairDlg" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="345" Height="400" Attributes="1" Text="[Background]" Order="100" MsiKey="VerifyRepairDlg#Bitmap"/>
+    <ROW Dialog_="VerifyRepairDlg" Control="Repair" Type="ImageButton" X="251" Y="359" Width="78" Height="28" Attributes="3" Text="[metrobuttonimage]" TextStyle="[MetroButtonText]" Order="200" MsiKey="VerifyRepairDlg#Repair" Options="1" ExtType="ImageButton" ExtData="&amp;Repair" ExtDataLocId="Metro.Control.ExtData.VerifyRepairDlg#Repair"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="InstallDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="301"/>
+    <ROW Dialog_="InstallDlg" Control_="YouMustAgreeCtrl" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="301"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="NewDialog" Argument="InstallDlg" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="1"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="101"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="699"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="199" Options="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="699"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Modify" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="99"/>
+    <ROW Dialog_="InstallDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="302" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="Next" Event="EnableRollback" Argument="False" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST=&quot;D&quot;" Ordering="303" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_INSTALL AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="304" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallDlgDialogInitializer" Event="[AI_ButtonText_Next_Orig]" Argument="[ButtonText_Next]" Condition="AI_INSTALL" Ordering="101" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallDlgDialogInitializer" Event="[ButtonText_Next]" Argument="[[AI_CommitButton]]" Condition="AI_INSTALL" Ordering="102" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallDlgDialogInitializer" Event="[AI_Text_Next_Orig]" Argument="[Text_Next]" Condition="AI_INSTALL" Ordering="103" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallDlgDialogInitializer" Event="[Text_Next]" Argument="[Text_Install]" Condition="AI_INSTALL" Ordering="104" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="YouMustAgreeCtrl" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_INSTALL" Ordering="302" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="YouMustAgreeCtrl" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_INSTALL" Ordering="303" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_INSTALL" Ordering="0" Options="2"/>
+    <ROW Dialog_="InstallDlg" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_INSTALL" Ordering="1" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_INSTALL AND AiLicenseAgreement AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="102" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="EnableRollback" Argument="False" Condition="AI_INSTALL AND AiLicenseAgreement AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST=&quot;D&quot;" Ordering="103" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_INSTALL AND AiLicenseAgreement AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="104" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="LicenseAgreementDlgDialogInitializer" Event="[AI_ButtonText_Next_Orig]" Argument="[ButtonText_Next]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="101" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="LicenseAgreementDlgDialogInitializer" Event="[ButtonText_Next]" Argument="[[AI_CommitButton]]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="102" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="LicenseAgreementDlgDialogInitializer" Event="[AI_Text_Next_Orig]" Argument="[Text_Next]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="103" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="LicenseAgreementDlgDialogInitializer" Event="[Text_Next]" Argument="[Text_Install]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="104" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="2" Options="2"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="3" Options="2"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Modify" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_MAINT AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="102" Options="2"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Modify" Event="EnableRollback" Argument="False" Condition="AI_MAINT AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST=&quot;D&quot;" Ordering="103" Options="2"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Modify" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_MAINT AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="104" Options="2"/>
+    <ROW Dialog_="CustomizeDlg" Control_="CustomizeDlgDialogInitializer" Event="[AI_ButtonText_Next_Orig]" Argument="[ButtonText_Next]" Condition="AI_MAINT" Ordering="0" Options="2"/>
+    <ROW Dialog_="CustomizeDlg" Control_="CustomizeDlgDialogInitializer" Event="[ButtonText_Next]" Argument="[[AI_CommitButton]]" Condition="AI_MAINT" Ordering="1" Options="2"/>
+    <ROW Dialog_="CustomizeDlg" Control_="CustomizeDlgDialogInitializer" Event="[AI_Text_Next_Orig]" Argument="[Text_Next]" Condition="AI_MAINT" Ordering="2" Options="2"/>
+    <ROW Dialog_="CustomizeDlg" Control_="CustomizeDlgDialogInitializer" Event="[Text_Next]" Argument="[Text_Install]" Condition="AI_MAINT" Ordering="3" Options="2"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_MAINT" Ordering="2" Options="2"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_MAINT" Ordering="3" Options="2"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_PATCH AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="202" Options="2"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="EnableRollback" Argument="False" Condition="AI_PATCH AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST=&quot;D&quot;" Ordering="203" Options="2"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_PATCH AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="204" Options="2"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="PatchWelcomeDlgDialogInitializer" Event="[AI_ButtonText_Next_Orig]" Argument="[ButtonText_Next]" Condition="AI_PATCH" Ordering="0" Options="2"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="PatchWelcomeDlgDialogInitializer" Event="[ButtonText_Next]" Argument="[[AI_CommitButton]]" Condition="AI_PATCH" Ordering="1" Options="2"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="PatchWelcomeDlgDialogInitializer" Event="[AI_Text_Next_Orig]" Argument="[Text_Next]" Condition="AI_PATCH" Ordering="2" Options="2"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="PatchWelcomeDlgDialogInitializer" Event="[Text_Next]" Argument="[Text_Install]" Condition="AI_PATCH" Ordering="3" Options="2"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_PATCH" Ordering="0" Options="2"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_PATCH" Ordering="1" Options="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_ChooseTextStyles" Type="1" Source="aicustact.dll" Target="ChooseTextStyles"/>
+    <ROW Action="AI_DATA_SETTER" Type="51" Source="AI_ExtractFiles" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_DeleteRCadLzma" Type="51" Source="AI_DeleteRLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteRLzma" Type="1281" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_DoRemoveExternalUIStub" Type="3585" Source="ExternalUICleaner.dll" Target="DoRemoveExternalUIStub" WithoutSeq="true"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_EstimateExtractFiles" Type="1" Source="Prereq.dll" Target="EstimateExtractFiles"/>
+    <ROW Action="AI_ExtractCadLzma" Type="51" Source="AI_ExtractLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_ExtractFiles" Type="1025" Source="Prereq.dll" Target="ExtractSourceFiles" AdditionalSeq="AI_DATA_SETTER"/>
+    <ROW Action="AI_ExtractLzma" Type="1025" Source="lzmaextractor.dll" Target="ExtractLZMAFiles"/>
+    <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
+    <ROW Action="AI_GetArpIconPath" Type="1" Source="aicustact.dll" Target="GetArpIconPath"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#PacMan.exe]"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_RemoveExternalUIStub" Type="1" Source="ExternalUICleaner.dll" Target="RemoveExternalUIStub"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_RunFinishActions" Type="1" Source="aicustact.dll" Target="RunFinishActions" WithoutSeq="true"/>
+    <ROW Action="AI_SETMIXINSTLOCATION" Type="1" Source="aicustact.dll" Target="MixedAllUsersInstallLocation"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[AI_UserProgramFiles][Manufacturer]\[ProductName]#Build_MSIX_APPX:"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="AppIcon.exe" SourcePath="..\..\Beta Engine\Assets\Textures\AppIcon.ico" Index="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1502"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_SETMIXINSTLOCATION" Sequence="748"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="198" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="197" Builds="DefaultBuild"/>
+    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="196" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1549" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6599" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractFiles" Sequence="3998" Builds="DefaultBuild"/>
+    <ROW Action="AI_DATA_SETTER" Sequence="3997"/>
+    <ROW Action="AI_EstimateExtractFiles" Sequence="3999" Builds="DefaultBuild"/>
+    <ROW Action="AI_GetArpIconPath" Sequence="1401"/>
+    <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1501"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
+    <ROW Action="AI_DpiContentScale" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_SETMIXINSTLOCATION" Sequence="748"/>
+    <ROW Action="InstallDlg" Condition="AI_INSTALL" Sequence="1230" SeqType="3" MsiKey="WelcomeDlg"/>
+    <ROW Action="MaintenanceTypeDlg" Condition="AI_MAINT" Sequence="1250" SeqType="3" MsiKey="MaintenanceTypeDlg"/>
+    <ROW Action="AI_ChooseTextStyles" Sequence="74"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT64 OR ((VersionNT &lt;&gt; 501) OR (ServicePackLevel = 3))) AND ((VersionNT &lt;&gt; 502) OR (ServicePackLevel = 2))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="SETUPEXEDIR OR (REMOVE=&quot;ALL&quot;)" Description="This package can only be run from a bootstrapper." DescriptionLocId="AI.LaunchCondition.RequireBootstrapper" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
+    <ROW Signature_="AI_EXE_PATH_CU" Root="1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+    <ROW Signature_="AI_EXE_PATH_LM" Root="2" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="AI_ExePath" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Value="[AI_SETUPEXEPATH]" Component_="AI_ExePath"/>
+    <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
+    <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
+    <ROW Registry="DisplayIcon" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayIcon" Value="[ARP_ICON_PATH]" Component_="AI_CustomARPName"/>
+    <ROW Registry="DisplayName" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayName" Value="[AI_PRODUCTNAME_ARP]" Component_="AI_CustomARPName"/>
+    <ROW Registry="DisplayVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayVersion" Value="[ProductVersion]" Component_="AI_CustomARPName"/>
+    <ROW Registry="EstimatedSize" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="EstimatedSize" Value="#[AI_ARP_SIZE]" Component_="AI_CustomARPName"/>
+    <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
+    <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
+    <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
+    <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
+    <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName"/>
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
+    <ROW Registry="Readme" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Readme" Value="[ARPREADME]" Component_="AI_CustomARPName"/>
+    <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
+    <ROW Registry="URLUpdateInfo" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLUpdateInfo" Value="[ARPURLUPDATEINFO]" Component_="AI_CustomARPName"/>
+    <ROW Registry="UninstallPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallPath" Value="[AI_UNINSTALLER] /x [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
+    <ROW Registry="UninstallString" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallString" Value="[AI_UNINSTALLER] /x [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+    <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#1" Component_="AI_CustomARPName"/>
+    <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#0" Component_="AI_CustomARPName"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="surface"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+</DOCUMENT>
